@@ -13,6 +13,7 @@
 		3F489C112ADEA787008F853C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F489C102ADEA787008F853C /* Preview Assets.xcassets */; };
 		3F489C132ADEA787008F853C /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F489C122ADEA787008F853C /* Persistence.swift */; };
 		3F489C162ADEA787008F853C /* AlimFoco.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3F489C142ADEA787008F853C /* AlimFoco.xcdatamodeld */; };
+		3FDAA4B42AE7F1B700B40A12 /* DayPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDAA4B32AE7F1B700B40A12 /* DayPlanView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		3F489C122ADEA787008F853C /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		3F489C152ADEA787008F853C /* AlimFoco.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AlimFoco.xcdatamodel; sourceTree = "<group>"; };
 		3F489C172ADEA787008F853C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3FDAA4B32AE7F1B700B40A12 /* DayPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayPlanView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		3F489C082ADEA786008F853C /* AlimFoco */ = {
 			isa = PBXGroup;
 			children = (
+				3FDAA4B32AE7F1B700B40A12 /* DayPlanView.swift */,
 				3F489C092ADEA786008F853C /* AlimFocoApp.swift */,
 				3F489C0B2ADEA786008F853C /* ContentView.swift */,
 				3F489C0D2ADEA787008F853C /* Assets.xcassets */,
@@ -146,6 +149,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F489C132ADEA787008F853C /* Persistence.swift in Sources */,
+				3FDAA4B42AE7F1B700B40A12 /* DayPlanView.swift in Sources */,
 				3F489C0C2ADEA786008F853C /* ContentView.swift in Sources */,
 				3F489C0A2ADEA786008F853C /* AlimFocoApp.swift in Sources */,
 				3F489C162ADEA787008F853C /* AlimFoco.xcdatamodeld in Sources */,

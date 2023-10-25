@@ -13,8 +13,18 @@ struct AlimFocoApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            DayPlanView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
+    }
+}
+
+extension View {
+    func getWidth() -> CGFloat {
+        return UIScreen.main.bounds.width
+    }
+    
+    func getHeight() -> CGFloat {
+        return UIScreen.main.bounds.height
     }
 }
