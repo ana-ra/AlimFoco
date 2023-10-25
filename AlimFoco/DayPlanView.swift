@@ -30,38 +30,70 @@ struct DayPlanView: View {
                     .fontWeight(.semibold)
             }
             
-            HStack {
-                ForEach(dates, id: \.self) { day in
-                    VStack {
-//                            Text(getDayShort(date: day))
-//                                .font(.title)
-                        let dayNumber = getDayNumber(date: day)
-                        
-                        if dayNumber == getDayNumber(date: Date()) {
-                            ZStack {
-                                Circle()
-                                    .fill(.blue)
-                                    .scaleEffect(1.3)
-                                
+            ScrollView(.horizontal) {
+                HStack {
+                    ForEach(dates, id: \.self) { day in
+                        VStack {
+    //                            Text(getDayShort(date: day))
+    //                                .font(.title)
+                            let dayNumber = getDayNumber(date: day)
+                            
+                            if dayNumber == getDayNumber(date: Date()) {
+                                ZStack {
+                                    Circle()
+                                        .fill(.blue)
+                                        .scaleEffect(1)
+                                    
+                                    Text("\(getDayNumber(date: day))")
+                                        .font(.title2)
+                                        .fontWeight(.semibold)
+                                        .foregroundColor(.white)
+                                }
+                            } else {
                                 Text("\(getDayNumber(date: day))")
-                                    .font(.title)
-                                    .fontWeight(.semibold)
-                                    .foregroundColor(.white)
+                                    .font(.title3)
                             }
-                        } else {
-                            Text("\(getDayNumber(date: day))")
-                               .font(.title)
                         }
-                    }
-                    .frame(width: getWidth() / 8, height: getHeight() / 20)
-                    .padding(.horizontal, -3)
-               }
+                        .frame(width: getWidth() / 8, height: getHeight() / 14)
+                        .padding(.horizontal, -3)
+                   }
+                }
+                .frame(width: getWidth())
             }
-           .frame(width: getWidth())
 //               .padding(<#T##insets: EdgeInsets##EdgeInsets#>)
             Spacer()
+            
+            List {
+                Section(header: Text("Refeições")) {
+                    DisclosureGroup("Café da Manhã") {
+                        VStack(alignment: .leading) {
+                            Text("salada")
+                            Text("100g")
+                        }
+                    }
+                    
+                    DisclosureGroup("Colação") {
+                        Text("Frango, Batata, Salada e Feijão")
+                    }
+                    
+                    DisclosureGroup("Almoçar") {
+                        Text("Frango, Batata, Salada e Feijão")
+                    }
+                    
+                    DisclosureGroup("Lanche") {
+                        Text("Frango, Batata, Salada e Feijão")
+                    }
+                    
+                    DisclosureGroup("Jantar") {
+                        Text("Frango, Batata, Salada e Feijão")
+                    }
+                }
+                .headerProminence(.increased)
+                .frame(height: getHeight() / 18)
+            }
         }
         .padding(.vertical, getHeight() / 20)
+        .background(Color(.systemGroupedBackground))
     }
     
     func getMonth(date: Date) -> String {
@@ -90,7 +122,7 @@ struct DayPlanView: View {
         
         let range = calendar.range(of: .day, in: .month, for: currentDate)!
         
-        let daysMonth = (range.lowerBound - 1 ..< range.lowerBound + 6)
+        let daysMonth = (range.lowerBound ..< range.upperBound / 4)
             .compactMap { calendar.date(byAdding: .day, value: $0 - dayOfWeek, to: currentDate) }
         
         return daysMonth
