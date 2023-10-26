@@ -68,7 +68,7 @@ struct DayPlanView: View {
                     DisclosureGroup("Café da Manhã") {
                         VStack(alignment: .leading) {
                             Text("salada")
-                            Text("100g")
+                            Text("100g").foregroundColor(.secondary)
                         }
                     }
                     
