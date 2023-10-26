@@ -28,3 +28,10 @@ extension View {
         return UIScreen.main.bounds.height
     }
 }
+
+extension Date {
+    func startOfWeek(using calendar: Calendar = Calendar.autoupdatingCurrent) -> Date {
+        calendar.dateComponents([.calendar, .yearForWeekOfYear, .weekOfYear], from: self)
+            .date!
+    }
+}
