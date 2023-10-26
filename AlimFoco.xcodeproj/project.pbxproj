@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05280D5E2AEAB50D007F0310 /* tbca.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05280D5C2AEAB50C007F0310 /* tbca.swift */; };
+		05280D5F2AEAB50D007F0310 /* ibge.json in Resources */ = {isa = PBXBuildFile; fileRef = 05280D5D2AEAB50D007F0310 /* ibge.json */; };
 		3F489C0A2ADEA786008F853C /* AlimFocoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F489C092ADEA786008F853C /* AlimFocoApp.swift */; };
 		3F489C0C2ADEA786008F853C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F489C0B2ADEA786008F853C /* ContentView.swift */; };
 		3F489C0E2ADEA787008F853C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F489C0D2ADEA787008F853C /* Assets.xcassets */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		05280D5C2AEAB50C007F0310 /* tbca.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tbca.swift; sourceTree = "<group>"; };
+		05280D5D2AEAB50D007F0310 /* ibge.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ibge.json; sourceTree = "<group>"; };
 		3F489C062ADEA786008F853C /* AlimFoco.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlimFoco.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F489C092ADEA786008F853C /* AlimFocoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlimFocoApp.swift; sourceTree = "<group>"; };
 		3F489C0B2ADEA786008F853C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -56,6 +60,8 @@
 		3F489C082ADEA786008F853C /* AlimFoco */ = {
 			isa = PBXGroup;
 			children = (
+				05280D5D2AEAB50D007F0310 /* ibge.json */,
+				05280D5C2AEAB50C007F0310 /* tbca.swift */,
 				3F489C092ADEA786008F853C /* AlimFocoApp.swift */,
 				3F489C0B2ADEA786008F853C /* ContentView.swift */,
 				3F489C0D2ADEA787008F853C /* Assets.xcassets */,
@@ -135,6 +141,7 @@
 			files = (
 				3F489C112ADEA787008F853C /* Preview Assets.xcassets in Resources */,
 				3F489C0E2ADEA787008F853C /* Assets.xcassets in Resources */,
+				05280D5F2AEAB50D007F0310 /* ibge.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,6 +155,7 @@
 				3F489C132ADEA787008F853C /* Persistence.swift in Sources */,
 				3F489C0C2ADEA786008F853C /* ContentView.swift in Sources */,
 				3F489C0A2ADEA786008F853C /* AlimFocoApp.swift in Sources */,
+				05280D5E2AEAB50D007F0310 /* tbca.swift in Sources */,
 				3F489C162ADEA787008F853C /* AlimFoco.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
