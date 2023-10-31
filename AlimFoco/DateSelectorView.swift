@@ -17,13 +17,27 @@ struct DateSelectorView: View {
         VStack(spacing: getHeight() / 30) {
             HStack {
                 Spacer()
-                Text("\(selectedDate, format: Date.FormatStyle(date: .complete, time: .omitted))")
-                    .font(.title3)
-                    .fontWeight(.semibold)
+                
+                if selectedDate.get(.day) == Date().get(.day) {
+                    HStack {
+                        Text("Today,")
+                            .font(.title3)
+                            .fontWeight(.semibold)
+                        
+                        Text("\(selectedDate, format: Date.FormatStyle(date: .long, time: .omitted))")
+                            .font(.title3)
+                            .fontWeight(.semibold)
+                    }
+                } else {
+                    Text("\(selectedDate, format: Date.FormatStyle(date: .complete, time: .omitted))")
+                        .font(.title3)
+                        .fontWeight(.semibold)
+                }
+                
                 Spacer()
             }
             
-            HStack(spacing: getWidth() / 15) {
+            HStack(spacing: getWidth() / 35) {
                 ForEach(self.dates, id: \.self) { date in
                     DateCircleView(date: date, selected: DateSelectorView.calendar.isDate(date, equalTo: selectedDate, toGranularity: .day), namespace: namespace)
                         .onTapGesture {
@@ -45,18 +59,14 @@ struct DateCircleView: View {
     
     var body: some View {
         ZStack {
-            if selected {
-                Circle().scaleEffect(1.5)
-                    .foregroundColor(.blue)
-                    .matchedGeometryEffect(id: "selected", in: namespace)
-            }
-            
+            Circle()
+                .frame(width: getWidth() / 10)
+                .foregroundColor(selected ? .blue : .clear)
             
             Text("\(dayNumber)")
                 .foregroundColor(selected ? .white: .black)
                 .font(.title2)
         }
-        .fixedSize(horizontal: true, vertical: true)
     }
     
     var dayNumber: Int {
