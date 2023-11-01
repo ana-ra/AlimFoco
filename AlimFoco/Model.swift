@@ -1,5 +1,4 @@
 import Foundation
-import SwiftUI
 import CloudKit
 
 // AGGREGATE MODEL
@@ -55,17 +54,6 @@ class Model: ObservableObject {
         
         records.forEach { record in
             Dictionary[record.recordID] = MealItem(record: record)
-        }
-    }
-    
-    func filterMealItems(by filterOptions: FilterOptions) -> [MealItem] {
-        switch filterOptions {
-            case .all:
-                return Mealitems
-            case .completed:
-                return Mealitems.filter { $0.isCompleted }
-            case .incomplete:
-                return Mealitems.filter { !$0.isCompleted }
         }
     }
     
