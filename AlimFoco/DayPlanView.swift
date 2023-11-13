@@ -19,7 +19,7 @@ struct DayPlanView: View {
             VStack (alignment: .center){
                 DateSelectorView(dates: dates(for: Date()), selectedDate: $selectedDate)
                 Spacer()
-                if(false) {
+                if(MealItems.isEmpty) {
                     VStack () {
                         Spacer()
                         ErrorState(
@@ -127,11 +127,10 @@ struct DayPlanView: View {
                                     }
                                 }
                             }
-                        }
-                    }.headerProminence(.increased)
-                        .frame(height: getHeight() / 18)
-                }
-                Spacer()
+                        }.headerProminence(.increased)
+                            .frame(height: getHeight() / 18)
+
+                    }                }
             }.task {
                 do {
                     try await model.populateMealItems()
@@ -151,6 +150,7 @@ struct DayPlanView: View {
                 }
             }
             .background(Color(.systemGroupedBackground))
+            Spacer()
         }
     }
     
