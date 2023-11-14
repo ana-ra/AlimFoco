@@ -10,6 +10,8 @@ import SwiftUI
 struct AddItemModalView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var weight: Int = 0
+    @ObservedObject var meal: Meal
+    @Binding var refreshView: Bool
     
     var body: some View {
         List {
@@ -41,6 +43,8 @@ struct AddItemModalView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button("Add") {
+                    meal.items.append(Item(name: "New Item", weight: weight))
+                    refreshView = true
                     dismiss()
                 }
             }
@@ -55,5 +59,5 @@ struct AddItemModalView: View {
 }
 
 #Preview {
-    AddItemModalView()
+    AddItemModalView(meal: Meal(name: "Almoço", items: []), refreshView: .constant(false))
 }
