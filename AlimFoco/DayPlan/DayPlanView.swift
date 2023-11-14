@@ -130,7 +130,7 @@ struct DayPlanView: View {
                             }
                         }.headerProminence(.increased)
                             .frame(height: getHeight() / 18)
-
+                        
                     }                }
             }.task {
                 do {
@@ -151,13 +151,13 @@ struct DayPlanView: View {
                 }
             }
             .background(Color(.systemGroupedBackground))
-                .navigationDestination(
-                    isPresented: $isNavigatingToNewMealView,
-                    destination: {
-                        NewMealView()
-                    }
-                )
-               
+            .navigationDestination(
+                isPresented: $isNavigatingToNewMealView,
+                destination: {
+                    NewMealView()
+                }
+            )
+            
         }
     }
     
