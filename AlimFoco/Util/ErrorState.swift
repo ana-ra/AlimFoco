@@ -28,6 +28,8 @@ struct ErrorState: View {
         Text(description)
             .foregroundColor(.gray)
             .padding(.top, 8)
+            .padding(.horizontal, 16)
+            .multilineTextAlignment(.center)
         
         Button(action: {
             self.action()

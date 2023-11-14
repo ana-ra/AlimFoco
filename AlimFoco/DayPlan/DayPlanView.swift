@@ -10,16 +10,17 @@ import SwiftUI
 struct DayPlanView: View {
     @EnvironmentObject private var model: Model
     @State var selectedDate = Date()
+    @State var isNavigatingToNewMealView = false
     var MealItems: [MealItem] {
         model.Mealitems
     }
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack (alignment: .center){
                 DateSelectorView(dates: dates(for: Date()), selectedDate: $selectedDate)
                 Spacer()
-                if(MealItems.isEmpty) {
+                if MealItems.isEmpty {
                     VStack () {
                         Spacer()
                         ErrorState(
@@ -28,7 +29,7 @@ struct DayPlanView: View {
                             description: "Não há refeições a serem exibidas para este dia.",
                             buttonText: "Criar nova refeição",
                             action: {
-                               // NavigationLink(destination: NewMealView())
+                                isNavigatingToNewMealView.toggle()
                             }
                         )
                         Spacer()
@@ -150,7 +151,13 @@ struct DayPlanView: View {
                 }
             }
             .background(Color(.systemGroupedBackground))
-            Spacer()
+                .navigationDestination(
+                    isPresented: $isNavigatingToNewMealView,
+                    destination: {
+                        NewMealView()
+                    }
+                )
+               
         }
     }
     

@@ -69,7 +69,6 @@
 		3F489C082ADEA786008F853C /* AlimFoco */ = {
 			isa = PBXGroup;
 			children = (
-				05501AC22AF149E5004DCA2C /* DayPlanView.swift */,
 				A76F0B432B025506007B2951 /* DayPlan */,
 				A76F0B422B0254F0007B2951 /* Util */,
 				A76F0B3F2B024ED8007B2951 /* NewMeal */,
@@ -79,7 +78,6 @@
 				3F489C0D2ADEA787008F853C /* Assets.xcassets */,
 				3F489C172ADEA787008F853C /* Info.plist */,
 				3F489C0F2ADEA787008F853C /* Preview Content */,
-				3F28DFCE2AFD0B6400F1E4EC /* CardScrollView.swift */,
 			);
 			path = AlimFoco;
 			sourceTree = "<group>";
@@ -113,6 +111,8 @@
 		A76F0B432B025506007B2951 /* DayPlan */ = {
 			isa = PBXGroup;
 			children = (
+				05501AC22AF149E5004DCA2C /* DayPlanView.swift */,
+				3F28DFCE2AFD0B6400F1E4EC /* CardScrollView.swift */,
 				0574EF5C2AF1418600881448 /* MealItem.swift */,
 				05501AC02AF149B4004DCA2C /* DataSelectorView.swift */,
 			);

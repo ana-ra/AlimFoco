@@ -12,7 +12,7 @@ struct AlimFocoApp: App {
 
     var body: some Scene {
         WindowGroup {
-            CardScrollView()
+            DayPlanView().environmentObject(Model())
         }
     }
 }
