@@ -18,9 +18,9 @@ struct CardScrollView: View {
       HStack(spacing: 0) {
           Spacer()
           ForEach(0..<4){ i in
-              VStack(alignment:.leading, spacing:0) {
+              VStack(alignment:.leading) {
                   ForEach(0 ..< foods.count){ food in
-                      HStack(spacing: 0) {
+                      HStack {
                           VStack(alignment: .leading) {
                               Text("\(foods[food].name) ")
                                   .foregroundStyle(.black)
@@ -29,7 +29,7 @@ struct CardScrollView: View {
                           }
 
                           .padding(.horizontal, 16)
-                          .padding(.vertical, 8)
+                          .padding(.vertical, 4)
                           Spacer()
                     }
                       if(food < foods.count - 1){

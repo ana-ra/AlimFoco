@@ -12,11 +12,7 @@ struct AlimFocoApp: App {
 
     var body: some Scene {
         WindowGroup {
-<<<<<<< Updated upstream
             DayPlanView().environmentObject( Model())
-=======
-            DayPlanView()
->>>>>>> Stashed changes
         }
     }
 }
