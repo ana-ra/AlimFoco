@@ -20,7 +20,7 @@ struct CardScrollView: View {
           ForEach(0..<4){ i in
               VStack(alignment:.leading, spacing:0) {
                   ForEach(0 ..< foods.count){ food in
-                      HStack {
+                      HStack(spacing: 0) {
                           VStack(alignment: .leading) {
                               Text("\(foods[food].name) ")
                                   .foregroundStyle(.black)

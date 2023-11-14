@@ -23,9 +23,10 @@ struct DayPlanView: View {
             List{
                 Section(header: Text("Refeições")) {
                     DisclosureGroup("Café da Manhã") {
+                        CardScrollView()
                         VStack(alignment: .leading) {
                             ForEach(MealItems, id: \.recordId){ mealItem in
-                                Text(mealItem.title)
+
                             }.onDelete { indexSet in
                                 guard let index = indexSet.map({ $0 }).last else {
                                 return
@@ -114,7 +115,7 @@ struct DayPlanView: View {
                         }
                     }
                 }.headerProminence(.increased)
-                    .frame(height: getHeight() / 18)
+                    .frame(height: getHeight() / 10)
             }
             
         }.task {
