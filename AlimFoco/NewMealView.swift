@@ -15,7 +15,7 @@ struct NewMealView: View {
         model.Mealitems
     }
     @State private var isAddItemModalPresented = false
-    @State private var selection:Meal = Meal(name: "", items: [])
+    @State private var selection: Meal = Meal(name: "", items: [])
     @State var meals = [
         Meal(name: "Café da Manhã", items: [Item(name: "Salada", weight: 100), Item(name: "Peito de Frango", weight: 150)]),
         Meal(name: "Colação", items: []),
