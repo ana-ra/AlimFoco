@@ -15,6 +15,13 @@ struct DayPlanView: View {
     var MealItems: [MealItem] {
         model.Mealitems
     }
+    @State var meals = [
+        Meal(name: "Café da Manhã", items: [Item(name: "Salada", weight: 100), Item(name: "Peito de Frango", weight: 150)]),
+        Meal(name: "Colação", items: []),
+        Meal(name: "Almoço", items: [Item(name: "asd", weight: 100), Item(name: "Peito de Frango", weight: 150)]),
+        Meal(name: "Lanche da Tarde", items: [Item(name: "ffff", weight: 100), Item(name: "Peito de Frango", weight: 150)]),
+        Meal(name: "Jantar", items: [Item(name: "Curs", weight: 100), Item(name: "Peito de Frango", weight: 150)])
+      ]
     
     var body: some View {
         NavigationStack {
@@ -36,11 +43,12 @@ struct DayPlanView: View {
                         Spacer()
                     }
                 } else {
-                    List{
+                    List {
                         Section(header: Text("Refeições")) {
-                            DisclosureGroup("Café da Manhã") {
-                                VStack(alignment: .leading) {
-                                    Button(action: {
+                            ForEach(meals, id: \.self) {meal in
+                                DisclosureGroup(meal.name) {
+                                    CardScrollView()
+                                     Button(action: {
                                         isSatisfactionSheetPresented.toggle()
                                     }) {
                                         HStack(alignment: .center, spacing: 4) {
@@ -57,99 +65,17 @@ struct DayPlanView: View {
                                         .background(Color(red: 0.84, green: 0.54, blue: 0.08).opacity(0.4))
                                         .cornerRadius(10)
                                     }
-                                    ForEach(MealItems, id: \.recordId) { mealItem in
-                                        Text(mealItem.title)
-                                    }.onDelete { indexSet in
-                                        guard let index = indexSet.map({ $0 }).last else {
-                                            return
-                                        }
-                                        let MealItem = model.Mealitems[index]
-                                        Task {
-                                            do {
-                                                try await model.deleteItem(MealItemToBeDeleted: MealItem)
-                                            } catch {
-                                                print(error)
-                                            }
-                                        }
-                                    }
                                 }
                             }
                             
-                            DisclosureGroup("Colação") {
-                                ForEach(MealItems, id: \.recordId){ mealItem in
-                                    Text(mealItem.title)
-                                }.onDelete { indexSet in
-                                    guard let index = indexSet.map({ $0 }).last else {
-                                        return
-                                    }
-                                    let MealItem = model.Mealitems[index]
-                                    Task {
-                                        do {
-                                            try await model.deleteItem(MealItemToBeDeleted: MealItem)
-                                        } catch {
-                                            print(error)
-                                        }
-                                    }
-                                }
-                            }
+                        }
+                        .headerProminence(.increased)
+                        Section(header: Text("Registrado")) {
                             
-                            DisclosureGroup("Almoçar") {
-                                ForEach(MealItems, id: \.recordId){ mealItem in
-                                    Text(mealItem.title)
-                                }.onDelete { indexSet in
-                                    guard let index = indexSet.map({ $0 }).last else {
-                                        return
-                                    }
-                                    let MealItem = model.Mealitems[index]
-                                    Task {
-                                        do {
-                                            try await model.deleteItem(MealItemToBeDeleted: MealItem)
-                                        } catch {
-                                            print(error)
-                                        }
-                                    }
-                                }
-                            }
-                            
-                            DisclosureGroup("Lanche") {
-                                ForEach(MealItems, id: \.recordId){ mealItem in
-                                    Text(mealItem.title)
-                                }.onDelete { indexSet in
-                                    guard let index = indexSet.map({ $0 }).last else {
-                                        return
-                                    }
-                                    let MealItem = model.Mealitems[index]
-                                    Task {
-                                        do {
-                                            try await model.deleteItem(MealItemToBeDeleted: MealItem)
-                                        } catch {
-                                            print(error)
-                                        }
-                                    }
-                                }
-                            }
-                            
-                            DisclosureGroup("Jantar") {
-                                ForEach(MealItems, id: \.recordId){ mealItem in
-                                    Text(mealItem.title)
-                                }.onDelete { indexSet in
-                                    guard let index = indexSet.map({ $0 }).last else {
-                                        return
-                                    }
-                                    let MealItem = model.Mealitems[index]
-                                    Task {
-                                        do {
-                                            try await model.deleteItem(MealItemToBeDeleted: MealItem)
-                                        } catch {
-                                            print(error)
-                                        }
-                                    }
-                                }
-                            }
-                        }.headerProminence(.increased)
-                            .frame(height: getHeight() / 18)
-                        
-                    }                }
+                        }
+                        .headerProminence(.increased)
+                    }
+                }
             }.task {
                 do {
                     try await model.populateMealItems()
@@ -190,6 +116,38 @@ struct DayPlanView: View {
         }
         
         return dates
+    }
+}
+                            
+class Meal: ObservableObject, Identifiable, Hashable {
+    static func == (lhs: Meal, rhs: Meal) -> Bool {
+        lhs.id == rhs.id
+    }
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
+    var id: String {
+        name
+    }
+    
+    let name: String
+    @Published var items: [Item]
+    
+    init(name: String, items: [Item]) {
+        self.name = name
+        self.items = items
+    }
+}
+                            
+struct Item: Identifiable {
+    let id = UUID()
+    var name: String
+    let weight: Int
+      
+    init(name: String, weight: Int) {
+        self.name = name
+        self.weight = weight
     }
 }
 
