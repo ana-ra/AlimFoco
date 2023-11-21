@@ -19,9 +19,8 @@
 		3F489C0A2ADEA786008F853C /* AlimFocoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F489C092ADEA786008F853C /* AlimFocoApp.swift */; };
 		3F489C0E2ADEA787008F853C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F489C0D2ADEA787008F853C /* Assets.xcassets */; };
 		3F489C112ADEA787008F853C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F489C102ADEA787008F853C /* Preview Assets.xcassets */; };
-		A7508B072B03A58100FF6623 /* RegisterSatisfactionSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7508B062B03A58100FF6623 /* RegisterSatisfactionSheetView.swift */; };
 		3F84BCA02B03A0DE00E0A748 /* MealCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F84BC9F2B03A0DE00E0A748 /* MealCardView.swift */; };
-		A76F0B412B024EF4007B2951 /* NewMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F0B402B024EF4007B2951 /* NewMealView.swift */; };
+		A7508B072B03A58100FF6623 /* RegisterSatisfactionSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7508B062B03A58100FF6623 /* RegisterSatisfactionSheetView.swift */; };
 		A76F0B452B02552D007B2951 /* ErrorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F0B442B02552D007B2951 /* ErrorState.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,9 +40,8 @@
 		3F489C0D2ADEA787008F853C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F489C102ADEA787008F853C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3F489C172ADEA787008F853C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A7508B062B03A58100FF6623 /* RegisterSatisfactionSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterSatisfactionSheetView.swift; sourceTree = "<group>"; };
 		3F84BC9F2B03A0DE00E0A748 /* MealCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCardView.swift; sourceTree = "<group>"; };
-		A76F0B402B024EF4007B2951 /* NewMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMealView.swift; sourceTree = "<group>"; };
+		A7508B062B03A58100FF6623 /* RegisterSatisfactionSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterSatisfactionSheetView.swift; sourceTree = "<group>"; };
 		A76F0B442B02552D007B2951 /* ErrorState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -353,6 +351,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationLandscapeRight;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -390,6 +389,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationLandscapeRight;
 				LD_RUNPATH_SEARCH_PATHS = (
