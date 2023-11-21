@@ -14,6 +14,8 @@
 		0574EF5B2AF1418400881448 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0574EF5A2AF1418400881448 /* Model.swift */; };
 		0574EF5D2AF1418600881448 /* MealItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0574EF5C2AF1418600881448 /* MealItem.swift */; };
 		3F28DFCF2AFD0B6400F1E4EC /* CardScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F28DFCE2AFD0B6400F1E4EC /* CardScrollView.swift */; };
+		20F64B872AFBB70A00D452B2 /* NewMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F64B862AFBB70A00D452B2 /* NewMealView.swift */; };
+		20F64B892AFE611C00D452B2 /* AddItemModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F64B882AFE611C00D452B2 /* AddItemModalView.swift */; };
 		3F489C0A2ADEA786008F853C /* AlimFocoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F489C092ADEA786008F853C /* AlimFocoApp.swift */; };
 		3F489C0E2ADEA787008F853C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F489C0D2ADEA787008F853C /* Assets.xcassets */; };
 		3F489C112ADEA787008F853C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F489C102ADEA787008F853C /* Preview Assets.xcassets */; };
@@ -30,6 +32,8 @@
 		0574EF5A2AF1418400881448 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		0574EF5C2AF1418600881448 /* MealItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealItem.swift; sourceTree = "<group>"; };
 		3F28DFCE2AFD0B6400F1E4EC /* CardScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardScrollView.swift; sourceTree = "<group>"; };
+		20F64B862AFBB70A00D452B2 /* NewMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMealView.swift; sourceTree = "<group>"; };
+		20F64B882AFE611C00D452B2 /* AddItemModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemModalView.swift; sourceTree = "<group>"; };
 		3F489C062ADEA786008F853C /* AlimFoco.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlimFoco.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F489C092ADEA786008F853C /* AlimFocoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlimFocoApp.swift; sourceTree = "<group>"; };
 		3F489C0D2ADEA787008F853C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -72,6 +76,8 @@
 				A76F0B432B025506007B2951 /* DayPlan */,
 				A76F0B422B0254F0007B2951 /* Util */,
 				A76F0B3F2B024ED8007B2951 /* NewMeal */,
+				20F64B882AFE611C00D452B2 /* AddItemModalView.swift */,
+				20F64B862AFBB70A00D452B2 /* NewMealView.swift */,
 				0574EF552AF12C7A00881448 /* AlimFoco.entitlements */,
 				05280D5D2AEAB50D007F0310 /* ibge.json */,
 				3F489C092ADEA786008F853C /* AlimFocoApp.swift */,
@@ -191,7 +197,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0574EF5B2AF1418400881448 /* Model.swift in Sources */,
-				A76F0B412B024EF4007B2951 /* NewMealView.swift in Sources */,
+				20F64B892AFE611C00D452B2 /* AddItemModalView.swift in Sources */,
+				20F64B872AFBB70A00D452B2 /* NewMealView.swift in Sources */,
 				05501AC32AF149E5004DCA2C /* DayPlanView.swift in Sources */,
 				3F489C0A2ADEA786008F853C /* AlimFocoApp.swift in Sources */,
 				05280D5E2AEAB50D007F0310 /* tbca.swift in Sources */,
