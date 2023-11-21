@@ -15,11 +15,12 @@ struct AddItemModalView: View {
     
     var body: some View {
         List {
-            NavigationLink(destination: NewMealView()) {
+            NavigationLink(destination: FilterView() ) {
                 HStack {
                     Text("Item")
                     Spacer()
                     Text("Select")
+                        .foregroundStyle(.gray)
                 }
             }
             
