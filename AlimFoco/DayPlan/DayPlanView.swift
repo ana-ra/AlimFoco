@@ -11,6 +11,7 @@ struct DayPlanView: View {
     @EnvironmentObject private var model: Model
     @State var selectedDate = Date()
     @State var isNavigatingToNewMealView = false
+    @State var isSatisfactionSheetPresented = false
     var MealItems: [MealItem] {
         model.Mealitems
     }
@@ -20,7 +21,7 @@ struct DayPlanView: View {
             VStack (alignment: .center){
                 DateSelectorView(dates: dates(for: Date()), selectedDate: $selectedDate)
                 Spacer()
-                if MealItems.isEmpty {
+                if !MealItems.isEmpty {
                     VStack () {
                         Spacer()
                         ErrorState(
@@ -39,7 +40,24 @@ struct DayPlanView: View {
                         Section(header: Text("Refeições")) {
                             DisclosureGroup("Café da Manhã") {
                                 VStack(alignment: .leading) {
-                                    ForEach(MealItems, id: \.recordId){ mealItem in
+                                    Button(action: {
+                                        isSatisfactionSheetPresented.toggle()
+                                    }) {
+                                        HStack(alignment: .center, spacing: 4) {
+                                            Text("Nível de satisfação")
+                                              .foregroundColor(.black)
+                                            Spacer()
+                                            Image(systemName: "plus")
+                                                .foregroundColor(.black)
+                                            
+                                        }
+                                        .padding(.horizontal, 16)
+                                        .padding(.vertical, 0)
+                                        .frame(maxWidth: .infinity, minHeight: 44, maxHeight: 44, alignment: .leading)
+                                        .background(Color(red: 0.84, green: 0.54, blue: 0.08).opacity(0.4))
+                                        .cornerRadius(10)
+                                    }
+                                    ForEach(MealItems, id: \.recordId) { mealItem in
                                         Text(mealItem.title)
                                     }.onDelete { indexSet in
                                         guard let index = indexSet.map({ $0 }).last else {
@@ -157,6 +175,9 @@ struct DayPlanView: View {
                     NewMealView()
                 }
             )
+            .sheet(isPresented: $isSatisfactionSheetPresented, content: {
+                RegisterSatisfactionSheetView().presentationDetents([.height(351)])
+            })
             
         }
     }
