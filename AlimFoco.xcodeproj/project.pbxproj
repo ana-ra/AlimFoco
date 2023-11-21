@@ -14,6 +14,7 @@
 		0574EF5B2AF1418400881448 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0574EF5A2AF1418400881448 /* Model.swift */; };
 		0574EF5D2AF1418600881448 /* MealItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0574EF5C2AF1418600881448 /* MealItem.swift */; };
 		209A65B72B0CF27D00A36DBF /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A65B62B0CF27D00A36DBF /* FilterView.swift */; };
+		20E9CAB02B0D35A30020A495 /* SectionIndexTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E9CAAF2B0D35A30020A495 /* SectionIndexTitles.swift */; };
 		20F64B872AFBB70A00D452B2 /* NewMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F64B862AFBB70A00D452B2 /* NewMealView.swift */; };
 		20F64B892AFE611C00D452B2 /* AddItemModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F64B882AFE611C00D452B2 /* AddItemModalView.swift */; };
 		3F489C0A2ADEA786008F853C /* AlimFocoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F489C092ADEA786008F853C /* AlimFocoApp.swift */; };
@@ -30,6 +31,7 @@
 		0574EF5A2AF1418400881448 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		0574EF5C2AF1418600881448 /* MealItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealItem.swift; sourceTree = "<group>"; };
 		209A65B62B0CF27D00A36DBF /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
+		20E9CAAF2B0D35A30020A495 /* SectionIndexTitles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionIndexTitles.swift; sourceTree = "<group>"; };
 		20F64B862AFBB70A00D452B2 /* NewMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMealView.swift; sourceTree = "<group>"; };
 		20F64B882AFE611C00D452B2 /* AddItemModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemModalView.swift; sourceTree = "<group>"; };
 		3F489C062ADEA786008F853C /* AlimFoco.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlimFoco.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,6 +71,7 @@
 		3F489C082ADEA786008F853C /* AlimFoco */ = {
 			isa = PBXGroup;
 			children = (
+				20E9CAAF2B0D35A30020A495 /* SectionIndexTitles.swift */,
 				209A65B62B0CF27D00A36DBF /* FilterView.swift */,
 				20F64B882AFE611C00D452B2 /* AddItemModalView.swift */,
 				20F64B862AFBB70A00D452B2 /* NewMealView.swift */,
@@ -171,6 +174,7 @@
 				20F64B872AFBB70A00D452B2 /* NewMealView.swift in Sources */,
 				05501AC32AF149E5004DCA2C /* DayPlanView.swift in Sources */,
 				209A65B72B0CF27D00A36DBF /* FilterView.swift in Sources */,
+				20E9CAB02B0D35A30020A495 /* SectionIndexTitles.swift in Sources */,
 				3F489C0A2ADEA786008F853C /* AlimFocoApp.swift in Sources */,
 				05280D5E2AEAB50D007F0310 /* tbca.swift in Sources */,
 				0574EF5D2AF1418600881448 /* MealItem.swift in Sources */,
@@ -307,7 +311,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AlimFoco/Preview Content\"";
-				DEVELOPMENT_TEAM = 4G6HA9J6S5;
+				DEVELOPMENT_TEAM = QS932KTLCZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Nutrifi;
@@ -344,7 +348,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AlimFoco/Preview Content\"";
-				DEVELOPMENT_TEAM = 4G6HA9J6S5;
+				DEVELOPMENT_TEAM = QS932KTLCZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Nutrifi;

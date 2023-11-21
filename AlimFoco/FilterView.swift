@@ -11,11 +11,13 @@ let alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P",
 
 struct FilterView: View {
     @StateObject var viewModel = foodListViewModel()
+    @Binding var selection: Alimento?
+    @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         NavigationStack {
             ScrollViewReader { scrollProxy in
-                List {
+                List(selection: $selection) {
                     ForEach(alphabet, id: \.self) { letter in
                         let subItems = viewModel.filteredAlimentos.filter({ (alimento) -> Bool in
                             alimento.nome.prefix(1).folding(options: .diacriticInsensitive, locale: .current) == letter
@@ -24,14 +26,18 @@ struct FilterView: View {
                             Section(header: Text(letter).id(letter)) {
                                 ForEach(subItems, id: \.self) { alimento in
                                     Text("\(alimento.nome)")
+//                                    Button {
+//                                        selection = alimento
+//                                        print(selection!.nome)
+//                                    } label: {
+//                                        Text("\(alimento.nome)")
+//                                            .foregroundColor(.primary)
+//                                    }
                                 }
                             }
                             .id(letter)
                         }
                     }
-                }
-                .onSubmit(of: .search) {
-                    print("submitted")
                 }
                 .overlay(alignment: .trailing) {
                     SectionIndexTitles(proxy: scrollProxy)
@@ -45,45 +51,6 @@ struct FilterView: View {
     }
 }
 
-struct SectionIndexTitles: View {
-    let proxy: ScrollViewProxy
-    @GestureState private var dragLocation: CGPoint = .zero
-    
-    var body: some View {
-        VStack {
-            ForEach(alphabet, id: \.self) { letter in
-                Text(letter)
-                    .background(dragObserver(title: letter))
-                    .foregroundColor(.accentColor)
-            }
-        }
-        .gesture(
-            DragGesture(minimumDistance: 0, coordinateSpace: .global)
-                .updating($dragLocation) { value, state, _ in
-                    state = value.location
-                }
-        )
-    }
-    
-    func dragObserver(title: String) -> some View {
-        GeometryReader { geometry in
-            dragObserver(geometry: geometry, title: title)
-        }
-    }
-    
-    private func dragObserver(geometry: GeometryProxy, title: String) -> some View {
-        if geometry.frame(in: .global).contains(dragLocation) {
-        // we need to dispatch to the main queue because we cannot access to the
-        // `ScrollViewProxy` instance while the body is rendering
-            DispatchQueue.main.async {
-                proxy.scrollTo(title, anchor: .center)
-            }
-        }
-        
-        return Rectangle().fill(Color.clear)
-    }
-}
-
-#Preview {
-    FilterView()
-}
+//#Preview {
+//    FilterView()
+//}

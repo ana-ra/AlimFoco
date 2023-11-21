@@ -9,34 +9,46 @@ import SwiftUI
 
 struct AddItemModalView: View {
     @Environment(\.dismiss) private var dismiss
-    @State private var weight: Int = 0
+    @State private var weight: String = ""
     @ObservedObject var meal: Meal
     @Binding var refreshView: Bool
+    @State var item: Alimento?
+    @FocusState var isInputActive: Bool
     
     var body: some View {
         List {
-            NavigationLink(destination: FilterView() ) {
+            NavigationLink(destination: FilterView(selection: $item) ) {
                 HStack {
                     Text("Item")
                     Spacer()
-                    Text("Select")
-                        .foregroundStyle(.gray)
+                    
+                    if item == nil {
+                        Text("Select")
+                            .foregroundStyle(.gray)
+                    } else {
+                        if let item = item {
+                            Text(item.nome)
+                        }
+                    }
+
                 }
             }
             
             HStack {
-                Text("Weight")
-                TextField("Enter the text in grams", text: Binding(
-                        get: { "\(weight) g"},
-                        set: {
-                            if let value = NumberFormatter().number(from: $0) {
-                                weight = Int(value)
-                            }
-                        }
-                ))
+                Text("Weight (g)")
+                TextField("Enter the text in grams", text: $weight)
                 .keyboardType(.numberPad)
+                .focused($isInputActive)
                 .onSubmit {
                     print("Return key pressed")
+                }
+                .toolbar {
+                    ToolbarItemGroup(placement: .keyboard) {
+                        Spacer()
+                        Button("Done") {
+                            isInputActive = false
+                        }
+                    }
                 }
             }
 
@@ -44,7 +56,7 @@ struct AddItemModalView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button("Add") {
-                    meal.items.append(Item(name: "New Item", weight: weight))
+                    meal.items.append(Item(name: "New Item", weight: Int(weight)! ))
                     refreshView = true
                     dismiss()
                 }
