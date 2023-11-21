@@ -19,6 +19,8 @@
 		3F489C0A2ADEA786008F853C /* AlimFocoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F489C092ADEA786008F853C /* AlimFocoApp.swift */; };
 		3F489C0E2ADEA787008F853C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F489C0D2ADEA787008F853C /* Assets.xcassets */; };
 		3F489C112ADEA787008F853C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F489C102ADEA787008F853C /* Preview Assets.xcassets */; };
+		3F84BCA02B03A0DE00E0A748 /* MealCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F84BC9F2B03A0DE00E0A748 /* MealCardView.swift */; };
+		A76F0B412B024EF4007B2951 /* NewMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F0B402B024EF4007B2951 /* NewMealView.swift */; };
 		A76F0B452B02552D007B2951 /* ErrorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F0B442B02552D007B2951 /* ErrorState.swift */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +40,8 @@
 		3F489C0D2ADEA787008F853C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F489C102ADEA787008F853C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3F489C172ADEA787008F853C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F84BC9F2B03A0DE00E0A748 /* MealCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCardView.swift; sourceTree = "<group>"; };
+		A76F0B402B024EF4007B2951 /* NewMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMealView.swift; sourceTree = "<group>"; };
 		A76F0B442B02552D007B2951 /* ErrorState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,6 +122,7 @@
 				3F28DFCE2AFD0B6400F1E4EC /* CardScrollView.swift */,
 				0574EF5C2AF1418600881448 /* MealItem.swift */,
 				05501AC02AF149B4004DCA2C /* DataSelectorView.swift */,
+				3F84BC9F2B03A0DE00E0A748 /* MealCardView.swift */,
 			);
 			path = DayPlan;
 			sourceTree = "<group>";
@@ -201,6 +206,7 @@
 				05280D5E2AEAB50D007F0310 /* tbca.swift in Sources */,
 				0574EF5D2AF1418600881448 /* MealItem.swift in Sources */,
 				A76F0B452B02552D007B2951 /* ErrorState.swift in Sources */,
+				3F84BCA02B03A0DE00E0A748 /* MealCardView.swift in Sources */,
 				05501AC12AF149B4004DCA2C /* DataSelectorView.swift in Sources */,
 				3F28DFCF2AFD0B6400F1E4EC /* CardScrollView.swift in Sources */,
 			);
