@@ -30,28 +30,23 @@ struct AddItemModalView: View {
                             Text(item.nome)
                         }
                     }
-
                 }
             }
             
             HStack {
                 Text("Weight (g)")
                 TextField("Enter the text in grams", text: $weight)
-                .keyboardType(.numberPad)
-                .focused($isInputActive)
-                .onSubmit {
-                    print("Return key pressed")
-                }
-                .toolbar {
-                    ToolbarItemGroup(placement: .keyboard) {
-                        Spacer()
-                        Button("Done") {
-                            isInputActive = false
+                    .keyboardType(.numberPad)
+                    .focused($isInputActive)
+                    .toolbar {
+                        ToolbarItemGroup(placement: .keyboard) {
+                            Spacer()
+                            Button("Done") {
+                                isInputActive = false
+                            }
                         }
                     }
-                }
             }
-
         }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
@@ -77,10 +72,6 @@ struct AddItemModalView: View {
         }
         .navigationTitle("Add Item")
         .navigationBarTitleDisplayMode(.inline)
-    }
-    
-    var formattedWeight: String {
-        return "\(weight) g"
     }
 }
 

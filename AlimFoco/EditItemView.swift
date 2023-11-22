@@ -78,14 +78,14 @@ struct EditItemView: View {
                         Button {
                     
                         } label: {
-                            Text("Add")
+                            Text("Done")
                                 .foregroundColor(.gray)
                         }
                     }
                     
                     else if weight != "" {
                         if let item = item {
-                            Button("Add") {
+                            Button("Done") {
                                 meal.items.append(Item(name: item.nome, weight: Int(weight)!))
                                 dismiss()
                             }

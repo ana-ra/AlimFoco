@@ -9,7 +9,10 @@ import SwiftUI
 
 struct NewMealView: View {
     @EnvironmentObject private var model: Model
+    @Environment(\.dismiss) private var dismiss
     @State private var editMode = EditMode.inactive
+    @State var showPopup: Bool = false
+    @State var isEditing = false
     @State private var refreshView = false
     var mealItems: [MealItem] {
         model.Mealitems
@@ -26,44 +29,89 @@ struct NewMealView: View {
     
     var body: some View {
         NavigationStack {
-            List {
-                Picker("Select a meal", selection: $selection) {
-                    ForEach(meals, id: \.self) {
-                        Text($0.name).tag($0.name)
-                    }
-                }
-                
-                Section(header: Text("Items")) {
-                    ForEach(selection.items) { item in
-                        NavigationLink(destination: EditItemView(weight: String(item.weight), meal: selection, item: Alimento(codigo1: "", nome: item.name, codigo2: "", preparacao: "", kcal: "", proteina: "", lipidios: "", carboidratos: "", fibraAlimentar: ""))) {
-                            VStack(alignment: .leading) {
-                                Text(item.name)
-                                    .foregroundStyle(.black)
-                                Text("\(item.weight) g")
-                                    .foregroundStyle(.gray)
-                            }
+            ZStack {
+                List {
+                    Picker("Select a meal", selection: $selection) {
+                        ForEach(meals, id: \.self) {
+                            Text($0.name).tag($0.name)
                         }
                     }
-                   .onDelete(perform: deleteNavigationLinks)
-                }
-                .headerProminence(.increased)
-                
-                Button {
-                    // abrir o modal de adicionar item
-                    isAddItemModalPresented.toggle()
-                } label: {
-                    HStack {
-                        Text("Add Item")
-                            .foregroundStyle(.black)
-                        Spacer()
-                        Image(systemName: "plus")
+                    
+                    if !selection.items.isEmpty {
+                        Section {
+                            ForEach(selection.items) { item in
+                                NavigationLink(destination: EditItemView(weight: String(item.weight), meal: selection, item: Alimento(codigo1: "", nome: item.name, codigo2: "", preparacao: "", kcal: "", proteina: "", lipidios: "", carboidratos: "", fibraAlimentar: ""))) {
+                                    VStack(alignment: .leading) {
+                                        Text(item.name)
+                                            .foregroundStyle(.black)
+                                        Text("\(item.weight) g")
+                                            .foregroundStyle(.gray)
+                                    }
+                                }
+                            }
+                           .onDelete(perform: deleteNavigationLinks)
+                        } header: {
+                            HStack {
+                                Text("Items")
+                                
+                                Spacer()
+                                
+                                Button {
+                                    withAnimation(.spring()) {
+                                        isEditing.toggle()
+                                        editMode = isEditing ? .active : .inactive
+                                    }
+                                } label: {
+                                    let buttonText = isEditing ? "Done" : "Edit"
+                                    Text(buttonText)
+                                }
+                            }
+                        }
+                        .headerProminence(.increased)
+                    }
+                    
+                    Section {
+                        Button {
+                            // abrir o modal de adicionar item
+                            isAddItemModalPresented.toggle()
+                        } label: {
+                            HStack {
+                                Text("Add Item")
+                                    .foregroundStyle(.black)
+                                Spacer()
+                                Image(systemName: "plus")
+                            }
+                    }
                     }
                 }
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        if !showPopup {
+                            Button {
+                                withAnimation {
+                                    showPopup.toggle()
+
+                                    // fazer logica de cadastro de nova refeição
+                                }
+                            } label: {
+                                Text("Register")
+                            }
+                        .padding()
+                        }
+                    }
+                }
+                .environment(\.editMode, $editMode)
+                .opacity(showPopup ? 0.1 : 1)
+                
+                if showPopup {
+                    NewMealPopUpView()
+                        .onAppear(perform: {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                dismiss()
+                            }
+                        })
+                }
             }
-            .toolbar {
-                EditButton()
-            }
-            .environment(\.editMode, $editMode)
 
         }
         .sheet(isPresented: $isAddItemModalPresented) {
@@ -80,26 +128,14 @@ struct NewMealView: View {
         .onAppear(perform: {
             selection = meals[0]
         })
+        .navigationTitle("New Meal")
+        .navigationBarTitleDisplayMode(.inline)
     }
     
     func deleteNavigationLinks(at offsets: IndexSet) {
-//        var mealsList = meals
-//        if let mealIndex = mealsList.lastIndex(of: selection) {
-//            mealsList[mealIndex].items.remove(atOffsets: offsets)
-//        }
-//        meals = mealsList
-//        var newSelection = selection
         selection.items.remove(atOffsets: offsets)
-//     //   selection = newSelection
         print(selection)
         print(selection.items)
-        for meal in meals {
-            if meal == selection {
-                for item in meal.items {
-                    print(item)
-                }
-            }
-        }
     }
 }
 

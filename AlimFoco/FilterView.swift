@@ -13,12 +13,11 @@ struct FilterView: View {
     @StateObject var viewModel = foodListViewModel()
     @Binding var selection: Alimento?
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.dismissSearch) private var dismissSearch
 
     var body: some View {
         NavigationStack {
             ScrollViewReader { scrollProxy in
-                List(selection: $selection) {
+                List {
                     ForEach(alphabet, id: \.self) { letter in
                         let subItems = viewModel.filteredAlimentos.filter({ (alimento) -> Bool in
                             alimento.nome.prefix(1).folding(options: .diacriticInsensitive, locale: .current) == letter
@@ -26,14 +25,13 @@ struct FilterView: View {
                         if !subItems.isEmpty {
                             Section(header: Text(letter).id(letter)) {
                                 ForEach(subItems, id: \.self) { alimento in
-                                    Text("\(alimento.nome)")
-//                                    Button {
-//                                        selection = alimento
-//                                        print(selection!.nome)
-//                                    } label: {
-//                                        Text("\(alimento.nome)")
-//                                            .foregroundColor(.primary)
-//                                    }
+                                    Button {
+                                        selection = alimento
+                                        dismiss()
+                                    } label: {
+                                        Text(alimento.nome)
+                                            .foregroundColor(.primary)
+                                    }
                                 }
                             }
                             .id(letter)
