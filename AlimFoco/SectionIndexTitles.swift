@@ -12,11 +12,13 @@ struct SectionIndexTitles: View {
     @GestureState private var dragLocation: CGPoint = .zero
     
     var body: some View {
-        VStack {
+        VStack(spacing: -5) {
             ForEach(alphabet, id: \.self) { letter in
                 Text(letter)
                     .background(dragObserver(title: letter))
                     .foregroundColor(.accentColor)
+                    .scaleEffect(0.5)
+                    .fontWeight(.bold)
             }
         }
         .gesture(
@@ -31,7 +33,7 @@ struct SectionIndexTitles: View {
         GeometryReader { geometry in
             dragObserver(geometry: geometry, title: title)
         }
-        .frame(width: getWidth() / 12, height: getHeight() / 20)
+        .frame(width: getWidth() / 12, height: getHeight() / 25)
     }
     
     private func dragObserver(geometry: GeometryProxy, title: String) -> some View {
@@ -44,6 +46,7 @@ struct SectionIndexTitles: View {
         }
         
         return Rectangle()
-            .fill(Color.clear)
+            .fill(Color.black)
+            .opacity(0.001)
     }
 }

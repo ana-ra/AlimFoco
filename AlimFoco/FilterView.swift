@@ -13,6 +13,7 @@ struct FilterView: View {
     @StateObject var viewModel = foodListViewModel()
     @Binding var selection: Alimento?
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.dismissSearch) private var dismissSearch
 
     var body: some View {
         NavigationStack {

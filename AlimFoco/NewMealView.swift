@@ -35,7 +35,7 @@ struct NewMealView: View {
                 
                 Section(header: Text("Items")) {
                     ForEach(selection.items) { item in
-                        NavigationLink(destination: NewMealView()) {
+                        NavigationLink(destination: EditItemView(weight: String(item.weight), meal: selection, item: Alimento(codigo1: "", nome: item.name, codigo2: "", preparacao: "", kcal: "", proteina: "", lipidios: "", carboidratos: "", fibraAlimentar: ""))) {
                             VStack(alignment: .leading) {
                                 Text(item.name)
                                     .foregroundStyle(.black)

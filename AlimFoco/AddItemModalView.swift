@@ -55,10 +55,23 @@ struct AddItemModalView: View {
         }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                Button("Add") {
-                    meal.items.append(Item(name: "New Item", weight: Int(weight)! ))
-                    refreshView = true
-                    dismiss()
+                if weight == "" || item == nil {
+                    Button {
+                
+                    } label: {
+                        Text("Add")
+                            .foregroundColor(.gray)
+                    }
+                }
+                
+                else if weight != "" {
+                    if let item = item {
+                        Button("Add") {
+                            meal.items.append(Item(name: item.nome, weight: Int(weight)!))
+                            refreshView = true
+                            dismiss()
+                        }
+                    }
                 }
             }
         }
