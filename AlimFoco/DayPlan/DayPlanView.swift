@@ -28,7 +28,6 @@ struct DayPlanView: View {
                 DateSelectorView(dates: dates(for: Date()), selectedDate: $selectedDate)
                 Spacer()
                 
-                // Change this to show empty state
                 if false {
                     VStack () {
                         Spacer()
@@ -46,36 +45,15 @@ struct DayPlanView: View {
                 } else {
                     List {
                         Section(header: Text("Refeições")) {
-                            ForEach(meals, id: \.self) {meal in
+                            ForEach(meals, id: \.self) { meal in
                                 DisclosureGroup(meal.name) {
                                     CardScrollView()
                                 }
+                                .listRowInsets(EdgeInsets(top: 50, leading: 20, bottom: 20, trailing: 10)) // Adiciona espaço vertical
                             }
-                            
-
-//                            DisclosureGroup("Colação") {
-//                                ForEach(MealItems, id: \.recordId){ mealItem in
-//                                    Text(mealItem.title)
-//                                }.onDelete { indexSet in
-//                                    guard let index = indexSet.map({ $0 }).last else {
-//                                        return
-//                                    }
-//                                    let MealItem = model.Mealitems[index]
-//                                    Task {
-//                                        do {
-//                                            try await model.deleteItem(MealItemToBeDeleted: MealItem)
-//                                        } catch {
-//                                            print(error)
-//                                        }
-//                                    }
-//                                }
-//                            }
-//
-
                         }
                         .headerProminence(.increased)
-//                            .frame(height: getHeight() / 5)
-                        Section(header: Text("Registrado")) {
+                        Section(header: Text("Refeições registradas")) {
                             
                         }
                         .headerProminence(.increased)
