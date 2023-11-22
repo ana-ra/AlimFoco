@@ -11,7 +11,6 @@ struct AddItemModalView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var weight: String = ""
     @ObservedObject var meal: Meal
-    @Binding var refreshView: Bool
     @State var item: Alimento?
     @FocusState var isInputActive: Bool
     
@@ -63,7 +62,6 @@ struct AddItemModalView: View {
                     if let item = item {
                         Button("Add") {
                             meal.items.append(Item(name: item.nome, weight: Int(weight)!))
-                            refreshView = true
                             dismiss()
                         }
                     }
@@ -76,5 +74,5 @@ struct AddItemModalView: View {
 }
 
 #Preview {
-    AddItemModalView(meal: Meal(name: "Almoço", items: []), refreshView: .constant(false))
+    AddItemModalView(meal: Meal(name: "Almoço", items: []))
 }

@@ -13,7 +13,6 @@ struct NewMealView: View {
     @State private var editMode = EditMode.inactive
     @State var showPopup: Bool = false
     @State var isEditing = false
-    @State private var refreshView = false
     var mealItems: [MealItem] {
         model.Mealitems
     }
@@ -114,17 +113,16 @@ struct NewMealView: View {
             }
 
         }
-        .sheet(isPresented: $isAddItemModalPresented) {
-            NavigationStack {
-                AddItemModalView(meal: selection, refreshView: $refreshView)
-                    .onAppear {
-                        if refreshView {
-                            print("View is refreshed!")
-                            refreshView = false
-                        }
-                    }
+        .sheet(isPresented: $isAddItemModalPresented, onDismiss: {
+            withAnimation {
+                isEditing.toggle()
+                isEditing.toggle()
             }
-        }
+        }, content: {
+            NavigationStack {
+                AddItemModalView(meal: selection)
+            }
+        })
         .onAppear(perform: {
             selection = meals[0]
         })
