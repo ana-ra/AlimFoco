@@ -126,6 +126,7 @@ struct DayPlanView: View {
             }
         }
         .background(Color(.systemGroupedBackground))
+        }
     }
     
     func dates(for startDate: Date) -> [Date] {
