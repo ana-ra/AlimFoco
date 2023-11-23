@@ -14,10 +14,15 @@ struct MainView: View {
                 .tabItem {
                     Label("Registro", systemImage: "list.bullet.rectangle.portrait")
                 }
+            HistoryView()
+                .tabItem {
+                    Label("Histórico", systemImage: "calendar")
+                }
             TotalMealsView()
                 .tabItem {
                     Label("Refeições", systemImage: "fork.knife")
                 }
+            
         }
     }
 }
