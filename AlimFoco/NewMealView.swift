@@ -137,39 +137,6 @@ struct NewMealView: View {
     }
 }
 
-class Meal: ObservableObject, Identifiable, Hashable {
-    
-    static func == (lhs: Meal, rhs: Meal) -> Bool {
-        lhs.id == rhs.id
-    }
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
-    
-    var id: String {
-        name
-    }
-    let name: String
-    @Published var items: [Item]
-    
-    init(name: String, items: [Item]) {
-        self.name = name
-        self.items = items
-    }
-}
-
-struct Item: Identifiable {
-    let id = UUID()
-    var name: String
-    let weight: Int
-    
-    init(name: String, weight: Int) {
-        self.name = name
-        self.weight = weight
-    }
-}
-
 #Preview {
     NewMealView()
 }
