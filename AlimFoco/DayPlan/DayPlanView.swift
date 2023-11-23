@@ -11,6 +11,7 @@ struct DayPlanView: View {
     @EnvironmentObject private var model: Model
     @State var selectedDate = Date()
     @State var isNavigatingToNewMealView = false
+    @State var isSatisfactionSheetPresented = false
     var MealItems: [MealItem] {
         model.Mealitems
     }
@@ -27,8 +28,7 @@ struct DayPlanView: View {
             VStack (alignment: .center){
                 DateSelectorView(dates: dates(for: Date()), selectedDate: $selectedDate)
                 Spacer()
-                
-                if false {
+                if !MealItems.isEmpty {
                     VStack () {
                         Spacer()
                         ErrorState(
@@ -48,12 +48,30 @@ struct DayPlanView: View {
                             ForEach(meals, id: \.self) { meal in
                                 DisclosureGroup(meal.name) {
                                     CardScrollView()
+                                     Button(action: {
+                                        isSatisfactionSheetPresented.toggle()
+                                    }) {
+                                        HStack(alignment: .center, spacing: 4) {
+                                            Text("Nível de satisfação")
+                                              .foregroundColor(.black)
+                                            Spacer()
+                                            Image(systemName: "plus")
+                                                .foregroundColor(.black)
+                                            
+                                        }
+                                        .padding(.horizontal, 16)
+                                        .padding(.vertical, 0)
+                                        .frame(maxWidth: .infinity, minHeight: 44, maxHeight: 44, alignment: .leading)
+                                        .background(Color(red: 0.84, green: 0.54, blue: 0.08).opacity(0.4))
+                                        .cornerRadius(10)
+                                    }
                                 }
                                 .listRowInsets(EdgeInsets(top: 50, leading: 20, bottom: 20, trailing: 10)) // Adiciona espaço vertical
                             }
+                            
                         }
                         .headerProminence(.increased)
-                        Section(header: Text("Refeições registradas")) {
+                        Section(header: Text("Registrado")) {
                             
                         }
                         .headerProminence(.increased)
@@ -84,6 +102,9 @@ struct DayPlanView: View {
                     NewMealView()
                 }
             )
+            .sheet(isPresented: $isSatisfactionSheetPresented, content: {
+                RegisterSatisfactionSheetView().presentationDetents([.height(351)])
+            })
             
         }
     }
