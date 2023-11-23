@@ -14,7 +14,7 @@ struct CardScrollView: View {
     ]
     
   var body: some View {
-    ScrollView(.horizontal){
+    ScrollView(.horizontal, showsIndicators: false){
       HStack(spacing: 0) {
           Spacer()
           ForEach(0..<4){ i in
@@ -48,6 +48,7 @@ struct CardScrollView: View {
       }
     }
   }
+
 
 
 struct Food: Identifiable {

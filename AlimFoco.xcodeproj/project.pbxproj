@@ -13,15 +13,18 @@
 		05501AC32AF149E5004DCA2C /* DayPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05501AC22AF149E5004DCA2C /* DayPlanView.swift */; };
 		0574EF5B2AF1418400881448 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0574EF5A2AF1418400881448 /* Model.swift */; };
 		0574EF5D2AF1418600881448 /* MealItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0574EF5C2AF1418600881448 /* MealItem.swift */; };
-		20F64B872AFBB70A00D452B2 /* NewMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F64B862AFBB70A00D452B2 /* NewMealView.swift */; };
+		202344A72B0E1EBE0041E818 /* EditItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202344A62B0E1EBE0041E818 /* EditItemView.swift */; };
+		209A65B72B0CF27D00A36DBF /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A65B62B0CF27D00A36DBF /* FilterView.swift */; };
+		20CE3E882B0E7760004521A4 /* NewMealPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE3E872B0E7760004521A4 /* NewMealPopUpView.swift */; };
+		20E9CAB02B0D35A30020A495 /* SectionIndexTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E9CAAF2B0D35A30020A495 /* SectionIndexTitles.swift */; };
+		20F1F0DD2B0F7AAB001DCA3B /* NewMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F1F0DC2B0F7AAB001DCA3B /* NewMealView.swift */; };
 		20F64B892AFE611C00D452B2 /* AddItemModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F64B882AFE611C00D452B2 /* AddItemModalView.swift */; };
 		3F28DFCF2AFD0B6400F1E4EC /* CardScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F28DFCE2AFD0B6400F1E4EC /* CardScrollView.swift */; };
 		3F489C0A2ADEA786008F853C /* AlimFocoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F489C092ADEA786008F853C /* AlimFocoApp.swift */; };
 		3F489C0E2ADEA787008F853C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F489C0D2ADEA787008F853C /* Assets.xcassets */; };
 		3F489C112ADEA787008F853C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F489C102ADEA787008F853C /* Preview Assets.xcassets */; };
-		A7508B072B03A58100FF6623 /* RegisterSatisfactionSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7508B062B03A58100FF6623 /* RegisterSatisfactionSheetView.swift */; };
 		3F84BCA02B03A0DE00E0A748 /* MealCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F84BC9F2B03A0DE00E0A748 /* MealCardView.swift */; };
-		A76F0B412B024EF4007B2951 /* NewMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F0B402B024EF4007B2951 /* NewMealView.swift */; };
+		A7508B072B03A58100FF6623 /* RegisterSatisfactionSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7508B062B03A58100FF6623 /* RegisterSatisfactionSheetView.swift */; };
 		A76F0B452B02552D007B2951 /* ErrorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F0B442B02552D007B2951 /* ErrorState.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,7 +36,11 @@
 		0574EF552AF12C7A00881448 /* AlimFoco.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AlimFoco.entitlements; sourceTree = "<group>"; };
 		0574EF5A2AF1418400881448 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		0574EF5C2AF1418600881448 /* MealItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealItem.swift; sourceTree = "<group>"; };
-		20F64B862AFBB70A00D452B2 /* NewMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewMealView.swift; path = AlimFoco/NewMealView.swift; sourceTree = SOURCE_ROOT; };
+		202344A62B0E1EBE0041E818 /* EditItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemView.swift; sourceTree = "<group>"; };
+		209A65B62B0CF27D00A36DBF /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
+		20CE3E872B0E7760004521A4 /* NewMealPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMealPopUpView.swift; sourceTree = "<group>"; };
+		20E9CAAF2B0D35A30020A495 /* SectionIndexTitles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionIndexTitles.swift; sourceTree = "<group>"; };
+		20F1F0DC2B0F7AAB001DCA3B /* NewMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMealView.swift; sourceTree = "<group>"; };
 		20F64B882AFE611C00D452B2 /* AddItemModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemModalView.swift; sourceTree = "<group>"; };
 		3F28DFCE2AFD0B6400F1E4EC /* CardScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardScrollView.swift; sourceTree = "<group>"; };
 		3F489C062ADEA786008F853C /* AlimFoco.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlimFoco.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -41,9 +48,8 @@
 		3F489C0D2ADEA787008F853C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F489C102ADEA787008F853C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3F489C172ADEA787008F853C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A7508B062B03A58100FF6623 /* RegisterSatisfactionSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterSatisfactionSheetView.swift; sourceTree = "<group>"; };
 		3F84BC9F2B03A0DE00E0A748 /* MealCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCardView.swift; sourceTree = "<group>"; };
-		A76F0B402B024EF4007B2951 /* NewMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMealView.swift; sourceTree = "<group>"; };
+		A7508B062B03A58100FF6623 /* RegisterSatisfactionSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterSatisfactionSheetView.swift; sourceTree = "<group>"; };
 		A76F0B442B02552D007B2951 /* ErrorState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -80,7 +86,6 @@
 				A76F0B432B025506007B2951 /* DayPlan */,
 				A76F0B422B0254F0007B2951 /* Util */,
 				A76F0B3F2B024ED8007B2951 /* NewMeal */,
-				20F64B882AFE611C00D452B2 /* AddItemModalView.swift */,
 				0574EF552AF12C7A00881448 /* AlimFoco.entitlements */,
 				05280D5D2AEAB50D007F0310 /* ibge.json */,
 				3F489C092ADEA786008F853C /* AlimFocoApp.swift */,
@@ -102,7 +107,12 @@
 		A76F0B3F2B024ED8007B2951 /* NewMeal */ = {
 			isa = PBXGroup;
 			children = (
-				20F64B862AFBB70A00D452B2 /* NewMealView.swift */,
+				20CE3E872B0E7760004521A4 /* NewMealPopUpView.swift */,
+				20E9CAAF2B0D35A30020A495 /* SectionIndexTitles.swift */,
+				202344A62B0E1EBE0041E818 /* EditItemView.swift */,
+				20F64B882AFE611C00D452B2 /* AddItemModalView.swift */,
+				20F1F0DC2B0F7AAB001DCA3B /* NewMealView.swift */,
+				209A65B62B0CF27D00A36DBF /* FilterView.swift */,
 			);
 			path = NewMeal;
 			sourceTree = "<group>";
@@ -201,13 +211,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20F1F0DD2B0F7AAB001DCA3B /* NewMealView.swift in Sources */,
 				0574EF5B2AF1418400881448 /* Model.swift in Sources */,
 				20F64B892AFE611C00D452B2 /* AddItemModalView.swift in Sources */,
-				20F64B872AFBB70A00D452B2 /* NewMealView.swift in Sources */,
 				05501AC32AF149E5004DCA2C /* DayPlanView.swift in Sources */,
+				209A65B72B0CF27D00A36DBF /* FilterView.swift in Sources */,
+				20E9CAB02B0D35A30020A495 /* SectionIndexTitles.swift in Sources */,
+				202344A72B0E1EBE0041E818 /* EditItemView.swift in Sources */,
 				A7508B072B03A58100FF6623 /* RegisterSatisfactionSheetView.swift in Sources */,
 				3F489C0A2ADEA786008F853C /* AlimFocoApp.swift in Sources */,
 				05280D5E2AEAB50D007F0310 /* tbca.swift in Sources */,
+				20CE3E882B0E7760004521A4 /* NewMealPopUpView.swift in Sources */,
 				0574EF5D2AF1418600881448 /* MealItem.swift in Sources */,
 				A76F0B452B02552D007B2951 /* ErrorState.swift in Sources */,
 				3F84BCA02B03A0DE00E0A748 /* MealCardView.swift in Sources */,
@@ -353,6 +367,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationLandscapeRight;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -390,6 +405,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationLandscapeRight;
 				LD_RUNPATH_SEARCH_PATHS = (

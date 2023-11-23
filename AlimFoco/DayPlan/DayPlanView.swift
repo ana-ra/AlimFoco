@@ -45,7 +45,7 @@ struct DayPlanView: View {
                 } else {
                     List {
                         Section(header: Text("Refeições")) {
-                            ForEach(meals, id: \.self) {meal in
+                            ForEach(meals, id: \.self) { meal in
                                 DisclosureGroup(meal.name) {
                                     CardScrollView()
                                      Button(action: {
@@ -66,6 +66,7 @@ struct DayPlanView: View {
                                         .cornerRadius(10)
                                     }
                                 }
+                                .listRowInsets(EdgeInsets(top: 50, leading: 20, bottom: 20, trailing: 10)) // Adiciona espaço vertical
                             }
                             
                         }

@@ -23,15 +23,18 @@ struct DateSelectorView: View {
                         Text("Today,")
                             .font(.title3)
                             .fontWeight(.semibold)
+                            .font(.system(size: 20))
                         
                         Text("\(selectedDate, format: Date.FormatStyle(date: .long, time: .omitted))")
                             .font(.title3)
                             .fontWeight(.semibold)
+                            .font(.system(size: 20))
                     }
                 } else {
                     Text("\(selectedDate, format: Date.FormatStyle(date: .complete, time: .omitted))")
                         .font(.title3)
                         .fontWeight(.semibold)
+                        .font(.system(size: 20))
                 }
                 
                 Spacer()
@@ -66,6 +69,7 @@ struct DateCircleView: View {
             Text("\(dayNumber)")
                 .foregroundColor(selected ? .white: .black)
                 .font(.title2)
+            
         }
     }
     
