@@ -46,8 +46,12 @@ struct DayPlanView: View {
                     List {
                         Section(header: Text("Refeições")) {
                             ForEach(meals, id: \.self) { meal in
-                                DisclosureGroup(meal.name) {
+                                DisclosureGroup {
                                     CardScrollView()
+                                        .listRowInsets(EdgeInsets(top: 0,
+                                                                  leading: 0,
+                                                                  bottom: 0,
+                                                                  trailing: 16))
                                      Button(action: {
                                         isSatisfactionSheetPresented.toggle()
                                     }) {
@@ -60,13 +64,22 @@ struct DayPlanView: View {
                                             
                                         }
                                         .padding(.horizontal, 16)
-                                        .padding(.vertical, 0)
-                                        .frame(maxWidth: .infinity, minHeight: 44, maxHeight: 44, alignment: .leading)
+                                        .frame(width: getWidth() / 1.2, height: getHeight() / 17)
                                         .background(Color(red: 0.84, green: 0.54, blue: 0.08).opacity(0.4))
                                         .cornerRadius(10)
                                     }
+                                    .padding(.vertical, 8)
+                                    .listRowInsets(EdgeInsets(top: 0,
+                                                              leading: 0,
+                                                              bottom: 0,
+                                                              trailing: 16))
+                                } label: {
+                                    Text(meal.name)
+                                        .fontWeight(.semibold)
                                 }
+                                .listRowSeparator(.hidden)
                                 .listRowInsets(EdgeInsets(top: 50, leading: 20, bottom: 20, trailing: 10)) // Adiciona espaço vertical
+                                
                             }
                             
                         }
@@ -96,12 +109,18 @@ struct DayPlanView: View {
                 }
             }
             .background(Color(.systemGroupedBackground))
-            .navigationDestination(
-                isPresented: $isNavigatingToNewMealView,
-                destination: {
-                    NewMealView()
+            .toolbar {
+                ToolbarItemGroup {
+                    NavigationLink(destination: NewMealView()) {
+                        Image(systemName: "plus")
+                    }
+                    
+                    NavigationLink(destination: HistoryView()) {
+                        Image(systemName: "calendar")
+                    }
                 }
-            )
+            }
+            .navigationTitle("Plano Alimentar")
             .sheet(isPresented: $isSatisfactionSheetPresented, content: {
                 RegisterSatisfactionSheetView().presentationDetents([.height(351)])
             })
