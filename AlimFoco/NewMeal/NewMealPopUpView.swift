@@ -13,10 +13,10 @@ struct NewMealPopUpView: View {
             Image(systemName: "checkmark.circle")
               .font(Font.custom("SF Pro", size: 36))
               .multilineTextAlignment(.center)
-              .foregroundColor(Color(red: 0.41, green: 0.5, blue: 0.12))
+              .foregroundColor(Color.successGreen)
               .frame(maxWidth: .infinity, alignment: .center)
             
-            Text("Meal added")
+            Text("Refeição Adicionada")
                 .fontWeight(.semibold)
         }
         .frame(width: getWidth() / 1.4, height: getHeight() / 7)

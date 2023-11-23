@@ -48,10 +48,7 @@ struct DayPlanView: View {
                             ForEach(meals, id: \.self) { meal in
                                 DisclosureGroup {
                                     CardScrollView()
-                                        .listRowInsets(EdgeInsets(top: 0,
-                                                                  leading: 0,
-                                                                  bottom: 0,
-                                                                  trailing: 16))
+                                        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
                                      Button(action: {
                                         isSatisfactionSheetPresented.toggle()
                                     }) {
@@ -65,14 +62,11 @@ struct DayPlanView: View {
                                         }
                                         .padding(.horizontal, 16)
                                         .frame(width: getWidth() / 1.2, height: getHeight() / 17)
-                                        .background(Color(red: 0.84, green: 0.54, blue: 0.08).opacity(0.4))
+                                        .background(Color.secondary2)
                                         .cornerRadius(10)
                                     }
                                     .padding(.vertical, 8)
-                                    .listRowInsets(EdgeInsets(top: 0,
-                                                              leading: 0,
-                                                              bottom: 0,
-                                                              trailing: 16))
+                                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
                                 } label: {
                                     Text(meal.name)
                                         .fontWeight(.semibold)
@@ -122,9 +116,9 @@ struct DayPlanView: View {
             }
             .navigationTitle("Plano Alimentar")
             .sheet(isPresented: $isSatisfactionSheetPresented, content: {
-                RegisterSatisfactionSheetView().presentationDetents([.height(351)])
+                RegisterSatisfactionSheetView().presentationDetents([.height(getHeight() / 2.5)])
+                    .tint(Color.informationGreen)
             })
-            
         }
     }
     

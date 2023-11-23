@@ -22,7 +22,7 @@ struct AddItemModalView: View {
                     Spacer()
                     
                     if item == nil {
-                        Text("Select")
+                        Text("Selecionar")
                             .foregroundStyle(.gray)
                     } else {
                         if let item = item {
@@ -33,14 +33,14 @@ struct AddItemModalView: View {
             }
             
             HStack {
-                Text("Weight (g)")
-                TextField("Enter the text in grams", text: $weight)
+                Text("Quantidade (g)")
+                TextField("0 g", text: $weight)
                     .keyboardType(.numberPad)
                     .focused($isInputActive)
                     .toolbar {
                         ToolbarItemGroup(placement: .keyboard) {
                             Spacer()
-                            Button("Done") {
+                            Button("Concluído") {
                                 isInputActive = false
                             }
                         }
@@ -53,14 +53,14 @@ struct AddItemModalView: View {
                     Button {
                 
                     } label: {
-                        Text("Add")
+                        Text("Adicionar")
                             .foregroundColor(.gray)
                     }
                 }
                 
                 else if weight != "" {
                     if let item = item {
-                        Button("Add") {
+                        Button("Adicionar") {
                             meal.items.append(Item(name: item.nome, weight: Int(weight)!))
                             dismiss()
                         }
@@ -68,7 +68,7 @@ struct AddItemModalView: View {
                 }
             }
         }
-        .navigationTitle("Add Item")
+        .navigationTitle("Adicionar Item")
         .navigationBarTitleDisplayMode(.inline)
     }
 }

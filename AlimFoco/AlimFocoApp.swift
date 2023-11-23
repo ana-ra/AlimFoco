@@ -13,6 +13,7 @@ struct AlimFocoApp: App {
     var body: some Scene {
         WindowGroup {
             MainView()
+                .tint(Color.informationGreen)
         }
     }
 }

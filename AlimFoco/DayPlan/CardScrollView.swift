@@ -42,7 +42,7 @@ struct CardScrollView: View {
             
             Spacer()
           }
-            .background(Color(red: 0, green: 0.48, blue: 1).opacity(0.1))
+          .background(Color.secondary1)
             .cornerRadius(20)
             .padding(.vertical, 4)
         }

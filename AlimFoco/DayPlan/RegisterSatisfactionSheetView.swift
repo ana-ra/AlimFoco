@@ -25,7 +25,6 @@ struct RegisterSatisfactionSheetView: View {
                     dismiss()
                 }) {
                     Text("Cancelar")
-                        .foregroundColor(.accentColor)
                 }
             }
             Spacer()
@@ -39,7 +38,7 @@ struct RegisterSatisfactionSheetView: View {
                 VStack {
                     HStack {
                         Text(options[index])
-                            .foregroundColor(.primary)
+//                            .foregroundColor(.primary)
                         Spacer()
                         Image(systemName: self.selectedOption == index ? "checkmark.circle.fill" : "checkmark.circle")
                             .onTapGesture {
@@ -47,7 +46,7 @@ struct RegisterSatisfactionSheetView: View {
                                     self.selectedOption = self.selectedOption == index ? nil : index
                                 }
                             }
-                            .foregroundColor(self.selectedOption == index ? .accentColor : .secondary)
+                            .foregroundColor(self.selectedOption == index ? Color.informationGreen : .secondary)
                     }
                     .padding(.vertical, 8)
                     .background(
@@ -72,10 +71,10 @@ struct RegisterSatisfactionSheetView: View {
                 .padding(.horizontal, 14)
                 .padding(.vertical, 7)
                 .frame(maxWidth: .infinity, alignment: .center)
-                .foregroundColor(isButtonEnabled ? .accentColor : .gray) // Disable button if no checkbox is selected
+                .foregroundColor(isButtonEnabled ? Color.informationGreen : .gray) // Disable button if no checkbox is selected
                 .background(
                     RoundedRectangle(cornerRadius: 14)
-                        .fill(isButtonEnabled ? Color.accentColor : Color.gray) // Change button color when disabled
+                        .fill(isButtonEnabled ? Color.informationGreen : Color.gray) // Change button color when disabled
                 )
                 .disabled(!isButtonEnabled)
             }
