@@ -18,7 +18,7 @@ struct ErrorState: View {
         Image(image)
             .resizable()
             .aspectRatio(contentMode: .fit)
-            .frame(width: 100, height: 100) // Ajustar o tamanho conforme necessário
+            .frame(width: 340, height: 305) // Ajustar o tamanho conforme necessário
         
         Text(title)
             .font(.system(size: 20))

@@ -15,20 +15,13 @@ struct NewMealView: View {
         model.Mealitems
     }
     @State private var isAddItemModalPresented = false
-    @State private var selection: Meal = Meal(name: "", items: [])
-    @State var meals = [
-        Meal(name: "Café da Manhã", items: [Item(name: "Salada", weight: 100), Item(name: "Peito de Frango", weight: 150)]),
-        Meal(name: "Colação", items: []),
-        Meal(name: "Almoço", items: [Item(name: "asd", weight: 100), Item(name: "Peito de Frango", weight: 150)]),
-        Meal(name: "Lanche da Tarde", items: [Item(name: "ffff", weight: 100), Item(name: "Peito de Frango", weight: 150)]),
-        Meal(name: "Jantar", items: [Item(name: "Curs", weight: 100), Item(name: "Peito de Frango", weight: 150)])
-    ]
+    @State private var selection: MealItem = MealItem(name: "", items: [])
     
     var body: some View {
         NavigationStack {
             List {
                 Picker("Select a meal", selection: $selection) {
-                    ForEach(meals, id: \.self) {
+                    ForEach(mealItems, id: \.self) {
                         Text($0.name).tag($0.name)
                     }
                 }
@@ -68,7 +61,7 @@ struct NewMealView: View {
         }
         .sheet(isPresented: $isAddItemModalPresented) {
             NavigationStack {
-                AddItemModalView(meal: selection, refreshView: $refreshView)
+                AddItemModalView(refreshView: $refreshView, meal: selection)
                     .onAppear {
                         if refreshView {
                             print("View is refreshed!")
@@ -78,7 +71,7 @@ struct NewMealView: View {
             }
         }
         .onAppear(perform: {
-            selection = meals[0]
+            selection = mealItems[0]
         })
     }
     
@@ -93,7 +86,7 @@ struct NewMealView: View {
 //     //   selection = newSelection
         print(selection)
         print(selection.items)
-        for meal in meals {
+        for meal in mealItems {
             if meal == selection {
                 for item in meal.items {
                     print(item)

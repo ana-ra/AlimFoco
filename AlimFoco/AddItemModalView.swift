@@ -8,44 +8,81 @@
 import SwiftUI
 
 struct AddItemModalView: View {
+    @EnvironmentObject private var model: Model
     @Environment(\.dismiss) private var dismiss
-    @State private var weight: Int = 0
-    @ObservedObject var meal: Meal
+    @State private var weight: String = ""
     @Binding var refreshView: Bool
+    @State var item: Alimento?
+    @FocusState var isInputActive: Bool
+    @State var meal: MealItem
+    var MealItems: [MealItem] {
+        model.Mealitems
+    }
     
     var body: some View {
         List {
-            NavigationLink(destination: NewMealView()) {
+            NavigationLink(destination: FilterView(selection: $item) ) {
                 HStack {
                     Text("Item")
                     Spacer()
-                    Text("Select")
+                    
+                    if item == nil {
+                        Text("Select")
+                            .foregroundStyle(.gray)
+                    } else {
+                        if let item = item {
+                            Text(item.nome)
+                        }
+                    }
+
                 }
             }
             
             HStack {
-                Text("Weight")
-                TextField("Enter the text in grams", text: Binding(
-                        get: { "\(weight) g"},
-                        set: {
-                            if let value = NumberFormatter().number(from: $0) {
-                                weight = Int(value)
-                            }
-                        }
-                ))
+                Text("Weight (g)")
+                TextField("Enter the text in grams", text: $weight)
                 .keyboardType(.numberPad)
+                .focused($isInputActive)
                 .onSubmit {
                     print("Return key pressed")
+                }
+                .toolbar {
+                    ToolbarItemGroup(placement: .keyboard) {
+                        Spacer()
+                        Button("Done") {
+                            isInputActive = false
+                        }
+                    }
                 }
             }
 
         }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                Button("Add") {
-                    meal.items.append(Item(name: "New Item", weight: weight))
-                    refreshView = true
-                    dismiss()
+                if weight == "" || item == nil {
+                    Button {
+                
+                    } label: {
+                        Text("Add")
+                            .foregroundColor(.gray)
+                    }
+                }
+                
+                else if weight != "" {
+                    if let item = item {
+                        Button("Add") {
+                            Task{
+                                do{
+                                    meal.items = [Item(name: item.nome, weight: Int(weight)!)]
+                                    try await model.updateMealItem(editedMealItem: meal)
+                                } catch {
+                                    print(error)
+                                }
+                            }
+                            refreshView = true
+                            dismiss()
+                        }
+                    }
                 }
             }
         }
@@ -59,5 +96,5 @@ struct AddItemModalView: View {
 }
 
 #Preview {
-    AddItemModalView(meal: Meal(name: "Almoço", items: []), refreshView: .constant(false))
+    AddItemModalView(refreshView: .constant(false), meal: MealItem(name: "Almoço", items: []))
 }

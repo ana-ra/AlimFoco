@@ -14,17 +14,17 @@ class Model: ObservableObject {
 
     func addMealItem(mealItem: MealItem) async throws {
         let record = try await db.save(mealItem.record)
-        guard let meal = MealItem(record: record) else { return }
+        guard var meal = MealItem(record: record) else { return }
         Dictionary[meal.recordId!] = meal
     }
     
     func updateMealItem(editedMealItem: MealItem) async throws {
         
-        Dictionary[editedMealItem.recordId!]?.isCompleted = editedMealItem.isCompleted
+        Dictionary[editedMealItem.recordId!]?.items = editedMealItem.items
         
         do {
             let record = try await db.record(for: editedMealItem.recordId!)
-            record[RecordKeys.isCompleted.rawValue] = editedMealItem.isCompleted
+            record[RecordKeys.items.rawValue] = editedMealItem.items
             try await db.save(record)
         } catch {
             Dictionary[editedMealItem.recordId!] = editedMealItem

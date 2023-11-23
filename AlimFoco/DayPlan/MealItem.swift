@@ -1,41 +1,56 @@
 import Foundation
 import CloudKit
+                            
+struct Item: Identifiable, CKRecordValueProtocol {
+    var id = UUID()
+    var name: String
+    var weight: Int
+      
+    init(name: String, weight: Int) {
+        self.name = name
+        self.weight = weight
+    }
+}
 
 enum RecordKeys: String {
     case type = "MealItem"
-    case title
-    case dateAssigned
-    case isCompleted
+    case name
+    case items
 }
 
 struct MealItem {
-    
     var recordId: CKRecord.ID?
-    let title: String
-    let dateAssigned: Date
-    var isCompleted: Bool = false
+    var name: String
+    var items: [Item]
+}
+
+extension MealItem: Hashable {
+    static func == (lhs: MealItem, rhs: MealItem) -> Bool {
+        lhs.recordId == rhs.recordId
+    }
     
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(name)
+    }
 }
 
 extension MealItem {
     init?(record: CKRecord) {
-        guard let title = record[RecordKeys.title.rawValue] as? String,
-              let dateAssigned = record[RecordKeys.dateAssigned.rawValue] as? Date,
-              let isCompleted = record[RecordKeys.isCompleted.rawValue] as? Bool else {
+        guard var name = record[RecordKeys.name.rawValue] as? String,
+              var items = record[RecordKeys.items.rawValue] as? [Item] else {
             return nil
         }
         
-        self.init(recordId: record.recordID, title: title, dateAssigned: dateAssigned, isCompleted: isCompleted)
+        self.init(recordId: record.recordID, name: name, items: items)
     }
 }
 
 extension MealItem {
     
     var record: CKRecord {
-        let record = CKRecord(recordType: RecordKeys.type.rawValue)
-        record[RecordKeys.title.rawValue] = title
-        record[RecordKeys.dateAssigned.rawValue] = dateAssigned
-        record[RecordKeys.isCompleted.rawValue] = isCompleted
+        var record = CKRecord(recordType: RecordKeys.type.rawValue)
+        record[RecordKeys.name.rawValue] = name
+        record[RecordKeys.items.rawValue] = items
         return record
     }
     
