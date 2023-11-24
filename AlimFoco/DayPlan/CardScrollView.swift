@@ -16,7 +16,6 @@ struct CardScrollView: View {
   var body: some View {
     ScrollView(.horizontal, showsIndicators: false){
       HStack(spacing: 0) {
-          Spacer()
           ForEach(0..<4){ i in
               VStack(alignment:.leading) {
                   ForEach(0 ..< foods.count){ food in
@@ -31,19 +30,21 @@ struct CardScrollView: View {
                           .padding(.horizontal, 16)
                           .padding(.vertical, 4)
                           Spacer()
-                    }
+                      }
+                      
                       if(food < foods.count - 1){
                           Divider()
-                         .padding(0)
-                    }
+                      }
                   }
-                  .frame(width:287)
-                 
+                  .frame(width: getWidth() / 1.3)
             }
+              .padding(.vertical, 10)
+            
+            Spacer()
           }
-            .background(Color(red: 0, green: 0.48, blue: 1).opacity(0.1))
+          .background(Color.secondary1)
             .cornerRadius(20)
-            .padding(20)
+            .padding(.vertical, 4)
         }
       }
     }

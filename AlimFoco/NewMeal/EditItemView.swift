@@ -20,11 +20,11 @@ struct EditItemView: View {
                 Section {
                     NavigationLink(destination: FilterView(selection: $item) ) {
                         HStack {
-                            Text("Item")
+                            Text("Alimento")
                             Spacer()
                             
                             if item == nil {
-                                Text("Select")
+                                Text("Selecionar")
                                     .foregroundStyle(.gray)
                             } else {
                                 if let item = item {
@@ -36,8 +36,8 @@ struct EditItemView: View {
                     }
                     
                     HStack {
-                        Text("Weight (g)")
-                        TextField("Enter the text in grams", text: $weight)
+                        Text("Quantidade (g)")
+                        TextField("0 g", text: $weight)
                         .keyboardType(.numberPad)
                         .focused($isInputActive)
                         .onSubmit {
@@ -46,7 +46,7 @@ struct EditItemView: View {
                         .toolbar {
                             ToolbarItemGroup(placement: .keyboard) {
                                 Spacer()
-                                Button("Done") {
+                                Button("Concluído") {
                                     isInputActive = false
                                 }
                             }
@@ -67,7 +67,7 @@ struct EditItemView: View {
                         
                         dismiss()
                     } label: {
-                        Text("Delete Item")
+                        Text("Apagar Item")
                             .foregroundStyle(.red)
                     }
                 }
@@ -78,22 +78,26 @@ struct EditItemView: View {
                         Button {
                     
                         } label: {
-                            Text("Done")
+                            Text("Concluído")
                                 .foregroundColor(.gray)
+                                .fontWeight(.semibold)
                         }
                     }
                     
                     else if weight != "" {
                         if let item = item {
-                            Button("Done") {
+                            Button {
                                 meal.items.append(Item(name: item.nome, weight: Int(weight)!))
                                 dismiss()
+                            } label: {
+                                Text("Concluído")
+                                    .fontWeight(.semibold)
                             }
                         }
                     }
                 }
             }
-            .navigationTitle("Edit Item")
+            .navigationTitle("Editar Item")
             .navigationBarTitleDisplayMode(.inline)
         }
     }

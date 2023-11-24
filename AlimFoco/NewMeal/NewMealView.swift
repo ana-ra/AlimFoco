@@ -30,7 +30,7 @@ struct NewMealView: View {
         NavigationStack {
             ZStack {
                 List {
-                    Picker("Select a meal", selection: $selection) {
+                    Picker("Refeição", selection: $selection) {
                         ForEach(meals, id: \.self) {
                             Text($0.name).tag($0.name)
                         }
@@ -51,7 +51,7 @@ struct NewMealView: View {
                            .onDelete(perform: deleteNavigationLinks)
                         } header: {
                             HStack {
-                                Text("Items")
+                                Text("Itens")
                                 
                                 Spacer()
                                 
@@ -61,7 +61,7 @@ struct NewMealView: View {
                                         editMode = isEditing ? .active : .inactive
                                     }
                                 } label: {
-                                    let buttonText = isEditing ? "Done" : "Edit"
+                                    let buttonText = isEditing ? "OK" : "Editar"
                                     Text(buttonText)
                                 }
                             }
@@ -75,7 +75,7 @@ struct NewMealView: View {
                             isAddItemModalPresented.toggle()
                         } label: {
                             HStack {
-                                Text("Add Item")
+                                Text("Adicionar Item")
                                     .foregroundStyle(.black)
                                 Spacer()
                                 Image(systemName: "plus")
@@ -93,7 +93,8 @@ struct NewMealView: View {
                                     // fazer logica de cadastro de nova refeição
                                 }
                             } label: {
-                                Text("Register")
+                                Text("Cadastrar")
+                                    .fontWeight(.semibold)
                             }
                         .padding()
                         }
@@ -126,7 +127,7 @@ struct NewMealView: View {
         .onAppear(perform: {
             selection = meals[0]
         })
-        .navigationTitle("New Meal")
+        .navigationTitle("Nova Refeição")
         .navigationBarTitleDisplayMode(.inline)
     }
     

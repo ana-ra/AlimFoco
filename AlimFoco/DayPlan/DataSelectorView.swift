@@ -64,7 +64,7 @@ struct DateCircleView: View {
         ZStack {
             Circle()
                 .frame(width: getWidth() / 10)
-                .foregroundColor(selected ? .blue : .clear)
+                .foregroundColor(selected ? Color.teal : .clear)
             
             Text("\(dayNumber)")
                 .foregroundColor(selected ? .white: .black)
