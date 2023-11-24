@@ -15,7 +15,7 @@ struct NewMealView: View {
         model.Mealitems
     }
     @State private var isAddItemModalPresented = false
-    @State private var selection: MealItem = MealItem(name: "", items: [])
+    @State private var selection: MealItem = MealItem(id: ObjectIdentifier(MealItem.self), name: "", weight: "", codigo1: "", codigo2: "", preparacao: "", kcal: "", proteina: "", lipidios: "", carboidratos: "", fibra: "", refeicao: "")
     
     var body: some View {
         NavigationStack {
@@ -27,17 +27,17 @@ struct NewMealView: View {
                 }
                 
                 Section(header: Text("Items")) {
-                    ForEach(selection.items) { item in
-                        NavigationLink(destination: NewMealView()) {
-                            VStack(alignment: .leading) {
-                                Text(item.name)
-                                    .foregroundStyle(.black)
-                                Text("\(item.weight) g")
-                                    .foregroundStyle(.gray)
-                            }
+//                    ForEach(selection, id: \.self) { item in
+                    NavigationLink(destination: NewMealView()) {
+                        VStack(alignment: .leading) {
+                            Text(selection.name)
+                                .foregroundStyle(.black)
+                            Text("\(selection.weight) g")
+                                .foregroundStyle(.gray)
+//                            }
                         }
                     }
-                   .onDelete(perform: deleteNavigationLinks)
+//                    .onDelete(perform: deleteNavigationLinks)
                 }
                 .headerProminence(.increased)
                 
@@ -57,11 +57,11 @@ struct NewMealView: View {
                 EditButton()
             }
             .environment(\.editMode, $editMode)
-
+            
         }
         .sheet(isPresented: $isAddItemModalPresented) {
             NavigationStack {
-                AddItemModalView(refreshView: $refreshView, meal: selection)
+                AddItemModalView(refreshView: $refreshView)
                     .onAppear {
                         if refreshView {
                             print("View is refreshed!")
@@ -71,7 +71,9 @@ struct NewMealView: View {
             }
         }
         .onAppear(perform: {
-            selection = mealItems[0]
+            if !mealItems.isEmpty{
+                selection = mealItems[0]
+            }
         })
     }
     
@@ -82,13 +84,11 @@ struct NewMealView: View {
 //        }
 //        meals = mealsList
 //        var newSelection = selection
-        selection.items.remove(atOffsets: offsets)
+//        selection.remove(atOffsets: offsets)
 //     //   selection = newSelection
-        print(selection)
-        print(selection.items)
         for meal in mealItems {
             if meal == selection {
-                for item in meal.items {
+                for item in meal.name {
                     print(item)
                 }
             }
@@ -96,6 +96,3 @@ struct NewMealView: View {
     }
 }
 
-#Preview {
-    NewMealView()
-}

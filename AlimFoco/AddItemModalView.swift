@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CloudKit
 
 struct AddItemModalView: View {
     @EnvironmentObject private var model: Model
@@ -14,7 +15,7 @@ struct AddItemModalView: View {
     @Binding var refreshView: Bool
     @State var item: Alimento?
     @FocusState var isInputActive: Bool
-    @State var meal: MealItem
+    
     var MealItems: [MealItem] {
         model.Mealitems
     }
@@ -71,13 +72,9 @@ struct AddItemModalView: View {
                 else if weight != "" {
                     if let item = item {
                         Button("Add") {
+                            var meal: MealItem = MealItem(id: ObjectIdentifier(MealItem.self), name: item.nome, weight: weight, codigo1: item.codigo1, codigo2: item.codigo2, preparacao: item.preparacao, kcal: item.kcal, proteina: item.proteina, lipidios: item.lipidios, carboidratos: item.carboidratos, fibra: item.fibraAlimentar, refeicao: "Almoço")
                             Task{
-                                do{
-                                    meal.items = [Item(name: item.nome, weight: Int(weight)!)]
-                                    try await model.updateMealItem(editedMealItem: meal)
-                                } catch {
-                                    print(error)
-                                }
+                                try await model.addMealItem(mealItem: meal)
                             }
                             refreshView = true
                             dismiss()
@@ -96,5 +93,5 @@ struct AddItemModalView: View {
 }
 
 #Preview {
-    AddItemModalView(refreshView: .constant(false), meal: MealItem(name: "Almoço", items: []))
+    AddItemModalView(refreshView: .constant(false))
 }

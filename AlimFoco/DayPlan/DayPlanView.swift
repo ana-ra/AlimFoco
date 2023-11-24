@@ -16,6 +16,8 @@ struct DayPlanView: View {
         model.Mealitems
     }
     
+    let refeicoes = ["Café da manhã", "Colação", "Almoço", "Lanche da Tarde", "Jantar"]
+    
     var body: some View {
         NavigationStack {
             VStack (alignment: .center){
@@ -38,9 +40,9 @@ struct DayPlanView: View {
                 } else {
                     List {
                         Section(header: Text("Refeições")) {
-                            ForEach(MealItems, id: \.recordId) {mealItem in
-                                DisclosureGroup(mealItem.name) {
-                                    CardScrollView()
+                            ForEach(refeicoes.indices) {index in
+                                DisclosureGroup(refeicoes[index]) {
+                                    CardScrollView(refeicao: refeicoes[index])
                                      Button(action: {
                                         isSatisfactionSheetPresented.toggle()
                                     }) {
