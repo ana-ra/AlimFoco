@@ -31,14 +31,18 @@ struct ErrorState: View {
             .padding(.horizontal, 16)
             .multilineTextAlignment(.center)
         
-        Button(action: {
-            self.action()
-        }) {
+//        Button(action: {
+//            self.action()
+//        }) {
+//            Text(buttonText)
+//                .foregroundColor(.accentColor)
+//                .font(.system(size: 15))
+//        }
+//        .padding(.top, 8)
+        
+        NavigationLink(destination: NewMealView(refeicoes: ["Café da manhã", "Colação", "Almoço", "Lanche da Tarde", "Jantar"])) {
             Text(buttonText)
-                .foregroundColor(.accentColor)
-                .font(.system(size: 15))
         }
-        .padding(.top, 8)
     }
 }
 

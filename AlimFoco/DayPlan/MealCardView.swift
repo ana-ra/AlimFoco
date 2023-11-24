@@ -11,7 +11,7 @@ struct MealCardView: View {
     var body: some View {
         VStack {
             DisclosureGroup("Café da Manhã") {
-                CardScrollView()
+                CardScrollView(refeicao: "Almoço")
             }
         }
     }

@@ -9,27 +9,26 @@ import SwiftUI
 
 struct EditItemView: View {
     @Environment(\.dismiss) private var dismiss
-    @State var weight: String
-    @ObservedObject var meal: Meal
-    @State var item: Alimento?
+    @State var weight: String = ""
+    @Binding var addedItems: MealItemList
+    @State var index: Int
+    @State var item: MealItem
+    @State var editedItem: Alimento = Alimento(codigo1: "", nome: "", codigo2: "", preparacao: "", kcal: "", proteina: "", lipidios: "", carboidratos: "", fibraAlimentar: "")
     @FocusState var isInputActive: Bool
     
     var body: some View {
         VStack {
             List {
                 Section {
-                    NavigationLink(destination: FilterView(selection: $item) ) {
+                    NavigationLink(destination: FilterView(selection: $editedItem) ) {
                         HStack {
                             Text("Alimento")
                             Spacer()
                             
-                            if item == nil {
-                                Text("Selecionar")
-                                    .foregroundStyle(.gray)
+                            if editedItem.nome == "" {
+                                Text(item.name)
                             } else {
-                                if let item = item {
-                                    Text(item.nome)
-                                }
+                                Text(editedItem.nome)
                             }
 
                         }
@@ -56,15 +55,16 @@ struct EditItemView: View {
                 
                 Section {
                     Button {
-                        for i in 0..<meal.items.count {
-                            if let item = item {
-                                if meal.items[i].name == item.nome {
-                                    meal.items.remove(at: i)
-                                    break
-                                }
-                            }
-                        }
-                        
+//                        for i in 0..<addedItems.itens{
+//                            if let item = item {
+//                                if meal.items[i].name == item.nome {
+//                                    meal.items.remove(at: i)
+//                                    break
+//                                }
+//                            }
+//                        }
+                        // insirar logica de apagar item
+                        addedItems.itens.remove(at: index)
                         dismiss()
                     } label: {
                         Text("Apagar Item")
@@ -74,7 +74,7 @@ struct EditItemView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    if weight == "" || item == nil {
+                    if weight == "" {
                         Button {
                     
                         } label: {
@@ -84,15 +84,23 @@ struct EditItemView: View {
                         }
                     }
                     
-                    else if weight != "" {
-                        if let item = item {
-                            Button {
-                                meal.items.append(Item(name: item.nome, weight: Int(weight)!))
-                                dismiss()
-                            } label: {
-                                Text("Concluído")
-                                    .fontWeight(.semibold)
-                            }
+                    else if weight != "" && editedItem.nome != "" {
+                        Button {
+                            addedItems.editItem(index: index, newItem: editedItem, weight: weight)
+                            dismiss()
+                        } label: {
+                            Text("Concluído")
+                                .fontWeight(.semibold)
+                        }
+                    }
+                    
+                    else if weight != item.weight {
+                        Button {
+                            addedItems.itens[index].weight = weight
+                            dismiss()
+                        } label: {
+                            Text("Concluído")
+                                .fontWeight(.semibold)
                         }
                     }
                 }
@@ -100,6 +108,9 @@ struct EditItemView: View {
             .navigationTitle("Editar Item")
             .navigationBarTitleDisplayMode(.inline)
         }
+        .onAppear(perform: {
+            weight = item.weight
+        })
     }
     
     var formattedWeight: String {
@@ -107,6 +118,6 @@ struct EditItemView: View {
     }
 }
 
-#Preview {
-    EditItemView(weight: "", meal: Meal(name: "Almoço", items: []))
-}
+//#Preview {
+//    EditItemView(weight: "", meal: Meal(name: "Almoço", items: []))
+//}

@@ -11,7 +11,7 @@ let alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P",
 
 struct FilterView: View {
     @StateObject var viewModel = foodListViewModel()
-    @Binding var selection: Alimento?
+    @Binding var selection: Alimento
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {

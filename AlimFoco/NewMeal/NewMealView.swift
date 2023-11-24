@@ -17,33 +17,28 @@ struct NewMealView: View {
         model.Mealitems
     }
     @State private var isAddItemModalPresented = false
-    @State private var selection: Meal = Meal(name: "", items: [])
-    @State var meals = [
-        Meal(name: "Café da Manhã", items: [Item(name: "Salada", weight: 100), Item(name: "Peito de Frango", weight: 150)]),
-        Meal(name: "Colação", items: []),
-        Meal(name: "Almoço", items: [Item(name: "asd", weight: 100), Item(name: "Peito de Frango", weight: 150)]),
-        Meal(name: "Lanche da Tarde", items: [Item(name: "ffff", weight: 100), Item(name: "Peito de Frango", weight: 150)]),
-        Meal(name: "Jantar", items: [Item(name: "Curs", weight: 100), Item(name: "Peito de Frango", weight: 150)])
-    ]
+    @State var refeicoes: [String]
+    @State var selection: String = ""
+    @State var addedItems = MealItemList()
     
     var body: some View {
         NavigationStack {
             ZStack {
                 List {
                     Picker("Refeição", selection: $selection) {
-                        ForEach(meals, id: \.self) {
-                            Text($0.name).tag($0.name)
+                        ForEach(refeicoes, id: \.self) {
+                            Text($0)
                         }
                     }
                     
-                    if !selection.items.isEmpty {
+                    if addedItems.itens != [] {
                         Section {
-                            ForEach(selection.items) { item in
-                                NavigationLink(destination: EditItemView(weight: String(item.weight), meal: selection, item: Alimento(codigo1: "", nome: item.name, codigo2: "", preparacao: "", kcal: "", proteina: "", lipidios: "", carboidratos: "", fibraAlimentar: ""))) {
+                            ForEach(addedItems.itens.indices, id: \.self) { index in
+                                NavigationLink(destination: EditItemView(addedItems: $addedItems, index: index, item: addedItems.itens[index])) {
                                     VStack(alignment: .leading) {
-                                        Text(item.name)
+                                        Text(addedItems.itens[index].name)
                                             .foregroundStyle(.black)
-                                        Text("\(item.weight) g")
+                                        Text("\(addedItems.itens[index].weight) g")
                                             .foregroundStyle(.gray)
                                     }
                                 }
@@ -80,13 +75,21 @@ struct NewMealView: View {
                                 Spacer()
                                 Image(systemName: "plus")
                             }
-                    }
+                        }
                     }
                 }
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
                         if !showPopup {
                             Button {
+                                addedItems.changeMeal(meal: selection)
+                                
+                                for item in addedItems.itens {
+                                    Task {
+                                        try await model.addMealItem(mealItem: item)
+                                    }
+                                }
+                                
                                 withAnimation {
                                     showPopup.toggle()
 
@@ -96,7 +99,7 @@ struct NewMealView: View {
                                 Text("Cadastrar")
                                     .fontWeight(.semibold)
                             }
-                        .padding()
+                            .padding()
                         }
                     }
                 }
@@ -107,6 +110,7 @@ struct NewMealView: View {
                     NewMealPopUpView()
                         .onAppear(perform: {
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                
                                 dismiss()
                             }
                         })
@@ -116,28 +120,51 @@ struct NewMealView: View {
         }
         .sheet(isPresented: $isAddItemModalPresented, onDismiss: {
             withAnimation {
-                isEditing.toggle()
-                isEditing.toggle()
+                var aux = selection
+                selection = ""
+                selection = aux
             }
         }, content: {
             NavigationStack {
-                AddItemModalView(meal: selection)
+                AddItemModalView(selectedRefeicao: $selection, addedItems: $addedItems)
             }
-        })
-        .onAppear(perform: {
-            selection = meals[0]
         })
         .navigationTitle("Nova Refeição")
         .navigationBarTitleDisplayMode(.inline)
+        .onAppear(perform: {
+            selection = refeicoes[0]
+        })
     }
     
     func deleteNavigationLinks(at offsets: IndexSet) {
-        selection.items.remove(atOffsets: offsets)
-        print(selection)
-        print(selection.items)
+        addedItems.itens.remove(atOffsets: offsets)
+        print(addedItems)
     }
 }
 
-#Preview {
-    NewMealView()
+class MealItemList {
+    var itens: [MealItem]
+    
+    init() {
+        itens = []
+    }
+    
+    func addItem(item: MealItem) {
+        itens.append(item)
+    }
+    
+    func editItem(index: Int, newItem: Alimento, weight: String) {
+        itens[index] = MealItem(id: ObjectIdentifier(MealItem.self), name: newItem.nome, weight: weight, codigo1: newItem.codigo1, codigo2: newItem.codigo2, preparacao: newItem.preparacao, kcal: newItem.kcal, proteina: newItem.proteina, lipidios: newItem.lipidios, carboidratos: newItem.carboidratos, fibra: newItem.fibraAlimentar, refeicao: itens[index].refeicao)
+    }
+    
+    func changeMeal(meal: String) {
+        for index in 0..<itens.count {
+//            itens[index] = MealItem(id: ObjectIdentifier(MealItem.self), name: itens[index].name, weight: itens[index].weight, codigo1: itens[index].codigo1, codigo2: itens[index].codigo2, preparacao: itens[index].preparacao, kcal: itens[index].kcal, proteina: itens[index].proteina, lipidios: itens[index].lipidios, carboidratos: itens[index].carboidratos, fibra: itens[index].fibra, refeicao: meal)
+            itens[index].refeicao = meal
+        }
+    }
 }
+
+//#Preview {
+//    NewMealView(refeicoes: .constant(["Café da manhã", "Colação", "Almoço", "Lanche da Tarde", "Jantar"]))
+//}

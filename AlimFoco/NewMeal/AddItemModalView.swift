@@ -8,11 +8,16 @@
 import SwiftUI
 
 struct AddItemModalView: View {
+    @EnvironmentObject private var model: Model
     @Environment(\.dismiss) private var dismiss
     @State private var weight: String = ""
-    @ObservedObject var meal: Meal
-    @State var item: Alimento?
     @FocusState var isInputActive: Bool
+    @Binding var selectedRefeicao: String
+    @State var item: Alimento = Alimento(codigo1: "", nome: "", codigo2: "", preparacao: "", kcal: "", proteina: "", lipidios: "", carboidratos: "", fibraAlimentar: "")
+    var MealItems: [MealItem] {
+        model.Mealitems
+    }
+    @Binding var addedItems: MealItemList
     
     var body: some View {
         List {
@@ -21,13 +26,11 @@ struct AddItemModalView: View {
                     Text("Item")
                     Spacer()
                     
-                    if item == nil {
+                    if item.nome == "" {
                         Text("Selecionar")
                             .foregroundStyle(.gray)
                     } else {
-                        if let item = item {
-                            Text(item.nome)
-                        }
+                        Text(item.nome)
                     }
                 }
             }
@@ -49,7 +52,7 @@ struct AddItemModalView: View {
         }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                if weight == "" || item == nil {
+                if weight == "" || item.nome == "" {
                     Button {
                 
                     } label: {
@@ -58,12 +61,16 @@ struct AddItemModalView: View {
                     }
                 }
                 
-                else if weight != "" {
-                    if let item = item {
-                        Button("Adicionar") {
-                            meal.items.append(Item(name: item.nome, weight: Int(weight)!))
-                            dismiss()
-                        }
+                if weight != "" && item.nome != "" {
+                    Button("Adicionar") {
+                        let newItem: MealItem = MealItem(id: ObjectIdentifier(MealItem.self), name: item.nome, weight: weight, codigo1: item.codigo1, codigo2: item.codigo2, preparacao: item.preparacao, kcal: item.kcal, proteina: item.proteina, lipidios: item.lipidios, carboidratos: item.carboidratos, fibra: item.fibraAlimentar, refeicao: selectedRefeicao)
+//                        Task{
+//                            try await model.addMealItem(mealItem: meal)
+//                        }
+                        
+                        print(newItem)
+                        addedItems.addItem(item: newItem)
+                        dismiss()
                     }
                 }
             }
@@ -73,6 +80,6 @@ struct AddItemModalView: View {
     }
 }
 
-#Preview {
-    AddItemModalView(meal: Meal(name: "Almoço", items: []))
-}
+//#Preview {
+//    AddItemModalView(selectedRefeicao: .constant("Almoço", addedItems: .constant(MealItemList())))
+//}

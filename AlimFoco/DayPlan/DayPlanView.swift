@@ -15,24 +15,19 @@ struct DayPlanView: View {
     var MealItems: [MealItem] {
         model.Mealitems
     }
-    @State var meals = [
-        Meal(name: "Café da Manhã", items: [Item(name: "Salada", weight: 100), Item(name: "Peito de Frango", weight: 150)]),
-        Meal(name: "Colação", items: []),
-        Meal(name: "Almoço", items: [Item(name: "asd", weight: 100), Item(name: "Peito de Frango", weight: 150)]),
-        Meal(name: "Lanche da Tarde", items: [Item(name: "ffff", weight: 100), Item(name: "Peito de Frango", weight: 150)]),
-        Meal(name: "Jantar", items: [Item(name: "Curs", weight: 100), Item(name: "Peito de Frango", weight: 150)])
-      ]
+    @State var refeicoes = ["Café da manhã", "Colação", "Almoço", "Lanche da Tarde", "Jantar"]
     
     var body: some View {
         NavigationStack {
             VStack (alignment: .center){
                 DateSelectorView(dates: dates(for: Date()), selectedDate: $selectedDate)
                 Spacer()
+                
                 if !MealItems.isEmpty {
                     VStack () {
                         Spacer()
                         ErrorState(
-                            image: "",
+                            image: "empty_state",
                             title: "Ops! Está vazio.",
                             description: "Não há refeições a serem exibidas para este dia.",
                             buttonText: "Criar nova refeição",
@@ -45,9 +40,9 @@ struct DayPlanView: View {
                 } else {
                     List {
                         Section(header: Text("Refeições")) {
-                            ForEach(meals, id: \.self) { meal in
+                            ForEach(refeicoes.indices) { index in
                                 DisclosureGroup {
-                                    CardScrollView()
+                                    CardScrollView(refeicao: refeicoes[index])
                                         .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
                                      Button(action: {
                                         isSatisfactionSheetPresented.toggle()
@@ -68,7 +63,7 @@ struct DayPlanView: View {
                                     .padding(.vertical, 8)
                                     .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
                                 } label: {
-                                    Text(meal.name)
+                                    Text(refeicoes[index])
                                         .fontWeight(.semibold)
                                 }
                                 .listRowSeparator(.hidden)
@@ -88,10 +83,10 @@ struct DayPlanView: View {
                 do {
                     try await model.populateMealItems()
                 } catch {
-                    VStack () {
+                    VStack {
                         Spacer()
                         ErrorState(
-                            image: "",
+                            image: "no_connection",
                             title: "Ops! Algo deu errado.",
                             description: "Parece que você está sem conexão.",
                             buttonText: "Tente novamente",
@@ -105,7 +100,7 @@ struct DayPlanView: View {
             .background(Color(.systemGroupedBackground))
             .toolbar {
                 ToolbarItemGroup {
-                    NavigationLink(destination: NewMealView()) {
+                    NavigationLink(destination: NewMealView(refeicoes: refeicoes)) {
                         Image(systemName: "plus")
                     }
                     
@@ -133,38 +128,6 @@ struct DayPlanView: View {
     }
 }
                             
-class Meal: ObservableObject, Identifiable, Hashable {
-    static func == (lhs: Meal, rhs: Meal) -> Bool {
-        lhs.id == rhs.id
-    }
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
-    
-    var id: String {
-        name
-    }
-    
-    let name: String
-    @Published var items: [Item]
-    
-    init(name: String, items: [Item]) {
-        self.name = name
-        self.items = items
-    }
-}
-                            
-struct Item: Identifiable {
-    let id = UUID()
-    var name: String
-    let weight: Int
-      
-    init(name: String, weight: Int) {
-        self.name = name
-        self.weight = weight
-    }
-}
-
 struct DayPlanView_Previews: PreviewProvider {
     static var previews: some View {
         DayPlanView().environmentObject(Model())
