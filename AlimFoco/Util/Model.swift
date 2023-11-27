@@ -7,20 +7,14 @@ class Model: ObservableObject {
     
     private var db = CKContainer.default().privateCloudDatabase
     @Published private var Dictionary: [CKRecord.ID: MealItem] = [:]
-    
-    var Mealitems: [MealItem] {
-        Dictionary.values.compactMap { $0 }
-    }
+    @Published var Mealitems: [MealItem] = []
     
     func addMealItem(mealItem: MealItem) async throws {
-        let record = try await db.save(mealItem.record)
-        guard let meal = MealItem(record: record) else {
-            print("erro")
-            return
-        }
-        Dictionary[meal.recordId!] = meal
-    }
-    
+          let record = try await db.save(mealItem.record)
+          guard let meal = MealItem(record: record) else { return }
+          Dictionary[meal.recordId!] = meal
+      }
+      
     func updateMealItem(editedMealItem: MealItem) async throws {
         
         Dictionary[editedMealItem.recordId!]?.carboidratos = editedMealItem.carboidratos
@@ -73,11 +67,14 @@ class Model: ObservableObject {
         let query = CKQuery(recordType: RecordKeys.type.rawValue, predicate: NSPredicate(value: true))
         query.sortDescriptors = [NSSortDescriptor(key: "name", ascending: false)]
         let result = try await db.records(matching: query)
+        print(result)
         let records = result.matchResults.compactMap { try? $0.1.get() }
         
         records.forEach { record in
             Dictionary[record.recordID] = MealItem(record: record)
         }
+        
+        Mealitems = Dictionary.values.compactMap { $0 }
     }
     
 }

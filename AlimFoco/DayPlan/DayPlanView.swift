@@ -23,7 +23,7 @@ struct DayPlanView: View {
                 DateSelectorView(dates: dates(for: Date()), selectedDate: $selectedDate)
                 Spacer()
                 
-                if !MealItems.isEmpty {
+                if MealItems.isEmpty {
                     VStack () {
                         Spacer()
                         ErrorState(
@@ -81,7 +81,9 @@ struct DayPlanView: View {
                 }
             }.task {
                 do {
+                    print("a")
                     try await model.populateMealItems()
+                    print("b")
                 } catch {
                     VStack {
                         Spacer()
