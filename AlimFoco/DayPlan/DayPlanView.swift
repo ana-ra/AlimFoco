@@ -88,7 +88,7 @@ struct DayPlanView: View {
                 do {
                     try await model.populateMealItems()
                 } catch {
-                    VStack () {
+                    VStack {
                         Spacer()
                         ErrorState(
                             image: "",
