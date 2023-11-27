@@ -81,9 +81,7 @@ struct DayPlanView: View {
                 }
             }.task {
                 do {
-                    print("a")
                     try await model.populateMealItems()
-                    print("b")
                 } catch {
                     VStack {
                         Spacer()
