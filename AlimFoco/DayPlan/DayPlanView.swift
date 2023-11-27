@@ -60,7 +60,7 @@ struct DayPlanView: View {
                                         .background(Color.secondary2)
                                         .cornerRadius(10)
                                     }
-                                    .padding(.vertical, 8)
+                                    .padding(.vertical, 4)
                                     .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
                                 } label: {
                                     Text(refeicoes[index])

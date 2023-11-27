@@ -27,15 +27,17 @@ struct CardScrollView: View {
                                 }
                             }
                             .padding(.horizontal, 16)
-                            .padding(.vertical, 4)
+//                            .padding(.vertical, 0)
+                            
                             Spacer()
                         }
-                        .frame(width: getWidth() / 1.3)
-                        //                      if(food < foods.count - 1){
-                        //                          Divider()
-                        //                      }
+                        .frame(width: MealItems.count == 1 ? getWidth() / 1.3 : getWidth() / 1.22)
+                        
+                        if(index < MealItems.count - 1){
+                            Divider()
+                        }
                     }
-                    .padding(.vertical, 10)
+                    .padding(.vertical, 4)
                     
                     Spacer()
                 }
@@ -47,6 +49,6 @@ struct CardScrollView: View {
     }
 }
 
-#Preview {
-  CardScrollView(refeicao: "Almoço")
-}
+//#Preview {
+//  CardScrollView(refeicao: "Almoço")
+//}
