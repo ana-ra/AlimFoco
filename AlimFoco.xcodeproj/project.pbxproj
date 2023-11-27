@@ -20,6 +20,12 @@
 		20F1F0DD2B0F7AAB001DCA3B /* NewMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F1F0DC2B0F7AAB001DCA3B /* NewMealView.swift */; };
 		20F1F0E02B0F80E1001DCA3B /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F1F0DF2B0F80E1001DCA3B /* HistoryView.swift */; };
 		20F324812B0FD1D000CF9C7F /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F324802B0FD1D000CF9C7F /* CustomColors.swift */; };
+		20F324A52B112CE000CF9C7F /* NutrifiWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F324A42B112CE000CF9C7F /* NutrifiWatchApp.swift */; };
+		20F324A72B112CE000CF9C7F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F324A62B112CE000CF9C7F /* ContentView.swift */; };
+		20F324A92B112CE200CF9C7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20F324A82B112CE200CF9C7F /* Assets.xcassets */; };
+		20F324AC2B112CE200CF9C7F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20F324AB2B112CE200CF9C7F /* Preview Assets.xcassets */; };
+		20F324AF2B112CE200CF9C7F /* NutrifiWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 20F324A22B112CE000CF9C7F /* NutrifiWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		20F324B52B112D6E00CF9C7F /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F324B42B112D6E00CF9C7F /* CardView.swift */; };
 		20F64B892AFE611C00D452B2 /* AddItemModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F64B882AFE611C00D452B2 /* AddItemModalView.swift */; };
 		3F28DFCF2AFD0B6400F1E4EC /* CardScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F28DFCE2AFD0B6400F1E4EC /* CardScrollView.swift */; };
 		3F489C0A2ADEA786008F853C /* AlimFocoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F489C092ADEA786008F853C /* AlimFocoApp.swift */; };
@@ -31,6 +37,30 @@
 		A7508B072B03A58100FF6623 /* RegisterSatisfactionSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7508B062B03A58100FF6623 /* RegisterSatisfactionSheetView.swift */; };
 		A76F0B452B02552D007B2951 /* ErrorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F0B442B02552D007B2951 /* ErrorState.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		20F324AD2B112CE200CF9C7F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3F489BFE2ADEA786008F853C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 20F324A12B112CE000CF9C7F;
+			remoteInfo = "NutrifiWatch Watch App";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		20F324B02B112CE200CF9C7F /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				20F324AF2B112CE200CF9C7F /* NutrifiWatch Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		05280D5C2AEAB50C007F0310 /* tbca.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tbca.swift; sourceTree = "<group>"; };
@@ -47,6 +77,12 @@
 		20F1F0DC2B0F7AAB001DCA3B /* NewMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMealView.swift; sourceTree = "<group>"; };
 		20F1F0DF2B0F80E1001DCA3B /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		20F324802B0FD1D000CF9C7F /* CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
+		20F324A22B112CE000CF9C7F /* NutrifiWatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NutrifiWatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		20F324A42B112CE000CF9C7F /* NutrifiWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrifiWatchApp.swift; sourceTree = "<group>"; };
+		20F324A62B112CE000CF9C7F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		20F324A82B112CE200CF9C7F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		20F324AB2B112CE200CF9C7F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		20F324B42B112D6E00CF9C7F /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		20F64B882AFE611C00D452B2 /* AddItemModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemModalView.swift; sourceTree = "<group>"; };
 		3F28DFCE2AFD0B6400F1E4EC /* CardScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardScrollView.swift; sourceTree = "<group>"; };
 		3F489C062ADEA786008F853C /* AlimFoco.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlimFoco.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,6 +98,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		20F3249F2B112CE000CF9C7F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3F489C032ADEA786008F853C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -80,10 +123,31 @@
 			path = History;
 			sourceTree = "<group>";
 		};
+		20F324A32B112CE000CF9C7F /* NutrifiWatch Watch App */ = {
+			isa = PBXGroup;
+			children = (
+				20F324B42B112D6E00CF9C7F /* CardView.swift */,
+				20F324A42B112CE000CF9C7F /* NutrifiWatchApp.swift */,
+				20F324A62B112CE000CF9C7F /* ContentView.swift */,
+				20F324A82B112CE200CF9C7F /* Assets.xcassets */,
+				20F324AA2B112CE200CF9C7F /* Preview Content */,
+			);
+			path = "NutrifiWatch Watch App";
+			sourceTree = "<group>";
+		};
+		20F324AA2B112CE200CF9C7F /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				20F324AB2B112CE200CF9C7F /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 		3F489BFD2ADEA786008F853C = {
 			isa = PBXGroup;
 			children = (
 				3F489C082ADEA786008F853C /* AlimFoco */,
+				20F324A32B112CE000CF9C7F /* NutrifiWatch Watch App */,
 				3F489C072ADEA786008F853C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -92,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				3F489C062ADEA786008F853C /* AlimFoco.app */,
+				20F324A22B112CE000CF9C7F /* NutrifiWatch Watch App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -171,6 +236,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		20F324A12B112CE000CF9C7F /* NutrifiWatch Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 20F324B32B112CE200CF9C7F /* Build configuration list for PBXNativeTarget "NutrifiWatch Watch App" */;
+			buildPhases = (
+				20F3249E2B112CE000CF9C7F /* Sources */,
+				20F3249F2B112CE000CF9C7F /* Frameworks */,
+				20F324A02B112CE000CF9C7F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "NutrifiWatch Watch App";
+			productName = "NutrifiWatch Watch App";
+			productReference = 20F324A22B112CE000CF9C7F /* NutrifiWatch Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
 		3F489C052ADEA786008F853C /* AlimFoco */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3F489C1A2ADEA787008F853C /* Build configuration list for PBXNativeTarget "AlimFoco" */;
@@ -178,10 +260,12 @@
 				3F489C022ADEA786008F853C /* Sources */,
 				3F489C032ADEA786008F853C /* Frameworks */,
 				3F489C042ADEA786008F853C /* Resources */,
+				20F324B02B112CE200CF9C7F /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				20F324AE2B112CE200CF9C7F /* PBXTargetDependency */,
 			);
 			name = AlimFoco;
 			productName = AlimFoco;
@@ -195,9 +279,12 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1430;
+				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
+					20F324A12B112CE000CF9C7F = {
+						CreatedOnToolsVersion = 15.0.1;
+					};
 					3F489C052ADEA786008F853C = {
 						CreatedOnToolsVersion = 14.3.1;
 					};
@@ -217,11 +304,21 @@
 			projectRoot = "";
 			targets = (
 				3F489C052ADEA786008F853C /* AlimFoco */,
+				20F324A12B112CE000CF9C7F /* NutrifiWatch Watch App */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		20F324A02B112CE000CF9C7F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20F324AC2B112CE200CF9C7F /* Preview Assets.xcassets in Resources */,
+				20F324A92B112CE200CF9C7F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3F489C042ADEA786008F853C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -235,6 +332,16 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		20F3249E2B112CE000CF9C7F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20F324A72B112CE000CF9C7F /* ContentView.swift in Sources */,
+				20F324B52B112D6E00CF9C7F /* CardView.swift in Sources */,
+				20F324A52B112CE000CF9C7F /* NutrifiWatchApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3F489C022ADEA786008F853C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -264,7 +371,84 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		20F324AE2B112CE200CF9C7F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 20F324A12B112CE000CF9C7F /* NutrifiWatch Watch App */;
+			targetProxy = 20F324AD2B112CE200CF9C7F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		20F324B12B112CE200CF9C7F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"NutrifiWatch Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = QS932KTLCZ;
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = NutrifiWatch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.LarissaOkabayashi.AlimFoco;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.LarissaOkabayashi.AlimFoco.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		20F324B22B112CE200CF9C7F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"NutrifiWatch Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = QS932KTLCZ;
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = NutrifiWatch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.LarissaOkabayashi.AlimFoco;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.LarissaOkabayashi.AlimFoco.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
 		3F489C182ADEA787008F853C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -384,6 +568,7 @@
 		3F489C1B2ADEA787008F853C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = AlimFoco/AlimFoco.entitlements;
@@ -422,6 +607,7 @@
 		3F489C1C2ADEA787008F853C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = AlimFoco/AlimFoco.entitlements;
@@ -460,6 +646,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		20F324B32B112CE200CF9C7F /* Build configuration list for PBXNativeTarget "NutrifiWatch Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				20F324B12B112CE200CF9C7F /* Debug */,
+				20F324B22B112CE200CF9C7F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		3F489C012ADEA786008F853C /* Build configuration list for PBXProject "AlimFoco" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
