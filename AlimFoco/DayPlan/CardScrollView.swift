@@ -13,13 +13,13 @@ struct CardScrollView: View {
         ScrollView(.horizontal, showsIndicators: false){
             HStack(spacing: 0) {
                 VStack(alignment:.leading) {
-                    ForEach(meals.indices){ index in
-                        ForEach(meals[index].itens.indices) { itemIndex in
+                    ForEach(meals, id: \.self){ meal in
+                        ForEach(meal.itens.indices) { itemIndex in
                             HStack {
                                 VStack(alignment: .leading) {
-                                    Text("\(meals[index].itens[itemIndex]) ")
+                                    Text("\(meal.itens[itemIndex]) ")
                                         .foregroundStyle(.black)
-                                    Text("\(meals[index].weights[itemIndex]) g")
+                                    Text("\(meal.weights[itemIndex]) g")
                                         .foregroundStyle(.gray)
                                 }
                                 .padding(.horizontal, 16)
