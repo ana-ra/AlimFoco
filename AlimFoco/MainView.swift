@@ -9,13 +9,10 @@ import SwiftUI
 
 struct MainView: View {
     @AppStorage("hasOnboardingCompleted") private var hasOnboardingCompleted = false
+    @State private var isPresentingOnboarding = false
     
     
     var body: some View {
-        
-        if !hasOnboardingCompleted {
-            OnboardingView(onboardingCompleted: $hasOnboardingCompleted)
-        } else {
             TabView{
                 DayPlanView()
                     .environmentObject(ModelMeal())
@@ -31,8 +28,18 @@ struct MainView: View {
                     .tabItem {
                         Label("Refeições", systemImage: "fork.knife")
                     }
+            }.sheet(
+                isPresented: Binding<Bool>(
+                    get: { !hasOnboardingCompleted },
+                    set: { _ in }
+                ), 
+                
+                content: {
+                OnboardingView(onboardingCompleted: $hasOnboardingCompleted).interactiveDismissDisabled()
+                })
+            .onAppear {
+                isPresentingOnboarding = true
             }
-        }
     }
 }
 
