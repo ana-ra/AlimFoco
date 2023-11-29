@@ -109,7 +109,6 @@ struct DayPlanView: View {
                     print(error)
                 }
             }
-            .background(Color(.systemGroupedBackground))
             .toolbar {
                 ToolbarItemGroup {
                     NavigationLink(destination: NewMealView(meals: meals, mealTypes: $mealTypes)) {

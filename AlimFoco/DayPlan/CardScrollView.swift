@@ -32,7 +32,7 @@ struct CardScrollView: View {
                         //                          Divider()
                         //                      }
                     }
-                    .padding(.vertical, 10)
+                    .padding(.vertical, 4)
                     
                     Spacer()
                 }

@@ -30,8 +30,38 @@
 		3FB8A9C12B0F8171007BFA87 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB8A9C02B0F8171007BFA87 /* MainView.swift */; };
 		3FB8A9C42B0F8803007BFA87 /* TotalMealsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB8A9C32B0F8803007BFA87 /* TotalMealsView.swift */; };
 		A7508B072B03A58100FF6623 /* RegisterSatisfactionSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7508B062B03A58100FF6623 /* RegisterSatisfactionSheetView.swift */; };
+		A7508B602B14CF3F00FF6623 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7508B5F2B14CF3F00FF6623 /* WidgetKit.framework */; };
+		A7508B622B14CF3F00FF6623 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7508B612B14CF3F00FF6623 /* SwiftUI.framework */; };
+		A7508B652B14CF3F00FF6623 /* AlimFocoWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7508B642B14CF3F00FF6623 /* AlimFocoWidgetBundle.swift */; };
+		A7508B672B14CF3F00FF6623 /* AlimFocoWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7508B662B14CF3F00FF6623 /* AlimFocoWidget.swift */; };
+		A7508B692B14CF4000FF6623 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7508B682B14CF4000FF6623 /* Assets.xcassets */; };
+		A7508B6D2B14CF4000FF6623 /* AlimFocoWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A7508B5D2B14CF3F00FF6623 /* AlimFocoWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A76F0B452B02552D007B2951 /* ErrorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F0B442B02552D007B2951 /* ErrorState.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A7508B6B2B14CF4000FF6623 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3F489BFE2ADEA786008F853C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A7508B5C2B14CF3F00FF6623;
+			remoteInfo = AlimFocoWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A7508B6E2B14CF4000FF6623 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				A7508B6D2B14CF4000FF6623 /* AlimFocoWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		05280D5C2AEAB50C007F0310 /* tbca.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tbca.swift; sourceTree = "<group>"; };
@@ -60,6 +90,13 @@
 		3FB8A9C02B0F8171007BFA87 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		3FB8A9C32B0F8803007BFA87 /* TotalMealsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalMealsView.swift; sourceTree = "<group>"; };
 		A7508B062B03A58100FF6623 /* RegisterSatisfactionSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterSatisfactionSheetView.swift; sourceTree = "<group>"; };
+		A7508B5D2B14CF3F00FF6623 /* AlimFocoWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AlimFocoWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7508B5F2B14CF3F00FF6623 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		A7508B612B14CF3F00FF6623 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		A7508B642B14CF3F00FF6623 /* AlimFocoWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlimFocoWidgetBundle.swift; sourceTree = "<group>"; };
+		A7508B662B14CF3F00FF6623 /* AlimFocoWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlimFocoWidget.swift; sourceTree = "<group>"; };
+		A7508B682B14CF4000FF6623 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A7508B6A2B14CF4000FF6623 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A76F0B442B02552D007B2951 /* ErrorState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -68,6 +105,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A7508B5A2B14CF3F00FF6623 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7508B622B14CF3F00FF6623 /* SwiftUI.framework in Frameworks */,
+				A7508B602B14CF3F00FF6623 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +132,8 @@
 			isa = PBXGroup;
 			children = (
 				3F489C082ADEA786008F853C /* AlimFoco */,
+				A7508B632B14CF3F00FF6623 /* AlimFocoWidget */,
+				A7508B5E2B14CF3F00FF6623 /* Frameworks */,
 				3F489C072ADEA786008F853C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -94,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				3F489C062ADEA786008F853C /* AlimFoco.app */,
+				A7508B5D2B14CF3F00FF6623 /* AlimFocoWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -131,6 +180,26 @@
 				3FB8A9C32B0F8803007BFA87 /* TotalMealsView.swift */,
 			);
 			path = TotalMeals;
+			sourceTree = "<group>";
+		};
+		A7508B5E2B14CF3F00FF6623 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A7508B5F2B14CF3F00FF6623 /* WidgetKit.framework */,
+				A7508B612B14CF3F00FF6623 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A7508B632B14CF3F00FF6623 /* AlimFocoWidget */ = {
+			isa = PBXGroup;
+			children = (
+				A7508B642B14CF3F00FF6623 /* AlimFocoWidgetBundle.swift */,
+				A7508B662B14CF3F00FF6623 /* AlimFocoWidget.swift */,
+				A7508B682B14CF4000FF6623 /* Assets.xcassets */,
+				A7508B6A2B14CF4000FF6623 /* Info.plist */,
+			);
+			path = AlimFocoWidget;
 			sourceTree = "<group>";
 		};
 		A76F0B3F2B024ED8007B2951 /* NewMeal */ = {
@@ -181,15 +250,34 @@
 				3F489C022ADEA786008F853C /* Sources */,
 				3F489C032ADEA786008F853C /* Frameworks */,
 				3F489C042ADEA786008F853C /* Resources */,
+				A7508B6E2B14CF4000FF6623 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				A7508B6C2B14CF4000FF6623 /* PBXTargetDependency */,
 			);
 			name = AlimFoco;
 			productName = AlimFoco;
 			productReference = 3F489C062ADEA786008F853C /* AlimFoco.app */;
 			productType = "com.apple.product-type.application";
+		};
+		A7508B5C2B14CF3F00FF6623 /* AlimFocoWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A7508B712B14CF4000FF6623 /* Build configuration list for PBXNativeTarget "AlimFocoWidgetExtension" */;
+			buildPhases = (
+				A7508B592B14CF3F00FF6623 /* Sources */,
+				A7508B5A2B14CF3F00FF6623 /* Frameworks */,
+				A7508B5B2B14CF3F00FF6623 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AlimFocoWidgetExtension;
+			productName = AlimFocoWidgetExtension;
+			productReference = A7508B5D2B14CF3F00FF6623 /* AlimFocoWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -198,11 +286,14 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1430;
+				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					3F489C052ADEA786008F853C = {
 						CreatedOnToolsVersion = 14.3.1;
+					};
+					A7508B5C2B14CF3F00FF6623 = {
+						CreatedOnToolsVersion = 15.0.1;
 					};
 				};
 			};
@@ -220,6 +311,7 @@
 			projectRoot = "";
 			targets = (
 				3F489C052ADEA786008F853C /* AlimFoco */,
+				A7508B5C2B14CF3F00FF6623 /* AlimFocoWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -232,6 +324,14 @@
 				3F489C112ADEA787008F853C /* Preview Assets.xcassets in Resources */,
 				3F489C0E2ADEA787008F853C /* Assets.xcassets in Resources */,
 				05280D5F2AEAB50D007F0310 /* ibge.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A7508B5B2B14CF3F00FF6623 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7508B692B14CF4000FF6623 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,7 +366,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A7508B592B14CF3F00FF6623 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7508B652B14CF3F00FF6623 /* AlimFocoWidgetBundle.swift in Sources */,
+				A7508B672B14CF3F00FF6623 /* AlimFocoWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A7508B6C2B14CF4000FF6623 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A7508B5C2B14CF3F00FF6623 /* AlimFocoWidgetExtension */;
+			targetProxy = A7508B6B2B14CF4000FF6623 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		3F489C182ADEA787008F853C /* Debug */ = {
@@ -388,6 +505,7 @@
 		3F489C1B2ADEA787008F853C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = AlimFoco/AlimFoco.entitlements;
@@ -426,6 +544,7 @@
 		3F489C1C2ADEA787008F853C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = AlimFoco/AlimFoco.entitlements;
@@ -461,6 +580,71 @@
 			};
 			name = Release;
 		};
+		A7508B6F2B14CF4000FF6623 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QS932KTLCZ;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AlimFocoWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AlimFocoWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.LarissaOkabayashi.AlimFoco.AlimFocoWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A7508B702B14CF4000FF6623 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QS932KTLCZ;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AlimFocoWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AlimFocoWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.LarissaOkabayashi.AlimFoco.AlimFocoWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -478,6 +662,15 @@
 			buildConfigurations = (
 				3F489C1B2ADEA787008F853C /* Debug */,
 				3F489C1C2ADEA787008F853C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A7508B712B14CF4000FF6623 /* Build configuration list for PBXNativeTarget "AlimFocoWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A7508B6F2B14CF4000FF6623 /* Debug */,
+				A7508B702B14CF4000FF6623 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
