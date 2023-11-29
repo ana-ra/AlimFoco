@@ -8,11 +8,16 @@
 import SwiftUI
 
 struct ErrorState: View {
+    @EnvironmentObject private var modelMeal: ModelMeal
     let image: String
     let title: String
     let description: String
     let buttonText: String
     let action: () -> Void
+    var meals: [Meal] {
+        modelMeal.Meals
+    }
+    @State var mealTypes: [String] = ["Café da manhã", "Colação", "Almoço", "Lanche da Tarde", "Jantar"]
     
     var body: some View {
         Image(image)
@@ -40,7 +45,7 @@ struct ErrorState: View {
 //        }
 //        .padding(.top, 8)
         
-        NavigationLink(destination: NewMealView(refeicoes: ["Café da manhã", "Colação", "Almoço", "Lanche da Tarde", "Jantar"])) {
+        NavigationLink(destination: NewMealView(meals: meals, mealTypes: $mealTypes)) {
             Text(buttonText)
         }
     }

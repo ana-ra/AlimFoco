@@ -10,7 +10,9 @@ import SwiftUI
 struct MainView: View {
     var body: some View {
         TabView{
-            DayPlanView().environmentObject(Model())
+            DayPlanView()
+                .environmentObject(ModelMeal())
+                .environmentObject(Model())
                 .tabItem {
                     Label("Registro", systemImage: "list.bullet.rectangle.portrait")
                 }

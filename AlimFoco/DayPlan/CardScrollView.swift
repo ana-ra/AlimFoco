@@ -6,31 +6,28 @@
 //
 import SwiftUI
 struct CardScrollView: View {
-    var refeicao: String
-    @EnvironmentObject private var model: Model
-    var MealItems: [MealItem] {
-        model.Mealitems
-    }
+    var meals: [Meal]
+    @EnvironmentObject private var model: ModelMeal
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false){
             HStack(spacing: 0) {
                 VStack(alignment:.leading) {
-                    ForEach(MealItems.indices){ index in
-                        HStack {
-                            VStack(alignment: .leading) {
-                                if (MealItems[index].refeicao == refeicao) {
-                                    Text("\(MealItems[index].name) ")
+                    ForEach(meals.indices){ index in
+                        ForEach(meals[index].itens.indices) { itemIndex in
+                            HStack {
+                                VStack(alignment: .leading) {
+                                    Text("\(meals[index].itens[itemIndex]) ")
                                         .foregroundStyle(.black)
-                                    Text("\(MealItems[index].weight) g")
+                                    Text("\(meals[index].weights[itemIndex]) g")
                                         .foregroundStyle(.gray)
                                 }
+                                .padding(.horizontal, 16)
+                                .padding(.vertical, 4)
+                                Spacer()
                             }
-                            .padding(.horizontal, 16)
-                            .padding(.vertical, 4)
-                            Spacer()
+                            .frame(width: getWidth() / 1.3)
                         }
-                        .frame(width: getWidth() / 1.3)
                         //                      if(food < foods.count - 1){
                         //                          Divider()
                         //                      }
@@ -47,6 +44,6 @@ struct CardScrollView: View {
     }
 }
 
-#Preview {
-  CardScrollView(refeicao: "Almoço")
-}
+//#Preview {
+//  CardScrollView(meals)
+//}
