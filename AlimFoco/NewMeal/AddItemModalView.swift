@@ -63,7 +63,7 @@ struct AddItemModalView: View {
                 
                 if weight != "" && item.nome != "" {
                     Button("Adicionar") {
-                        let newItem: MealItem = MealItem(id: ObjectIdentifier(MealItem.self), name: item.nome, weight: weight, codigo1: item.codigo1, codigo2: item.codigo2, preparacao: item.preparacao, kcal: item.kcal, proteina: item.proteina, lipidios: item.lipidios, carboidratos: item.carboidratos, fibra: item.fibraAlimentar, refeicao: selectedRefeicao)
+                        let newItem: MealItem = MealItem(id: ObjectIdentifier(MealItem.self), alimento: item.nome, weight: weight)
 //                        Task{
 //                            try await model.addMealItem(mealItem: meal)
 //                        }

@@ -26,7 +26,7 @@ struct EditItemView: View {
                             Spacer()
                             
                             if editedItem.nome == "" {
-                                Text(item.name)
+                                Text(item.alimento)
                             } else {
                                 Text(editedItem.nome)
                             }

@@ -9,13 +9,17 @@ import SwiftUI
 
 struct DayPlanView: View {
     @EnvironmentObject private var model: Model
+    @EnvironmentObject private var modelMeal: ModelMeal
     @State var selectedDate = Date()
     @State var isNavigatingToNewMealView = false
     @State var isSatisfactionSheetPresented = false
-    var MealItems: [MealItem] {
+    var mealItems: [MealItem] {
         model.Mealitems
     }
-    @State var refeicoes = ["Café da manhã", "Colação", "Almoço", "Lanche da Tarde", "Jantar"]
+    var meals: [Meal] {
+        modelMeal.Meals
+    }
+    @State var mealTypes = ["Café da manhã", "Colação", "Almoço", "Lanche da Tarde", "Jantar"]
     
     var body: some View {
         NavigationStack {
@@ -23,7 +27,7 @@ struct DayPlanView: View {
                 DateSelectorView(dates: dates(for: Date()), selectedDate: $selectedDate)
                 Spacer()
                 
-                if MealItems.isEmpty {
+                if meals.isEmpty {
                     VStack () {
                         Spacer()
                         ErrorState(
@@ -40,39 +44,45 @@ struct DayPlanView: View {
                 } else {
                     List {
                         Section(header: Text("Refeições")) {
-                            ForEach(refeicoes.indices) { index in
-                                DisclosureGroup {
-                                    CardScrollView(refeicao: refeicoes[index])
-                                        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
-                                     Button(action: {
-                                        isSatisfactionSheetPresented.toggle()
-                                    }) {
-                                        HStack(alignment: .center, spacing: 4) {
-                                            Text("Nível de satisfação")
-                                              .foregroundColor(.black)
-                                            Spacer()
-                                            Image(systemName: "plus")
-                                                .foregroundColor(.black)
-                                            
-                                        }
-                                        .padding(.horizontal, 16)
-                                        .frame(width: getWidth() / 1.2, height: getHeight() / 17)
-                                        .background(Color.secondary2)
-                                        .cornerRadius(10)
-                                    }
-                                    .padding(.vertical, 4)
-                                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
-                                } label: {
-                                    Text(refeicoes[index])
-                                        .fontWeight(.semibold)
+                            ForEach(mealTypes.indices) { index in
+                                let filteredMeals = meals.filter { meal in
+                                    meal.mealType == mealTypes[index]
                                 }
-                                .listRowSeparator(.hidden)
-                                .listRowInsets(EdgeInsets(top: 50, leading: 20, bottom: 20, trailing: 10)) // Adiciona espaço vertical
-                                
+                            
+                                if !filteredMeals.isEmpty {
+                                    DisclosureGroup {
+                                        CardScrollView(meals: filteredMeals)
+                                            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
+                                         Button(action: {
+                                            isSatisfactionSheetPresented.toggle()
+                                        }) {
+                                            HStack(alignment: .center, spacing: 4) {
+                                                Text("Nível de satisfação")
+                                                  .foregroundColor(.black)
+                                                Spacer()
+                                                Image(systemName: "plus")
+                                                    .foregroundColor(.black)
+                                                
+                                            }
+                                            .padding(.horizontal, 16)
+                                            .frame(width: getWidth() / 1.2, height: getHeight() / 17)
+                                            .background(Color.secondary2)
+                                            .cornerRadius(10)
+                                        }
+                                        .padding(.vertical, 8)
+                                        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
+                                    } label: {
+                                        Text(mealTypes[index])
+                                            .fontWeight(.semibold)
+                                    }
+                                    .listRowSeparator(.hidden)
+                                    .listRowInsets(EdgeInsets(top: 50, leading: 20, bottom: 20, trailing: 10))
+                                } // Adiciona espaço vertical
                             }
                             
                         }
                         .headerProminence(.increased)
+                        
                         Section(header: Text("Registrado")) {
                             
                         }
@@ -81,7 +91,9 @@ struct DayPlanView: View {
                 }
             }.task {
                 do {
-                    try await model.populateMealItems()
+                    try await modelMeal.populateMeals()
+                    print(modelMeal.Meals)
+//                    try await model.populateMealItems()
                 } catch {
                     VStack {
                         Spacer()
@@ -99,7 +111,7 @@ struct DayPlanView: View {
             }
             .toolbar {
                 ToolbarItemGroup {
-                    NavigationLink(destination: NewMealView(refeicoes: refeicoes)) {
+                    NavigationLink(destination: NewMealView(meals: meals, mealTypes: $mealTypes)) {
                         Image(systemName: "plus")
                     }
                     
