@@ -71,12 +71,13 @@ struct RegisterSatisfactionSheetView: View {
                 .padding(.horizontal, 14)
                 .padding(.vertical, 7)
                 .frame(maxWidth: .infinity, alignment: .center)
-                .foregroundColor(Color.teal)
+                .foregroundColor(isButtonEnabled ? Color.informationGreen : .gray) // Disable button if no checkbox is selected
                 .background(
                     RoundedRectangle(cornerRadius: 14)
-                        .fill(.teal)
+                        .fill(isButtonEnabled ? Color.informationGreen : Color.gray) // Change button color when disabled
                 )
             }
+            .disabled(!isButtonEnabled)
             .padding(.top, 16)
         }
         .padding(16)

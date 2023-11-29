@@ -43,6 +43,7 @@
 		A7A33A682B17859A006E5919 /* LondrinaSolid-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7A33A5E2B178471006E5919 /* LondrinaSolid-Thin.ttf */; };
 		A7A33A692B17859A006E5919 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = A7A33A5F2B178471006E5919 /* OFL.txt */; };
 		A7A33A6A2B17859A006E5919 /* LondrinaSolid-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7A33A602B178471006E5919 /* LondrinaSolid-Light.ttf */; };
+		A7A33A6D2B17A57A006E5919 /* OnboardingBackgroundImage.png in Resources */ = {isa = PBXBuildFile; fileRef = A7A33A6C2B17A57A006E5919 /* OnboardingBackgroundImage.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +111,7 @@
 		A7A33A5E2B178471006E5919 /* LondrinaSolid-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LondrinaSolid-Thin.ttf"; sourceTree = "<group>"; };
 		A7A33A5F2B178471006E5919 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
 		A7A33A602B178471006E5919 /* LondrinaSolid-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LondrinaSolid-Light.ttf"; sourceTree = "<group>"; };
+		A7A33A6C2B17A57A006E5919 /* OnboardingBackgroundImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OnboardingBackgroundImage.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +176,7 @@
 				3F489C092ADEA786008F853C /* AlimFocoApp.swift */,
 				3FB8A9C02B0F8171007BFA87 /* MainView.swift */,
 				3F489C0D2ADEA787008F853C /* Assets.xcassets */,
+				A7A33A6C2B17A57A006E5919 /* OnboardingBackgroundImage.png */,
 				3F489C172ADEA787008F853C /* Info.plist */,
 				3F489C0F2ADEA787008F853C /* Preview Content */,
 			);
@@ -360,6 +363,7 @@
 				A7A33A682B17859A006E5919 /* LondrinaSolid-Thin.ttf in Resources */,
 				A7A33A692B17859A006E5919 /* OFL.txt in Resources */,
 				A7A33A6A2B17859A006E5919 /* LondrinaSolid-Light.ttf in Resources */,
+				A7A33A6D2B17A57A006E5919 /* OnboardingBackgroundImage.png in Resources */,
 				3F489C112ADEA787008F853C /* Preview Assets.xcassets in Resources */,
 				3F489C0E2ADEA787008F853C /* Assets.xcassets in Resources */,
 				05280D5F2AEAB50D007F0310 /* ibge.json in Resources */,

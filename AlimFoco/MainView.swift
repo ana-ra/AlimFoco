@@ -16,21 +16,22 @@ struct MainView: View {
         if !hasOnboardingCompleted {
             OnboardingView(onboardingCompleted: $hasOnboardingCompleted)
         } else {
-                    TabView{
-            DayPlanView()
-                .environmentObject(ModelMeal())
-                .environmentObject(Model())
-                .tabItem {
-                    Label("Registro", systemImage: "list.bullet.rectangle.portrait")
-                }
-            HistoryView()
-                .tabItem {
-                    Label("Histórico", systemImage: "calendar")
-                }
-            TotalMealsView()
-                .tabItem {
-                    Label("Refeições", systemImage: "fork.knife")
-                }
+            TabView{
+                DayPlanView()
+                    .environmentObject(ModelMeal())
+                    .environmentObject(Model())
+                    .tabItem {
+                        Label("Registro", systemImage: "list.bullet.rectangle.portrait")
+                    }
+                HistoryView()
+                    .tabItem {
+                        Label("Histórico", systemImage: "calendar")
+                    }
+                TotalMealsView()
+                    .tabItem {
+                        Label("Refeições", systemImage: "fork.knife")
+                    }
+            }
         }
     }
 }

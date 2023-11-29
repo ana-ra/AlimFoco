@@ -14,13 +14,13 @@ struct OnboardingView: View {
             VStack (alignment: .leading, content: {
                 Text("Boas vindas ao")
                     .font(
-                        Font.custom("LondrinaSolid-Black", size: 34)
+                        Font.custom("LondrinaSolid-Black", size: 42)
                     )
                     .foregroundColor(.black)
                     .multilineTextAlignment(.leading)
                 Text("Nutrifica")
                     .font(
-                        Font.custom("LondrinaSolid-Black", size: 34)
+                        Font.custom("LondrinaSolid-Black", size: 42)
                     )
                     .foregroundColor(.teal)
                     .multilineTextAlignment(.leading)
@@ -39,7 +39,7 @@ struct OnboardingView: View {
                             .font(.system(size: 12))
                             .fontWeight(.medium)
                     })
-                }.padding(.top, 54)
+                }.padding(.top, 34)
                 
                 
                 HStack {
@@ -58,27 +58,40 @@ struct OnboardingView: View {
                         
                     })
                 }.padding(.top, 28)
-                
+                Spacer()
                 Button(action: {
                     onboardingCompleted = true
                 }) {
                     HStack(alignment: .center, spacing: 4) { 
                         Text("Começar")
-                          .font(
-                            Font.custom("SF Pro", size: 17)
-                              .weight(.semibold)
-                          )
+                            .font(.system(size: 16))
+                            .fontWeight(.semibold)
                           .foregroundColor(.white)
                     }
+                    .frame(maxWidth: .infinity)
                     .padding(.horizontal, 20)
                     .padding(.vertical, 14)
-                    .frame(width: 267, alignment: .center)
-                    .foregroundColor(.teal)
+                    .background(Color.teal)
                     .cornerRadius(12)
                 }
-            }).padding(54)
+                
+            }).padding(.horizontal, 64)
+                .padding(.bottom, 50)
+                .padding(.top, 100)
+            .background(
+                Image("OnboardingBackgroundImage")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .clipped()
+            )
             
         }
+        .background(
+            Image("OnboardingBackgroundImage.png")
+            .resizable()
+            .aspectRatio(contentMode: .fill)
+            .clipped()
+        )
         .tabViewStyle(PageTabViewStyle())
         .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
     }
