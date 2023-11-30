@@ -5,6 +5,7 @@
 //  Created by Silvana Rodrigues Alves on 09/11/23.
 //
 import SwiftUI
+
 struct CardScrollView: View {
     var refeicao: String
     @EnvironmentObject private var model: Model
@@ -16,6 +17,13 @@ struct CardScrollView: View {
         ScrollView(.horizontal, showsIndicators: false){
             HStack(spacing: 0) {
                 VStack(alignment:.leading) {
+//                    // Espaço para o título da refeição
+//                    Text(refeicao)
+//                        .font(.title2)
+//                        .fontWeight(.semibold)
+//                        .padding(.horizontal, 16)
+//                        .padding(.vertical, 8)
+
                     ForEach(MealItems.indices){ index in
                         HStack {
                             VStack(alignment: .leading) {
@@ -27,7 +35,6 @@ struct CardScrollView: View {
                                 }
                             }
                             .padding(.horizontal, 16)
-//                            .padding(.vertical, 0)
                             
                             Spacer()
                         }

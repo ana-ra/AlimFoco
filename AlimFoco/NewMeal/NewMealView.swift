@@ -17,6 +17,7 @@ struct NewMealView: View {
         model.Mealitems
     }
     @State private var isAddItemModalPresented = false
+    @State private var mealTitle: String = ""
     @State var refeicoes: [String]
     @State var selection: String = ""
     @State var addedItems = MealItemList()
@@ -30,6 +31,9 @@ struct NewMealView: View {
                             Text($0)
                         }
                     }
+                    TextField("Título da Refeição", text: $mealTitle)
+                                    .padding()
+
                     
                     if addedItems.itens != [] {
                         Section {
@@ -66,7 +70,6 @@ struct NewMealView: View {
                     
                     Section {
                         Button {
-                            // abrir o modal de adicionar item
                             isAddItemModalPresented.toggle()
                         } label: {
                             HStack {
@@ -93,7 +96,6 @@ struct NewMealView: View {
                                 withAnimation {
                                     showPopup.toggle()
 
-                                    // fazer logica de cadastro de nova refeição
                                 }
                             } label: {
                                 Text("Cadastrar")
