@@ -44,6 +44,10 @@
 		A7A33A692B17859A006E5919 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = A7A33A5F2B178471006E5919 /* OFL.txt */; };
 		A7A33A6A2B17859A006E5919 /* LondrinaSolid-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7A33A602B178471006E5919 /* LondrinaSolid-Light.ttf */; };
 		A7A33A6D2B17A57A006E5919 /* OnboardingBackgroundImage.png in Resources */ = {isa = PBXBuildFile; fileRef = A7A33A6C2B17A57A006E5919 /* OnboardingBackgroundImage.png */; };
+		A7A33A6F2B17B945006E5919 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A33A6E2B17B945006E5919 /* WelcomeView.swift */; };
+		A7A33A712B17B950006E5919 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A33A702B17B950006E5919 /* LoginView.swift */; };
+		A7A33A732B17BAD7006E5919 /* LogoTeal.png in Resources */ = {isa = PBXBuildFile; fileRef = A7A33A722B17BAD7006E5919 /* LogoTeal.png */; };
+		A7A33A752B17CDAF006E5919 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A33A742B17CDAF006E5919 /* ProfileView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +116,10 @@
 		A7A33A5F2B178471006E5919 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
 		A7A33A602B178471006E5919 /* LondrinaSolid-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LondrinaSolid-Light.ttf"; sourceTree = "<group>"; };
 		A7A33A6C2B17A57A006E5919 /* OnboardingBackgroundImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OnboardingBackgroundImage.png; sourceTree = "<group>"; };
+		A7A33A6E2B17B945006E5919 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		A7A33A702B17B950006E5919 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		A7A33A722B17BAD7006E5919 /* LogoTeal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LogoTeal.png; sourceTree = "<group>"; };
+		A7A33A742B17CDAF006E5919 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +153,7 @@
 		3F489BFD2ADEA786008F853C = {
 			isa = PBXGroup;
 			children = (
+				A7A33A722B17BAD7006E5919 /* LogoTeal.png */,
 				3F489C082ADEA786008F853C /* AlimFoco */,
 				A7508B632B14CF3F00FF6623 /* AlimFocoWidget */,
 				A7508B5E2B14CF3F00FF6623 /* Frameworks */,
@@ -261,6 +270,9 @@
 			isa = PBXGroup;
 			children = (
 				A7A33A412B17741C006E5919 /* OnboardingView.swift */,
+				A7A33A6E2B17B945006E5919 /* WelcomeView.swift */,
+				A7A33A702B17B950006E5919 /* LoginView.swift */,
+				A7A33A742B17CDAF006E5919 /* ProfileView.swift */,
 			);
 			path = Profle;
 			sourceTree = "<group>";
@@ -358,6 +370,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7A33A732B17BAD7006E5919 /* LogoTeal.png in Resources */,
 				A7A33A662B17859A006E5919 /* LondrinaSolid-Black.ttf in Resources */,
 				A7A33A672B17859A006E5919 /* LondrinaSolid-Regular.ttf in Resources */,
 				A7A33A682B17859A006E5919 /* LondrinaSolid-Thin.ttf in Resources */,
@@ -391,10 +404,13 @@
 				20F64B892AFE611C00D452B2 /* AddItemModalView.swift in Sources */,
 				05501AC32AF149E5004DCA2C /* DayPlanView.swift in Sources */,
 				209A65B72B0CF27D00A36DBF /* FilterView.swift in Sources */,
+				A7A33A712B17B950006E5919 /* LoginView.swift in Sources */,
+				A7A33A752B17CDAF006E5919 /* ProfileView.swift in Sources */,
 				A7A33A422B17741C006E5919 /* OnboardingView.swift in Sources */,
 				20F324812B0FD1D000CF9C7F /* CustomColors.swift in Sources */,
 				20F1F0E02B0F80E1001DCA3B /* HistoryView.swift in Sources */,
 				20E9CAB02B0D35A30020A495 /* SectionIndexTitles.swift in Sources */,
+				A7A33A6F2B17B945006E5919 /* WelcomeView.swift in Sources */,
 				202344A72B0E1EBE0041E818 /* EditItemView.swift in Sources */,
 				A7508B072B03A58100FF6623 /* RegisterSatisfactionSheetView.swift in Sources */,
 				3F489C0A2ADEA786008F853C /* AlimFocoApp.swift in Sources */,

@@ -18,15 +18,11 @@ struct MainView: View {
                     .environmentObject(ModelMeal())
                     .environmentObject(Model())
                     .tabItem {
-                        Label("Registro", systemImage: "list.bullet.rectangle.portrait")
+                        Label("Ínicio", systemImage: "list.bullet.rectangle.portrait")
                     }
-                HistoryView()
+                ProfileView()
                     .tabItem {
-                        Label("Histórico", systemImage: "calendar")
-                    }
-                TotalMealsView()
-                    .tabItem {
-                        Label("Refeições", systemImage: "fork.knife")
+                        Label("Perfil", systemImage: "person")
                     }
             }.sheet(
                 isPresented: Binding<Bool>(
