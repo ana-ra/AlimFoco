@@ -18,7 +18,6 @@ struct LoginView: View {
         
         
         VStack {
-            
             Text("Nutrifica")
                 .font(
                     Font.custom("LondrinaSolid-Black", size: 42)
@@ -26,22 +25,29 @@ struct LoginView: View {
                 .foregroundColor(.black)
                 .multilineTextAlignment(.center)
             
- 
+            Image("LogoTeal")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(minWidth: 110, maxWidth: 110)
             
-            TextField("Digite seu nome", text: $accountName)
-                           .padding()
-                           .cornerRadius(12)
-                           .onChange(of: accountName, perform: { newValue in
-                               isButtonEnabled = !newValue.isEmpty
-                           })
-                       
-                           .foregroundColor(.black)
-                           //.backgroundColor(.cream)
-            
-            Text("Utilizaremos seu login do iCloud para entrar.")
+            Text("Como devemos te chamar?")
                 .font(.system(size: 16))
                 .fontWeight(.medium)
                 .padding(.top, 28)
+                .multilineTextAlignment(.trailing)
+            
+            TextField("Digite seu nome", text: $accountName)
+                .padding()
+                .onChange(of: accountName, perform: { newValue in
+                    isButtonEnabled = !newValue.isEmpty
+                })
+                .foregroundColor(.black)
+                .background(Color.white)
+                .cornerRadius(12)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(Color.clear, lineWidth: 2)
+                )
             
             Button(action: {
                 onboardingCompleted = true
@@ -66,16 +72,23 @@ struct LoginView: View {
                 .cornerRadius(12)
             }.padding(.top, 28)
             .disabled(!isButtonEnabled)
+            Text("Utilizaremos seu login do iCloud para entrar.")
+                .font(.system(size: 12))
+                .fontWeight(.medium)
+                .foregroundColor(.gray)
+                .multilineTextAlignment(.leading)
         }
         .padding(.horizontal, 64)
         .padding(.bottom, 50)
-        .padding(.top, 100)
+        .padding(.top, 50)
         .background(
             Image("OnboardingBackgroundImage")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .clipped()
+                .ignoresSafeArea()
         )
+        
     }
 }
 
