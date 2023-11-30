@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct DayPlanView: View {
+    @Binding var isPresentingOnboarding: Bool
     @EnvironmentObject private var model: Model
     @EnvironmentObject private var modelMeal: ModelMeal
     @EnvironmentObject private var modelMealType: ModelMealType
@@ -92,24 +93,27 @@ struct DayPlanView: View {
                         .headerProminence(.increased)
                     }
                 }
-            }.task {
-                do {
-                    try await modelMeal.populateMeals()
-                } catch {
-                    VStack {
-                        Spacer()
-                        ErrorState(
-                            image: "no_connection",
-                            title: "Ops! Algo deu errado.",
-                            description: "Parece que você está sem conexão.",
-                            buttonText: "Tente novamente",
-                            action: {}
-                        )
-                        Spacer()
+            }.onChange(of: isPresentingOnboarding, perform: { value in
+                if value {
+                    Task {
+                        do {
+                            try await modelMeal.populateMeals()
+                        } catch {
+                            VStack {
+                                Spacer()
+                                ErrorState(
+                                    image: "no_connection",
+                                    title: "Ops! Algo deu errado.",
+                                    description: "Parece que você está sem conexão.",
+                                    buttonText: "Tente novamente",
+                                    action: {}
+                                )
+                                Spacer()
+                            }
+                        }
                     }
-                    print(error)
                 }
-            }
+            })
             .toolbar {
                 ToolbarItemGroup {
                     NavigationLink(destination: NewMealView(meals: meals, mealTypes: $mealTypes)) {
@@ -142,6 +146,8 @@ struct DayPlanView: View {
                             
 struct DayPlanView_Previews: PreviewProvider {
     static var previews: some View {
-        DayPlanView().environmentObject(Model())
+        DayPlanView(
+            isPresentingOnboarding: .constant(true)
+        ).environmentObject(Model())
     }
 }
