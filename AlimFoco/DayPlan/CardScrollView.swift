@@ -7,42 +7,31 @@
 import SwiftUI
 
 struct CardScrollView: View {
-    var refeicao: String
-    @EnvironmentObject private var model: Model
-    var MealItems: [MealItem] {
-        model.Mealitems
-    }
+    var meals: [Meal]
+    @EnvironmentObject private var model: ModelMeal
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false){
             HStack(spacing: 0) {
                 VStack(alignment:.leading) {
-//                    // Espaço para o título da refeição
-//                    Text(refeicao)
-//                        .font(.title2)
-//                        .fontWeight(.semibold)
-//                        .padding(.horizontal, 16)
-//                        .padding(.vertical, 8)
-
-                    ForEach(MealItems.indices){ index in
-                        HStack {
-                            VStack(alignment: .leading) {
-                                if (MealItems[index].refeicao == refeicao) {
-                                    Text("\(MealItems[index].name) ")
+                    ForEach(meals, id: \.self){ meal in
+                        ForEach(meal.itens.indices) { itemIndex in
+                            HStack {
+                                VStack(alignment: .leading) {
+                                    Text("\(meal.itens[itemIndex]) ")
                                         .foregroundStyle(.black)
-                                    Text("\(MealItems[index].weight) g")
+                                    Text("\(meal.weights[itemIndex]) g")
                                         .foregroundStyle(.gray)
                                 }
+                                .padding(.horizontal, 16)
+                                .padding(.vertical, 4)
+                                Spacer()
                             }
-                            .padding(.horizontal, 16)
-                            
-                            Spacer()
+                            .frame(width: getWidth() / 1.3)
                         }
-                        .frame(width: MealItems.count == 1 ? getWidth() / 1.3 : getWidth() / 1.22)
-                        
-                        if(index < MealItems.count - 1){
-                            Divider()
-                        }
+                        //                      if(food < foods.count - 1){
+                        //                          Divider()
+                        //                      }
                     }
                     .padding(.vertical, 4)
                     
@@ -57,5 +46,5 @@ struct CardScrollView: View {
 }
 
 //#Preview {
-//  CardScrollView(refeicao: "Almoço")
+//  CardScrollView(meals)
 //}

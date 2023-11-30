@@ -8,26 +8,27 @@
 import SwiftUI
 
 struct NewMealView: View {
-    @EnvironmentObject private var model: Model
+//    @EnvironmentObject private var modelMealItem: Model
+    @EnvironmentObject private var model: ModelMeal
     @Environment(\.dismiss) private var dismiss
     @State private var editMode = EditMode.inactive
     @State var showPopup: Bool = false
     @State var isEditing = false
-    var mealItems: [MealItem] {
-        model.Mealitems
-    }
+//    var mealItems: [MealItem] {
+//        model.Mealitems
+//    }
     @State private var isAddItemModalPresented = false
-    @State private var mealTitle: String = ""
-    @State var refeicoes: [String]
+    @State var meals: [Meal]
     @State var selection: String = ""
     @State var addedItems = MealItemList()
+    @Binding var mealTypes: [String]
     
     var body: some View {
         NavigationStack {
             ZStack {
                 List {
                     Picker("Refeição", selection: $selection) {
-                        ForEach(refeicoes, id: \.self) {
+                        ForEach(mealTypes, id: \.self) {
                             Text($0)
                         }
                     }
@@ -40,7 +41,7 @@ struct NewMealView: View {
                             ForEach(addedItems.itens.indices, id: \.self) { index in
                                 NavigationLink(destination: EditItemView(addedItems: $addedItems, index: index, item: addedItems.itens[index])) {
                                     VStack(alignment: .leading) {
-                                        Text(addedItems.itens[index].name)
+                                        Text(addedItems.itens[index].alimento)
                                             .foregroundStyle(.black)
                                         Text("\(addedItems.itens[index].weight) g")
                                             .foregroundStyle(.gray)
@@ -85,12 +86,18 @@ struct NewMealView: View {
                     ToolbarItem(placement: .topBarTrailing) {
                         if !showPopup {
                             Button {
-                                addedItems.changeMeal(meal: selection)
+                                var items: [String] = []
+                                var weights: [String] = []
                                 
                                 for item in addedItems.itens {
-                                    Task {
-                                        try await model.addMealItem(mealItem: item)
-                                    }
+                                    items.append(item.alimento)
+                                    weights.append(item.weight)
+                                }
+                                
+                                let newMeal = Meal(id: ObjectIdentifier(Meal.self), name: "", date: Date(), satisfaction: "", itens: items, weights: weights, mealType: selection, registered: 0)
+                                
+                                Task {
+                                    try await model.addMeal(meal: newMeal)
                                 }
                                 
                                 withAnimation {
@@ -134,7 +141,7 @@ struct NewMealView: View {
         .navigationTitle("Nova Refeição")
         .navigationBarTitleDisplayMode(.inline)
         .onAppear(perform: {
-            selection = refeicoes[0]
+            selection = mealTypes[0]
         })
     }
     
@@ -156,14 +163,7 @@ class MealItemList {
     }
     
     func editItem(index: Int, newItem: Alimento, weight: String) {
-        itens[index] = MealItem(id: ObjectIdentifier(MealItem.self), name: newItem.nome, weight: weight, codigo1: newItem.codigo1, codigo2: newItem.codigo2, preparacao: newItem.preparacao, kcal: newItem.kcal, proteina: newItem.proteina, lipidios: newItem.lipidios, carboidratos: newItem.carboidratos, fibra: newItem.fibraAlimentar, refeicao: itens[index].refeicao)
-    }
-    
-    func changeMeal(meal: String) {
-        for index in 0..<itens.count {
-//            itens[index] = MealItem(id: ObjectIdentifier(MealItem.self), name: itens[index].name, weight: itens[index].weight, codigo1: itens[index].codigo1, codigo2: itens[index].codigo2, preparacao: itens[index].preparacao, kcal: itens[index].kcal, proteina: itens[index].proteina, lipidios: itens[index].lipidios, carboidratos: itens[index].carboidratos, fibra: itens[index].fibra, refeicao: meal)
-            itens[index].refeicao = meal
-        }
+        itens[index] = MealItem(id: ObjectIdentifier(MealItem.self), alimento: newItem.nome, weight: weight)
     }
 }
 
