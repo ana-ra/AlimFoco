@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ErrorState: View {
     @EnvironmentObject private var modelMeal: ModelMeal
+    
     let image: String
     let title: String
     let description: String

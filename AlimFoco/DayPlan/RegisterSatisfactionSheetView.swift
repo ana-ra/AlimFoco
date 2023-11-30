@@ -82,8 +82,8 @@ struct RegisterSatisfactionSheetView: View {
                     RoundedRectangle(cornerRadius: 14)
                         .fill(isButtonEnabled ? Color.informationGreen : Color.gray) // Change button color when disabled
                 )
-                .disabled(!isButtonEnabled)
             }
+            .disabled(!isButtonEnabled)
             .padding(.top, 16)
         }
         .padding(16)
