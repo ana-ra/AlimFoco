@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct RegisterSatisfactionSheetView: View {
-    @EnvironmentObject private var model: ModelMeal
+    @EnvironmentObject private var model: ModelMealType
+    @Binding var selectedDate: Date
     @State private var selectedOption: Int? = nil
+    @Binding var meal: String
     @Environment(\.dismiss) var dismiss
     
     let options = ["Seguiu", "Não Seguiu"]
@@ -61,9 +63,10 @@ struct RegisterSatisfactionSheetView: View {
             }
             
             Button(action: {
-//                Task {
-//                    try await model.addMeal(meal: newMeal)
-//                }
+                let editedMeal = MealType(id: ObjectIdentifier(MealType.self), name: meal, date: selectedDate, fidelity: options[selectedOption!], registered: 1)
+                Task {
+                    try await model.updateMealType(editedMealType: editedMeal)
+                }
                 dismiss()
             }) {
                 HStack(
@@ -90,7 +93,7 @@ struct RegisterSatisfactionSheetView: View {
     }
 }
 
-// Preview code remains unchanged
-#Preview {
-    RegisterSatisfactionSheetView()
-}
+//// Preview code remains unchanged
+//#Preview {
+//    RegisterSatisfactionSheetView()
+//}

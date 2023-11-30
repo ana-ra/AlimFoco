@@ -1,7 +1,7 @@
 import Foundation
 import CloudKit
 
-enum RecordKeysMeals: String {
+enum RecordKeysMeal: String {
     case type = "Meal"
     case name
     case date
@@ -25,14 +25,14 @@ struct Meal: CKRecordValueProtocol, Identifiable {
     var registered: Int
     
     var record: CKRecord {
-        let record = CKRecord(recordType: RecordKeysMeals.type.rawValue)
-        record[RecordKeysMeals.name.rawValue] = name
-        record[RecordKeysMeals.date.rawValue] = date
-        record[RecordKeysMeals.itens.rawValue] = itens
-        record[RecordKeysMeals.satisfaction.rawValue] = satisfaction
-        record[RecordKeysMeals.weights.rawValue] = weights
-        record[RecordKeysMeals.mealType.rawValue] = mealType
-        record[RecordKeysMeals.registered.rawValue] = registered
+        let record = CKRecord(recordType: RecordKeysMealType.type.rawValue)
+        record[RecordKeysMeal.name.rawValue] = name
+        record[RecordKeysMeal.date.rawValue] = date
+        record[RecordKeysMeal.itens.rawValue] = itens
+        record[RecordKeysMeal.satisfaction.rawValue] = satisfaction
+        record[RecordKeysMeal.weights.rawValue] = weights
+        record[RecordKeysMeal.mealType.rawValue] = mealType
+        record[RecordKeysMeal.registered.rawValue] = registered
         return record
     }
 }
@@ -50,13 +50,13 @@ extension Meal: Hashable {
 
 extension Meal {
     init?(record: CKRecord) {
-        guard let name = record[RecordKeysMeals.name.rawValue] as? String,
-              let date = record[RecordKeysMeals.date.rawValue] as? Date,
-              let satisfaction = record[RecordKeysMeals.satisfaction.rawValue] as? String,
-              let weights = record[RecordKeysMeals.weights.rawValue] as? [String],
-              let itens = record[RecordKeysMeals.itens.rawValue] as? [String],
-              let mealType = record[RecordKeysMeals.mealType.rawValue] as? String,
-              let registered = record[RecordKeysMeals.registered.rawValue] as? Int else {
+        guard let name = record[RecordKeysMeal.name.rawValue] as? String,
+              let date = record[RecordKeysMeal.date.rawValue] as? Date,
+              let satisfaction = record[RecordKeysMeal.satisfaction.rawValue] as? String,
+              let weights = record[RecordKeysMeal.weights.rawValue] as? [String],
+              let itens = record[RecordKeysMeal.itens.rawValue] as? [String],
+              let mealType = record[RecordKeysMeal.mealType.rawValue] as? String,
+              let registered = record[RecordKeysMeal.registered.rawValue] as? Int else {
             return nil
         }
         self.init(id: ObjectIdentifier(Meal.self), recordId: record.recordID, name: name, date: date, satisfaction: satisfaction, itens: itens, weights: weights, mealType: mealType, registered: registered)

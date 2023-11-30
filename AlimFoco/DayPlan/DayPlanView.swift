@@ -10,6 +10,8 @@ import SwiftUI
 struct DayPlanView: View {
     @EnvironmentObject private var model: Model
     @EnvironmentObject private var modelMeal: ModelMeal
+    @EnvironmentObject private var modelMealType: ModelMealType
+    @State var selectedMeal: String = ""
     @State var selectedDate = Date()
     @State var isNavigatingToNewMealView = false
     @State var isSatisfactionSheetPresented = false
@@ -54,6 +56,7 @@ struct DayPlanView: View {
                                         CardScrollView(meals: filteredMeals)
                                             .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
                                          Button(action: {
+                                            selectedMeal = mealTypes[index]
                                             isSatisfactionSheetPresented.toggle()
                                         }) {
                                             HStack(alignment: .center, spacing: 4) {
@@ -92,8 +95,6 @@ struct DayPlanView: View {
             }.task {
                 do {
                     try await modelMeal.populateMeals()
-                    print(modelMeal.Meals)
-//                    try await model.populateMealItems()
                 } catch {
                     VStack {
                         Spacer()
@@ -122,8 +123,8 @@ struct DayPlanView: View {
             }
             .navigationTitle("Plano Alimentar")
             .sheet(isPresented: $isSatisfactionSheetPresented, content: {
-                RegisterSatisfactionSheetView().presentationDetents([.height(getHeight() / 3.5)])
-                    .tint(Color.informationGreen)
+                RegisterSatisfactionSheetView(selectedDate: $selectedDate, meal: $selectedMeal).presentationDetents([.height(getHeight() / 3.5)])
+                    .tint(Color.informationGreen).environmentObject(ModelMealType())
             })
         }
     }
