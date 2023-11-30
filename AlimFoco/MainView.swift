@@ -17,6 +17,7 @@ struct MainView: View {
                     Label("Registro", systemImage: "list.bullet.rectangle.portrait")
                 }
             HistoryView()
+                .environmentObject(ModelMeal())
                 .tabItem {
                     Label("Histórico", systemImage: "calendar")
                 }
