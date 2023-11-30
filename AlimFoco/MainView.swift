@@ -9,33 +9,38 @@ import SwiftUI
 
 struct MainView: View {
     @AppStorage("hasOnboardingCompleted") private var hasOnboardingCompleted = false
+    @AppStorage("accountName") private var accountName = ""
     @State private var isPresentingOnboarding = false
     
     
     var body: some View {
-            TabView{
-                DayPlanView()
-                    .environmentObject(ModelMeal())
-                    .environmentObject(Model())
-                    .tabItem {
-                        Label("Ínicio", systemImage: "list.bullet.rectangle.portrait")
-                    }
-                ProfileView()
-                    .tabItem {
-                        Label("Perfil", systemImage: "person")
-                    }
-            }.sheet(
-                isPresented: Binding<Bool>(
-                    get: { !hasOnboardingCompleted },
-                    set: { _ in }
-                ), 
-                
-                content: {
-                OnboardingView(onboardingCompleted: $hasOnboardingCompleted).interactiveDismissDisabled()
-                })
-            .onAppear {
-                isPresentingOnboarding = true
-            }
+        TabView{
+            DayPlanView(isPresentingOnboarding: $hasOnboardingCompleted)
+                .environmentObject(ModelMeal())
+                .environmentObject(Model())
+                .tabItem {
+                    Label("Ínicio", systemImage: "list.bullet.rectangle.portrait")
+                }
+            ProfileView(accountName: accountName)
+                .environmentObject(Model())
+                .tabItem {
+                    Label("Perfil", systemImage: "person")
+                }
+        }.sheet(
+            isPresented: Binding<Bool>(
+                get: { !hasOnboardingCompleted },
+                set: { _ in }
+            ), 
+            
+            content: {
+                OnboardingView(
+                    onboardingCompleted: $hasOnboardingCompleted,
+                    accountName: $accountName
+                ).interactiveDismissDisabled()
+            })
+        .onAppear {
+            isPresentingOnboarding = true
+        }
     }
 }
 

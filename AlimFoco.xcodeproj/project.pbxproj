@@ -45,10 +45,8 @@
 		A7A33A682B17859A006E5919 /* LondrinaSolid-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7A33A5E2B178471006E5919 /* LondrinaSolid-Thin.ttf */; };
 		A7A33A692B17859A006E5919 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = A7A33A5F2B178471006E5919 /* OFL.txt */; };
 		A7A33A6A2B17859A006E5919 /* LondrinaSolid-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7A33A602B178471006E5919 /* LondrinaSolid-Light.ttf */; };
-		A7A33A6D2B17A57A006E5919 /* OnboardingBackgroundImage.png in Resources */ = {isa = PBXBuildFile; fileRef = A7A33A6C2B17A57A006E5919 /* OnboardingBackgroundImage.png */; };
 		A7A33A6F2B17B945006E5919 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A33A6E2B17B945006E5919 /* WelcomeView.swift */; };
 		A7A33A712B17B950006E5919 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A33A702B17B950006E5919 /* LoginView.swift */; };
-		A7A33A732B17BAD7006E5919 /* LogoTeal.png in Resources */ = {isa = PBXBuildFile; fileRef = A7A33A722B17BAD7006E5919 /* LogoTeal.png */; };
 		A7A33A752B17CDAF006E5919 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A33A742B17CDAF006E5919 /* ProfileView.swift */; };
 		A7A33A772B182264006E5919 /* ProfileAccountSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A33A762B182264006E5919 /* ProfileAccountSheetView.swift */; };
 /* End PBXBuildFile section */
@@ -120,10 +118,8 @@
 		A7A33A5E2B178471006E5919 /* LondrinaSolid-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LondrinaSolid-Thin.ttf"; sourceTree = "<group>"; };
 		A7A33A5F2B178471006E5919 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
 		A7A33A602B178471006E5919 /* LondrinaSolid-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LondrinaSolid-Light.ttf"; sourceTree = "<group>"; };
-		A7A33A6C2B17A57A006E5919 /* OnboardingBackgroundImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OnboardingBackgroundImage.png; sourceTree = "<group>"; };
 		A7A33A6E2B17B945006E5919 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		A7A33A702B17B950006E5919 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		A7A33A722B17BAD7006E5919 /* LogoTeal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LogoTeal.png; sourceTree = "<group>"; };
 		A7A33A742B17CDAF006E5919 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		A7A33A762B182264006E5919 /* ProfileAccountSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAccountSheetView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -159,7 +155,6 @@
 		3F489BFD2ADEA786008F853C = {
 			isa = PBXGroup;
 			children = (
-				A7A33A722B17BAD7006E5919 /* LogoTeal.png */,
 				3F489C082ADEA786008F853C /* AlimFoco */,
 				A7508B632B14CF3F00FF6623 /* AlimFocoWidget */,
 				A7508B5E2B14CF3F00FF6623 /* Frameworks */,
@@ -191,7 +186,6 @@
 				3F489C092ADEA786008F853C /* AlimFocoApp.swift */,
 				3FB8A9C02B0F8171007BFA87 /* MainView.swift */,
 				3F489C0D2ADEA787008F853C /* Assets.xcassets */,
-				A7A33A6C2B17A57A006E5919 /* OnboardingBackgroundImage.png */,
 				3F489C172ADEA787008F853C /* Info.plist */,
 				3F489C0F2ADEA787008F853C /* Preview Content */,
 			);
@@ -379,13 +373,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7A33A732B17BAD7006E5919 /* LogoTeal.png in Resources */,
 				A7A33A662B17859A006E5919 /* LondrinaSolid-Black.ttf in Resources */,
 				A7A33A672B17859A006E5919 /* LondrinaSolid-Regular.ttf in Resources */,
 				A7A33A682B17859A006E5919 /* LondrinaSolid-Thin.ttf in Resources */,
 				A7A33A692B17859A006E5919 /* OFL.txt in Resources */,
 				A7A33A6A2B17859A006E5919 /* LondrinaSolid-Light.ttf in Resources */,
-				A7A33A6D2B17A57A006E5919 /* OnboardingBackgroundImage.png in Resources */,
 				3F489C112ADEA787008F853C /* Preview Assets.xcassets in Resources */,
 				3F489C0E2ADEA787008F853C /* Assets.xcassets in Resources */,
 				05280D5F2AEAB50D007F0310 /* ibge.json in Resources */,
@@ -593,7 +585,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AlimFoco/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Nutrifi;
+				INFOPLIST_KEY_CFBundleDisplayName = Nutrifica;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -633,7 +625,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AlimFoco/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Nutrifi;
+				INFOPLIST_KEY_CFBundleDisplayName = Nutrifica;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
