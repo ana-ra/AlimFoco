@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct RegisterSatisfactionSheetView: View {
+    @EnvironmentObject private var model: ModelMeal
     @State private var selectedOption: Int? = nil
     @Environment(\.dismiss) var dismiss
     
-    let options = ["Pouco", "Médio", "Muito", "Não realizada"]
+    let options = ["Seguiu", "Não Seguiu"]
     
     var isButtonEnabled: Bool {
         return selectedOption != nil
@@ -28,7 +29,7 @@ struct RegisterSatisfactionSheetView: View {
                 }
             }
             Spacer()
-            Text("O quanto seguiu a refeição?")
+            Text("Você seguiu a sua refeição?")
                 .fontWeight(.semibold)
                 .multilineTextAlignment(.center)
                 .foregroundColor(.black)
@@ -41,6 +42,8 @@ struct RegisterSatisfactionSheetView: View {
 //                            .foregroundColor(.primary)
                         Spacer()
                         Image(systemName: self.selectedOption == index ? "checkmark.circle.fill" : "checkmark.circle")
+                            .resizable()
+                            .frame(width: 22.0, height: 22.0)
                             .onTapGesture {
                                 withAnimation {
                                     self.selectedOption = self.selectedOption == index ? nil : index
@@ -58,6 +61,9 @@ struct RegisterSatisfactionSheetView: View {
             }
             
             Button(action: {
+//                Task {
+//                    try await model.addMeal(meal: newMeal)
+//                }
                 dismiss()
             }) {
                 HStack(
