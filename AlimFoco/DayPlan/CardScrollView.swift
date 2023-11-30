@@ -6,65 +6,44 @@
 //
 import SwiftUI
 struct CardScrollView: View {
-    let foods = [
-        Food(name: "arroz", weight: 120),
-        Food(name: "feijão", weight: 150),
-        Food(name: "banana", weight: 200),
-        Food(name: "ovo", weight: 100),
-    ]
+    var meals: [Meal]
+    @EnvironmentObject private var model: ModelMeal
     
-  var body: some View {
-    ScrollView(.horizontal, showsIndicators: false){
-      HStack(spacing: 0) {
-          ForEach(0..<4){ i in
-              VStack(alignment:.leading) {
-                  ForEach(0 ..< foods.count){ food in
-                      HStack {
-                          VStack(alignment: .leading) {
-                              Text("\(foods[food].name) ")
-                                  .foregroundStyle(.black)
-                              Text("\(foods[food].weight) g")
-                                  .foregroundStyle(.gray)
-                          }
-
-                          .padding(.horizontal, 16)
-                          .padding(.vertical, 4)
-                          Spacer()
-                      }
-                      
-                      if(food < foods.count - 1){
-                          Divider()
-                      }
-                  }
-                  .frame(width: getWidth() / 1.3)
-            }
-              .padding(.vertical, 10)
-            
-            Spacer()
-          }
-          .background(Color.secondary1)
-            .cornerRadius(20)
-            .padding(.vertical, 4)
-        }
-      }
-    }
-  }
-
-
-
-struct Food: Identifiable {
-    let id = UUID()
-    let name: String
-    let weight: Int
-}
-
-struct FoodRow: View {
-    var food: Food
     var body: some View {
-            Text("\(food.name)")
+        ScrollView(.horizontal, showsIndicators: false){
+            HStack(spacing: 0) {
+                VStack(alignment:.leading) {
+                    ForEach(meals, id: \.self){ meal in
+                        ForEach(meal.itens.indices) { itemIndex in
+                            HStack {
+                                VStack(alignment: .leading) {
+                                    Text("\(meal.itens[itemIndex]) ")
+                                        .foregroundStyle(.black)
+                                    Text("\(meal.weights[itemIndex]) g")
+                                        .foregroundStyle(.gray)
+                                }
+                                .padding(.horizontal, 16)
+                                .padding(.vertical, 4)
+                                Spacer()
+                            }
+                            .frame(width: getWidth() / 1.3)
+                        }
+                        //                      if(food < foods.count - 1){
+                        //                          Divider()
+                        //                      }
+                    }
+                    .padding(.vertical, 4)
+                    
+                    Spacer()
+                }
+                .background(Color.secondary1)
+                .cornerRadius(20)
+                .padding(.vertical, 4)
+            }
+        }
     }
 }
 
-#Preview {
-  CardScrollView()
-}
+//#Preview {
+//  CardScrollView(meals)
+//}

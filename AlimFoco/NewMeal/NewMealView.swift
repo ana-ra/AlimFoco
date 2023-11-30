@@ -8,42 +8,39 @@
 import SwiftUI
 
 struct NewMealView: View {
-    @EnvironmentObject private var model: Model
+//    @EnvironmentObject private var modelMealItem: Model
+    @EnvironmentObject private var model: ModelMeal
     @Environment(\.dismiss) private var dismiss
     @State private var editMode = EditMode.inactive
     @State var showPopup: Bool = false
     @State var isEditing = false
-    var mealItems: [MealItem] {
-        model.Mealitems
-    }
+//    var mealItems: [MealItem] {
+//        model.Mealitems
+//    }
     @State private var isAddItemModalPresented = false
-    @State private var selection: Meal = Meal(name: "", items: [])
-    @State var meals = [
-        Meal(name: "Café da Manhã", items: [Item(name: "Salada", weight: 100), Item(name: "Peito de Frango", weight: 150)]),
-        Meal(name: "Colação", items: []),
-        Meal(name: "Almoço", items: [Item(name: "asd", weight: 100), Item(name: "Peito de Frango", weight: 150)]),
-        Meal(name: "Lanche da Tarde", items: [Item(name: "ffff", weight: 100), Item(name: "Peito de Frango", weight: 150)]),
-        Meal(name: "Jantar", items: [Item(name: "Curs", weight: 100), Item(name: "Peito de Frango", weight: 150)])
-    ]
+    @State var meals: [Meal]
+    @State var selection: String = ""
+    @State var addedItems = MealItemList()
+    @Binding var mealTypes: [String]
     
     var body: some View {
         NavigationStack {
             ZStack {
                 List {
                     Picker("Refeição", selection: $selection) {
-                        ForEach(meals, id: \.self) {
-                            Text($0.name).tag($0.name)
+                        ForEach(mealTypes, id: \.self) {
+                            Text($0)
                         }
                     }
                     
-                    if !selection.items.isEmpty {
+                    if addedItems.itens != [] {
                         Section {
-                            ForEach(selection.items) { item in
-                                NavigationLink(destination: EditItemView(weight: String(item.weight), meal: selection, item: Alimento(codigo1: "", nome: item.name, codigo2: "", preparacao: "", kcal: "", proteina: "", lipidios: "", carboidratos: "", fibraAlimentar: ""))) {
+                            ForEach(addedItems.itens.indices, id: \.self) { index in
+                                NavigationLink(destination: EditItemView(addedItems: $addedItems, index: index, item: addedItems.itens[index])) {
                                     VStack(alignment: .leading) {
-                                        Text(item.name)
+                                        Text(addedItems.itens[index].alimento)
                                             .foregroundStyle(.black)
-                                        Text("\(item.weight) g")
+                                        Text("\(addedItems.itens[index].weight) g")
                                             .foregroundStyle(.gray)
                                     }
                                 }
@@ -80,13 +77,27 @@ struct NewMealView: View {
                                 Spacer()
                                 Image(systemName: "plus")
                             }
-                    }
+                        }
                     }
                 }
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
                         if !showPopup {
                             Button {
+                                var items: [String] = []
+                                var weights: [String] = []
+                                
+                                for item in addedItems.itens {
+                                    items.append(item.alimento)
+                                    weights.append(item.weight)
+                                }
+                                
+                                let newMeal = Meal(id: ObjectIdentifier(Meal.self), name: "", date: Date(), satisfaction: "", itens: items, weights: weights, mealType: selection, registered: 0)
+                                
+                                Task {
+                                    try await model.addMeal(meal: newMeal)
+                                }
+                                
                                 withAnimation {
                                     showPopup.toggle()
 
@@ -96,7 +107,7 @@ struct NewMealView: View {
                                 Text("Cadastrar")
                                     .fontWeight(.semibold)
                             }
-                        .padding()
+                            .padding()
                         }
                     }
                 }
@@ -107,6 +118,7 @@ struct NewMealView: View {
                     NewMealPopUpView()
                         .onAppear(perform: {
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                
                                 dismiss()
                             }
                         })
@@ -116,28 +128,44 @@ struct NewMealView: View {
         }
         .sheet(isPresented: $isAddItemModalPresented, onDismiss: {
             withAnimation {
-                isEditing.toggle()
-                isEditing.toggle()
+                var aux = selection
+                selection = ""
+                selection = aux
             }
         }, content: {
             NavigationStack {
-                AddItemModalView(meal: selection)
+                AddItemModalView(selectedRefeicao: $selection, addedItems: $addedItems)
             }
-        })
-        .onAppear(perform: {
-            selection = meals[0]
         })
         .navigationTitle("Nova Refeição")
         .navigationBarTitleDisplayMode(.inline)
+        .onAppear(perform: {
+            selection = mealTypes[0]
+        })
     }
     
     func deleteNavigationLinks(at offsets: IndexSet) {
-        selection.items.remove(atOffsets: offsets)
-        print(selection)
-        print(selection.items)
+        addedItems.itens.remove(atOffsets: offsets)
+        print(addedItems)
     }
 }
 
-#Preview {
-    NewMealView()
+class MealItemList {
+    var itens: [MealItem]
+    
+    init() {
+        itens = []
+    }
+    
+    func addItem(item: MealItem) {
+        itens.append(item)
+    }
+    
+    func editItem(index: Int, newItem: Alimento, weight: String) {
+        itens[index] = MealItem(id: ObjectIdentifier(MealItem.self), alimento: newItem.nome, weight: weight)
+    }
 }
+
+//#Preview {
+//    NewMealView(refeicoes: .constant(["Café da manhã", "Colação", "Almoço", "Lanche da Tarde", "Jantar"]))
+//}
