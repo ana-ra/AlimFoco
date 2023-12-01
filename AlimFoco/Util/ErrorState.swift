@@ -27,9 +27,9 @@ struct ErrorState: View {
             .frame(width: 100, height: 100) // Ajustar o tamanho conforme necessário
         
         Text(title)
-            .font(.system(size: 20))
-            .fontWeight(.semibold)
-            .foregroundColor(.gray)
+            .font(.title)
+            .fontWeight(.bold)
+            .foregroundColor(.black)
         
         Text(description)
             .foregroundColor(.gray)
@@ -37,18 +37,19 @@ struct ErrorState: View {
             .padding(.horizontal, 16)
             .multilineTextAlignment(.center)
         
-//        Button(action: {
-//            self.action()
-//        }) {
-//            Text(buttonText)
-//                .foregroundColor(.accentColor)
-//                .font(.system(size: 15))
-//        }
-//        .padding(.top, 8)
+        //        Button(action: {
+        //            self.action()
+        //        }) {
+        //            Text(buttonText)
+        //                .foregroundColor(.accentColor)
+        //                .font(.system(size: 15))
+        //        }
+        //        .padding(.top, 8)
         
         NavigationLink(destination: NewMealView(meals: meals, mealTypes: $mealTypes)) {
             Text(buttonText)
-        }
+                .fontWeight(.semibold)
+        }.padding(.top, 8)
     }
 }
 

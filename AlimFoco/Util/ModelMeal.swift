@@ -13,11 +13,11 @@ class ModelMeal: ObservableObject {
           let record = try await db.save(meal.record)
           guard let meal = Meal(record: record) else { return }
           Dictionary[meal.recordId!] = meal
-      }
+    }
     
     func populateMeals() async throws {
         
-        let query = CKQuery(recordType: RecordKeysMeals.type.rawValue, predicate: NSPredicate(value: true))
+        let query = CKQuery(recordType: RecordKeysMeal.type.rawValue, predicate: NSPredicate(value: true))
         query.sortDescriptors = [NSSortDescriptor(key: "name", ascending: false)]
         let result = try await db.records(matching: query)
         let records = result.matchResults.compactMap { try? $0.1.get() }
@@ -30,4 +30,3 @@ class ModelMeal: ObservableObject {
     }
     
 }
-

@@ -10,6 +10,7 @@ import SwiftUI
 struct ProfileView: View {
     @State private var isDeleteAccountSheetViewPresented = false
     @State private var isLogoutViewSheetViewPresented = false
+    let accountName: String
     
     var body: some View {
         VStack {
@@ -85,11 +86,11 @@ struct ProfileView: View {
                                 .foregroundColor(.errorRed)
                         }
                     }
-                }.navigationTitle("Carolina Q")
+                }.navigationTitle(accountName)
                 
             }
         }.sheet(isPresented: $isDeleteAccountSheetViewPresented, content: {
-            ProfileAccountSheetView(title: "Tem certeza de que deseja deletar sua conta?", secondaryButtonTitle: "Deletar conta").presentationDetents([.height(getHeight() / 3.5)])
+            ProfileAccountSheetView( title: "Tem certeza de que deseja deletar sua conta?", secondaryButtonTitle: "Deletar conta").presentationDetents([.height(getHeight() / 3.5)])
             
         })
         .sheet(isPresented: $isLogoutViewSheetViewPresented, content: {
@@ -99,5 +100,5 @@ struct ProfileView: View {
 }
 
 #Preview {
-    ProfileView()
+    ProfileView(accountName: "Carol")
 }

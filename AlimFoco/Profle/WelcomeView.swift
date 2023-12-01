@@ -9,7 +9,8 @@ import SwiftUI
 
 struct WelcomeView: View {
     @Binding var onboardingCompleted: Bool
-    @Binding var selectedTabIndex: Int
+    @Binding var hasLoggedIn:Bool
+    @Binding var accountName: String
     
     var body: some View {
         VStack (alignment: .leading, content: {
@@ -29,6 +30,7 @@ struct WelcomeView: View {
             
             HStack {
                 Image(systemName: "chart.bar.doc.horizontal")
+                    .resizable()
                     .frame(width: 34, height: 34)
                     .foregroundColor(.teal)
                 VStack (alignment: .leading, content: {
@@ -45,6 +47,7 @@ struct WelcomeView: View {
             
             HStack {
                 Image(systemName: "chart.line.uptrend.xyaxis")
+                    .resizable()
                     .frame(width: 34, height: 34)
                     .foregroundColor(.teal)
                 VStack (alignment: .leading, content: {
@@ -60,12 +63,10 @@ struct WelcomeView: View {
                 })
             }.padding(.top, 28)
             Spacer()
-            Button(action: {
-               
-                    selectedTabIndex += 1
-                
-                onboardingCompleted = true
-            }) {
+            NavigationLink(destination: LoginView(
+                onboardingCompleted: $onboardingCompleted, hasLoggedIn: $hasLoggedIn,
+                accountName: $accountName
+            ), label:  {
                 HStack(alignment: .center, spacing: 4) {
                     Text("Começar")
                         .font(.system(size: 16))
@@ -77,7 +78,7 @@ struct WelcomeView: View {
                 .padding(.vertical, 14)
                 .background(Color.teal)
                 .cornerRadius(12)
-            }
+            })
             
         }).padding(.horizontal, 64)
             .padding(.bottom, 50)
@@ -92,5 +93,7 @@ struct WelcomeView: View {
 }
 
 #Preview {
-    WelcomeView(onboardingCompleted: .constant(true), selectedTabIndex: .constant(0))
+    WelcomeView(onboardingCompleted: .constant(true),
+                hasLoggedIn:.constant(false),
+                accountName: .constant("Carol Q"))
 }
