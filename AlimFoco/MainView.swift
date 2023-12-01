@@ -13,7 +13,6 @@ struct MainView: View {
     @State private var isPresentingOnboarding = false
     @State private var alreadyLogged = false
     
-    
     var body: some View {
         TabView{
             DayPlanView(isPresentingOnboarding: $hasOnboardingCompleted,
@@ -28,7 +27,8 @@ struct MainView: View {
                 .tabItem {
                     Label("Perfil", systemImage: "person")
                 }
-        }.sheet(
+        }
+        .sheet(
             isPresented: Binding<Bool>(
                 get: { 
                     !hasOnboardingCompleted },
