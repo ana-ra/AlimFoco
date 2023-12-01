@@ -90,7 +90,7 @@ struct ProfileView: View {
                 
             }
         }.sheet(isPresented: $isDeleteAccountSheetViewPresented, content: {
-            ProfileAccountSheetView(title: "Tem certeza de que deseja deletar sua conta?", secondaryButtonTitle: "Deletar conta").presentationDetents([.height(getHeight() / 3.5)])
+            ProfileAccountSheetView( title: "Tem certeza de que deseja deletar sua conta?", secondaryButtonTitle: "Deletar conta").presentationDetents([.height(getHeight() / 3.5)])
             
         })
         .sheet(isPresented: $isLogoutViewSheetViewPresented, content: {
