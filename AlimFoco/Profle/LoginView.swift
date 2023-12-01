@@ -10,6 +10,7 @@ import SwiftUI
 struct LoginView: View {
     
     @Binding var onboardingCompleted: Bool
+    @Binding var hasLoggedIn:Bool
     @Binding var accountName: String
     
     @State var isButtonEnabled: Bool = false
@@ -51,6 +52,7 @@ struct LoginView: View {
             
             Button(action: {
                 onboardingCompleted = true
+                hasLoggedIn = true
             }) {
                 HStack(alignment: .center, spacing: 4) {
                     Image(systemName: "apple.logo")
@@ -95,6 +97,7 @@ struct LoginView: View {
 #Preview {
     LoginView(
         onboardingCompleted: .constant(true),
+        hasLoggedIn: .constant(false),
         accountName: .constant("Carol")
     )
 }

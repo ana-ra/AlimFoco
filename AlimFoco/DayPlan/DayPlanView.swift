@@ -9,6 +9,7 @@ import SwiftUI
 
 struct DayPlanView: View {
     @Binding var isPresentingOnboarding: Bool
+    @Binding var hasLoggedIn: Bool
     @EnvironmentObject private var model: Model
     @EnvironmentObject private var modelMeal: ModelMeal
     @EnvironmentObject private var modelMealType: ModelMealType
@@ -32,18 +33,17 @@ struct DayPlanView: View {
                 
                 if meals.isEmpty {
                     VStack () {
-                        Spacer()
-                        ErrorState(
+                        EmptyState(
                             image: "empty_state",
                             title: "Ops! Está vazio.",
-                            description: "Não há refeições a serem exibidas para este dia.",
+                            description: "Adicione uma nova refeição clicando no + ou em ”Adicionar Refeição\"",
                             buttonText: "Criar nova refeição",
                             action: {
                                 isNavigatingToNewMealView.toggle()
                             }
                         )
                         Spacer()
-                    }
+                    }.padding(16)
                 } else {
                     List {
                         Section(header: Text("Próximas Refeições")) {
@@ -91,6 +91,19 @@ struct DayPlanView: View {
                             
                         }
                         .headerProminence(.increased)
+                    }
+                }
+            }.background(Color(red: 0.95, green: 0.95, blue: 0.97))
+            .onAppear {
+                Task {
+                    if hasLoggedIn {
+                        do {
+                            try await loadMealData()
+                            print(modelMeal.Meals)
+                        } catch {
+                            errorView()
+                            print(error)
+                        }
                     }
                 }
             }.onChange(of: isPresentingOnboarding, perform: { value in
@@ -142,12 +155,31 @@ struct DayPlanView: View {
         
         return dates
     }
+    
+    func loadMealData() async throws {
+        try await modelMeal.populateMeals()
+    }
+    
+    func errorView() -> some View {
+        VStack {
+            Spacer()
+            ErrorState(
+                image: "no_connection",
+                title: "Ops! Algo deu errado.",
+                description: "Parece que você está sem conexão.",
+                buttonText: "Tente novamente",
+                action: {}
+            )
+            Spacer()
+        }
+    }
 }
                             
 struct DayPlanView_Previews: PreviewProvider {
     static var previews: some View {
         DayPlanView(
-            isPresentingOnboarding: .constant(true)
+            isPresentingOnboarding: .constant(true),
+            hasLoggedIn: .constant(false)
         ).environmentObject(Model())
     }
 }

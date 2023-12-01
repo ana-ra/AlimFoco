@@ -11,11 +11,12 @@ struct MainView: View {
     @AppStorage("hasOnboardingCompleted") private var hasOnboardingCompleted = false
     @AppStorage("accountName") private var accountName = ""
     @State private var isPresentingOnboarding = false
-    
+    @State private var alreadyLogged = false
     
     var body: some View {
         TabView{
-            DayPlanView(isPresentingOnboarding: $hasOnboardingCompleted)
+            DayPlanView(isPresentingOnboarding: $hasOnboardingCompleted,
+                        hasLoggedIn: $alreadyLogged)
                 .environmentObject(ModelMeal())
                 .environmentObject(Model())
                 .tabItem {
@@ -26,19 +27,23 @@ struct MainView: View {
                 .tabItem {
                     Label("Perfil", systemImage: "person")
                 }
-        }.sheet(
+        }
+        .sheet(
             isPresented: Binding<Bool>(
-                get: { !hasOnboardingCompleted },
+                get: { 
+                    !hasOnboardingCompleted },
                 set: { _ in }
             ), 
             
             content: {
                 OnboardingView(
                     onboardingCompleted: $hasOnboardingCompleted,
+                    hasLoggedIn: $alreadyLogged,
                     accountName: $accountName
                 ).interactiveDismissDisabled()
             })
         .onAppear {
+            alreadyLogged = hasOnboardingCompleted
             isPresentingOnboarding = true
         }
     }

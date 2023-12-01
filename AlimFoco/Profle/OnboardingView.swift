@@ -8,6 +8,7 @@
 import SwiftUI
 struct OnboardingView: View {
     @Binding var onboardingCompleted: Bool
+    @Binding var hasLoggedIn: Bool
     @Binding var accountName: String
     @State private var selectedTabIndex: Int = 0
     
@@ -15,10 +16,12 @@ struct OnboardingView: View {
         NavigationView() {
             WelcomeView(
                 onboardingCompleted: $onboardingCompleted,
+                hasLoggedIn: $hasLoggedIn,
                 accountName: $accountName
             )
             LoginView(
                 onboardingCompleted: $onboardingCompleted,
+                hasLoggedIn: $hasLoggedIn,
                 accountName: $accountName
             )
         }
@@ -28,6 +31,7 @@ struct OnboardingView: View {
 #Preview {
     OnboardingView(
         onboardingCompleted: .constant(true),
+        hasLoggedIn: .constant(false),
         accountName: .constant("Carol")
     )
 }
