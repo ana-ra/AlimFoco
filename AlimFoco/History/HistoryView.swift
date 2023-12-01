@@ -132,6 +132,8 @@ struct HistoryView: View {
                 print(error)
             }
         }
+        .navigationTitle("Resumo Mensal")
+        .navigationBarTitleDisplayMode(.inline)
     }
     
     func monthNumToName(num: Int) -> String {
