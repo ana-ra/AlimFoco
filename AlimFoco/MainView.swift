@@ -22,6 +22,11 @@ struct MainView: View {
                 .tabItem {
                     Label("Ínicio", systemImage: "list.bullet.rectangle.portrait")
                 }
+            HistoryView()
+                .environmentObject(ModelMeal())
+                .tabItem {
+                    Label("Relatórios", systemImage: "note.text")
+                }
             ProfileView(accountName: accountName)
                 .environmentObject(Model())
                 .tabItem {
