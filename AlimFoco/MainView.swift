@@ -12,7 +12,6 @@ struct MainView: View {
     @AppStorage("accountName") private var accountName = ""
     @State private var isPresentingOnboarding = false
     
-    
     var body: some View {
         TabView{
             DayPlanView(isPresentingOnboarding: $hasOnboardingCompleted)
@@ -26,7 +25,8 @@ struct MainView: View {
                 .tabItem {
                     Label("Perfil", systemImage: "person")
                 }
-        }.sheet(
+        }
+        .sheet(
             isPresented: Binding<Bool>(
                 get: { !hasOnboardingCompleted },
                 set: { _ in }

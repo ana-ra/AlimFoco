@@ -49,6 +49,7 @@
 		A7A33A712B17B950006E5919 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A33A702B17B950006E5919 /* LoginView.swift */; };
 		A7A33A752B17CDAF006E5919 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A33A742B17CDAF006E5919 /* ProfileView.swift */; };
 		A7A33A772B182264006E5919 /* ProfileAccountSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A33A762B182264006E5919 /* ProfileAccountSheetView.swift */; };
+		A7A33A792B1911E8006E5919 /* EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A33A782B1911E8006E5919 /* EmptyState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +123,7 @@
 		A7A33A702B17B950006E5919 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		A7A33A742B17CDAF006E5919 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		A7A33A762B182264006E5919 /* ProfileAccountSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAccountSheetView.swift; sourceTree = "<group>"; };
+		A7A33A782B1911E8006E5919 /* EmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,6 +252,7 @@
 				20F324802B0FD1D000CF9C7F /* CustomColors.swift */,
 				052C72082B16125C00C7D9D3 /* ModelMeal.swift */,
 				0598AC6C2B18CF2000449D40 /* ModelMealType.swift */,
+				A7A33A782B1911E8006E5919 /* EmptyState.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 				3FB8A9C12B0F8171007BFA87 /* MainView.swift in Sources */,
 				052C72092B16125C00C7D9D3 /* ModelMeal.swift in Sources */,
 				0574EF5D2AF1418600881448 /* MealItem.swift in Sources */,
+				A7A33A792B1911E8006E5919 /* EmptyState.swift in Sources */,
 				A76F0B452B02552D007B2951 /* ErrorState.swift in Sources */,
 				05501AC12AF149B4004DCA2C /* DataSelectorView.swift in Sources */,
 				3F28DFCF2AFD0B6400F1E4EC /* CardScrollView.swift in Sources */,

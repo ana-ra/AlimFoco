@@ -29,6 +29,7 @@ struct WelcomeView: View {
             
             HStack {
                 Image(systemName: "chart.bar.doc.horizontal")
+                    .resizable()
                     .frame(width: 34, height: 34)
                     .foregroundColor(.teal)
                 VStack (alignment: .leading, content: {
@@ -45,6 +46,7 @@ struct WelcomeView: View {
             
             HStack {
                 Image(systemName: "chart.line.uptrend.xyaxis")
+                    .resizable()
                     .frame(width: 34, height: 34)
                     .foregroundColor(.teal)
                 VStack (alignment: .leading, content: {
