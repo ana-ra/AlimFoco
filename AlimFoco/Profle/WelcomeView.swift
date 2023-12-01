@@ -9,6 +9,7 @@ import SwiftUI
 
 struct WelcomeView: View {
     @Binding var onboardingCompleted: Bool
+    @Binding var hasLoggedIn:Bool
     @Binding var accountName: String
     
     var body: some View {
@@ -61,7 +62,7 @@ struct WelcomeView: View {
             }.padding(.top, 28)
             Spacer()
             NavigationLink(destination: LoginView(
-                onboardingCompleted: $onboardingCompleted,
+                onboardingCompleted: $onboardingCompleted, hasLoggedIn: $hasLoggedIn,
                 accountName: $accountName
             ), label:  {
                 HStack(alignment: .center, spacing: 4) {
@@ -90,5 +91,7 @@ struct WelcomeView: View {
 }
 
 #Preview {
-    WelcomeView(onboardingCompleted: .constant(true), accountName: .constant("Carol Q"))
+    WelcomeView(onboardingCompleted: .constant(true),
+                hasLoggedIn:.constant(false),
+                accountName: .constant("Carol Q"))
 }
