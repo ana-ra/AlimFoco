@@ -20,10 +20,10 @@ struct HistoryView: View {
     
     
     var body: some View {
-        VStack {
+        List {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
-                    ForEach(getMonths(), id: \.self) { month in
+                    ForEach(getMonths(currentMonth: monthNumToName(num: selectedDate.get(.month))), id: \.self) { month in
                         Button {
                             refreshView(month)
                         } label: {
@@ -41,89 +41,72 @@ struct HistoryView: View {
                     }
                 }
             }
-            .background(Color.secondary)
+            .background(Color(red: 0.95, green: 0.95, blue: 0.97))
+            .listRowInsets(EdgeInsets())
             
-            List {
-                Section {
-                    VStack {
-                        ZStack {
-                            Rectangle()
-                                .cornerRadius(15)
-                                .foregroundStyle(Color.informationGreen)
-                                .opacity(0.2)
-                            
-                            HStack {
-                                Text("Realizadas")
-                                    .fontWeight(.semibold)
-                                    .foregroundStyle(Color.primary4)
-                                Spacer()
-                                Text("\(registered)")
-                                    .fontWeight(.semibold)
-                                    .foregroundStyle(Color.primary4)
-                            }
-                            .padding(.horizontal, 20)
-                            .padding(.vertical, 10)
-                        }
+            Section {
+                VStack {                    
+                    ZStack {
+                        Rectangle()
+                            .cornerRadius(15)
+                            .foregroundStyle(Color.informationGreen)
+                            .opacity(0.2)
                         
-                        
-                        ZStack {
-                            Rectangle()
-                                .cornerRadius(15)
-                                .foregroundStyle(Color.errorRed)
-                                .opacity(0.2)
+                        HStack {
+                            Text("Realizadas")
+                                .fontWeight(.semibold)
+                                .foregroundStyle(Color.primary4)
                             
-                            HStack {
-                                Text("Não realizadas")
-                                    .fontWeight(.semibold)
-                                    .foregroundStyle(Color.secondary4)
-                                
-                                Spacer()
-                                
-                                Text("\(notRegistered)")
-                                    .fontWeight(.semibold)
-                                    .foregroundStyle(Color.secondary4)
-                            }
-                            .padding(.horizontal, 20)
-                            .padding(.vertical, 10)
+                            Spacer()
+                            
+                            Text("\(getPercentage(registered)) %")
+                                .fontWeight(.semibold)
+                                .foregroundStyle(Color.primary4)
                         }
+                        .padding(.horizontal, 20)
+                        .padding(.vertical, 10)
                     }
-                    .padding(20)
                     
-                } header: {
-                    Text("Nível e fidelidade das refeições")
-                        .font(.headline)
+                    
+                    ZStack {
+                        Rectangle()
+                            .cornerRadius(15)
+                            .foregroundStyle(Color.errorRed)
+                            .opacity(0.2)
+                        
+                        HStack {
+                            Text("Não realizadas")
+                                .fontWeight(.semibold)
+                                .foregroundStyle(Color.secondary4)
+                            
+                            Spacer()
+                            
+                            Text("\(getPercentage(notRegistered)) %")
+                                .fontWeight(.semibold)
+                                .foregroundStyle(Color.secondary4)
+                        }
+                        .padding(.horizontal, 20)
+                        .padding(.vertical, 10)
+                    }
                 }
-                .headerProminence(.increased)
-                .listRowSeparator(.hidden)
-                .listRowInsets(EdgeInsets())
+                .padding(20)
                 
-                Section {
-                    Text("450/2500 CAL")
-                        .fontWeight(.semibold)
-                } header: {
-                    Text("Quantidade de calorias consumidas")
-                        .font(.headline)
-                }
-                .headerProminence(.increased)
-                
-                Section {
-                    Text("2/3 L")
-                        .fontWeight(.semibold)
-                } header: {
-                    Text("Quantidade de água consumida")
-                        .font(.headline)
-                }
-                .headerProminence(.increased)
+            } header: {
+                Text("Nível e fidelidade das refeições")
+                    .font(.headline)
             }
+            .headerProminence(.increased)
+            .listRowSeparator(.hidden)
+            .listRowInsets(EdgeInsets())
             
-            Spacer()
-            
-            
+            Section {
+                Text("Você seguiu \(registered) refeições de um total de \(registered + notRegistered) refeições.")
+            }
         }
         .onAppear(perform: {
             for meal in meals {
                 if meal.registered == 0 {
-                    naoRealizados = naoRealizados + 1
+                    naoRealizados += 1
                 }
             }
             
@@ -197,8 +180,29 @@ struct HistoryView: View {
         notRegistered = notRegisteredMeals.count
     }
     
-    func getMonths() -> [String] {
-        return ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    func getMonths(currentMonth: String) -> [String] {
+        var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+        var slicedMonths: [String] = []
+        
+        for month in months {
+            if month == currentMonth {
+                slicedMonths.append(month)
+                break
+            }
+            
+            slicedMonths.append(month)
+        }
+        
+        return slicedMonths
+    }
+    
+    func getPercentage(_ numerator: Int) -> Int {
+        if registered + notRegistered > 0 {
+            return Int((numerator / (registered + notRegistered)) * 100)
+        }
+        
+        return 0
+        
     }
     
 }
