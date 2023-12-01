@@ -15,6 +15,8 @@
 		05501AC32AF149E5004DCA2C /* DayPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05501AC22AF149E5004DCA2C /* DayPlanView.swift */; };
 		0574EF5B2AF1418400881448 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0574EF5A2AF1418400881448 /* Model.swift */; };
 		0574EF5D2AF1418600881448 /* MealItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0574EF5C2AF1418600881448 /* MealItem.swift */; };
+		0598AC6B2B18CA0400449D40 /* MealType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0598AC6A2B18CA0400449D40 /* MealType.swift */; };
+		0598AC6D2B18CF2000449D40 /* ModelMealType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0598AC6C2B18CF2000449D40 /* ModelMealType.swift */; };
 		202344A72B0E1EBE0041E818 /* EditItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202344A62B0E1EBE0041E818 /* EditItemView.swift */; };
 		202852162B18B2CC00F0E9CB /* HistoryDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202852152B18B2CC00F0E9CB /* HistoryDetailsView.swift */; };
 		209A65B72B0CF27D00A36DBF /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A65B62B0CF27D00A36DBF /* FilterView.swift */; };
@@ -38,6 +40,17 @@
 		A7508B692B14CF4000FF6623 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7508B682B14CF4000FF6623 /* Assets.xcassets */; };
 		A7508B6D2B14CF4000FF6623 /* AlimFocoWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A7508B5D2B14CF3F00FF6623 /* AlimFocoWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A76F0B452B02552D007B2951 /* ErrorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F0B442B02552D007B2951 /* ErrorState.swift */; };
+		A7A33A422B17741C006E5919 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A33A412B17741C006E5919 /* OnboardingView.swift */; };
+		A7A33A662B17859A006E5919 /* LondrinaSolid-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7A33A5C2B178471006E5919 /* LondrinaSolid-Black.ttf */; };
+		A7A33A672B17859A006E5919 /* LondrinaSolid-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7A33A5D2B178471006E5919 /* LondrinaSolid-Regular.ttf */; };
+		A7A33A682B17859A006E5919 /* LondrinaSolid-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7A33A5E2B178471006E5919 /* LondrinaSolid-Thin.ttf */; };
+		A7A33A692B17859A006E5919 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = A7A33A5F2B178471006E5919 /* OFL.txt */; };
+		A7A33A6A2B17859A006E5919 /* LondrinaSolid-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7A33A602B178471006E5919 /* LondrinaSolid-Light.ttf */; };
+		A7A33A6F2B17B945006E5919 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A33A6E2B17B945006E5919 /* WelcomeView.swift */; };
+		A7A33A712B17B950006E5919 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A33A702B17B950006E5919 /* LoginView.swift */; };
+		A7A33A752B17CDAF006E5919 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A33A742B17CDAF006E5919 /* ProfileView.swift */; };
+		A7A33A772B182264006E5919 /* ProfileAccountSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A33A762B182264006E5919 /* ProfileAccountSheetView.swift */; };
+		A7A33A792B1911E8006E5919 /* EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A33A782B1911E8006E5919 /* EmptyState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +87,8 @@
 		0574EF552AF12C7A00881448 /* AlimFoco.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AlimFoco.entitlements; sourceTree = "<group>"; };
 		0574EF5A2AF1418400881448 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		0574EF5C2AF1418600881448 /* MealItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealItem.swift; sourceTree = "<group>"; };
+		0598AC6A2B18CA0400449D40 /* MealType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealType.swift; sourceTree = "<group>"; };
+		0598AC6C2B18CF2000449D40 /* ModelMealType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelMealType.swift; sourceTree = "<group>"; };
 		202344A62B0E1EBE0041E818 /* EditItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemView.swift; sourceTree = "<group>"; };
 		202852152B18B2CC00F0E9CB /* HistoryDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailsView.swift; sourceTree = "<group>"; };
 		209A65B62B0CF27D00A36DBF /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
@@ -100,6 +115,17 @@
 		A7508B682B14CF4000FF6623 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A7508B6A2B14CF4000FF6623 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A76F0B442B02552D007B2951 /* ErrorState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorState.swift; sourceTree = "<group>"; };
+		A7A33A412B17741C006E5919 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		A7A33A5C2B178471006E5919 /* LondrinaSolid-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LondrinaSolid-Black.ttf"; sourceTree = "<group>"; };
+		A7A33A5D2B178471006E5919 /* LondrinaSolid-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LondrinaSolid-Regular.ttf"; sourceTree = "<group>"; };
+		A7A33A5E2B178471006E5919 /* LondrinaSolid-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LondrinaSolid-Thin.ttf"; sourceTree = "<group>"; };
+		A7A33A5F2B178471006E5919 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
+		A7A33A602B178471006E5919 /* LondrinaSolid-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LondrinaSolid-Light.ttf"; sourceTree = "<group>"; };
+		A7A33A6E2B17B945006E5919 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		A7A33A702B17B950006E5919 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		A7A33A742B17CDAF006E5919 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		A7A33A762B182264006E5919 /* ProfileAccountSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAccountSheetView.swift; sourceTree = "<group>"; };
+		A7A33A782B1911E8006E5919 /* EmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +179,8 @@
 		3F489C082ADEA786008F853C /* AlimFoco */ = {
 			isa = PBXGroup;
 			children = (
+				A7A33A5B2B178471006E5919 /* Londrina_Solid */,
+				A7A33A402B17740C006E5919 /* Profle */,
 				20F1F0DE2B0F80D2001DCA3B /* History */,
 				3FB8A9C22B0F87D1007BFA87 /* TotalMeals */,
 				A76F0B432B025506007B2951 /* DayPlan */,
@@ -226,6 +254,8 @@
 				A76F0B442B02552D007B2951 /* ErrorState.swift */,
 				20F324802B0FD1D000CF9C7F /* CustomColors.swift */,
 				052C72082B16125C00C7D9D3 /* ModelMeal.swift */,
+				0598AC6C2B18CF2000449D40 /* ModelMealType.swift */,
+				A7A33A782B1911E8006E5919 /* EmptyState.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -239,8 +269,33 @@
 				05501AC02AF149B4004DCA2C /* DataSelectorView.swift */,
 				A7508B062B03A58100FF6623 /* RegisterSatisfactionSheetView.swift */,
 				054F38F02B14CF2E009AB4F8 /* Meal.swift */,
+				0598AC6A2B18CA0400449D40 /* MealType.swift */,
 			);
 			path = DayPlan;
+			sourceTree = "<group>";
+		};
+		A7A33A402B17740C006E5919 /* Profle */ = {
+			isa = PBXGroup;
+			children = (
+				A7A33A412B17741C006E5919 /* OnboardingView.swift */,
+				A7A33A6E2B17B945006E5919 /* WelcomeView.swift */,
+				A7A33A702B17B950006E5919 /* LoginView.swift */,
+				A7A33A742B17CDAF006E5919 /* ProfileView.swift */,
+				A7A33A762B182264006E5919 /* ProfileAccountSheetView.swift */,
+			);
+			path = Profle;
+			sourceTree = "<group>";
+		};
+		A7A33A5B2B178471006E5919 /* Londrina_Solid */ = {
+			isa = PBXGroup;
+			children = (
+				A7A33A5C2B178471006E5919 /* LondrinaSolid-Black.ttf */,
+				A7A33A5D2B178471006E5919 /* LondrinaSolid-Regular.ttf */,
+				A7A33A5E2B178471006E5919 /* LondrinaSolid-Thin.ttf */,
+				A7A33A5F2B178471006E5919 /* OFL.txt */,
+				A7A33A602B178471006E5919 /* LondrinaSolid-Light.ttf */,
+			);
+			path = Londrina_Solid;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -324,6 +379,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7A33A662B17859A006E5919 /* LondrinaSolid-Black.ttf in Resources */,
+				A7A33A672B17859A006E5919 /* LondrinaSolid-Regular.ttf in Resources */,
+				A7A33A682B17859A006E5919 /* LondrinaSolid-Thin.ttf in Resources */,
+				A7A33A692B17859A006E5919 /* OFL.txt in Resources */,
+				A7A33A6A2B17859A006E5919 /* LondrinaSolid-Light.ttf in Resources */,
 				3F489C112ADEA787008F853C /* Preview Assets.xcassets in Resources */,
 				3F489C0E2ADEA787008F853C /* Assets.xcassets in Resources */,
 				05280D5F2AEAB50D007F0310 /* ibge.json in Resources */,
@@ -345,16 +405,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7A33A772B182264006E5919 /* ProfileAccountSheetView.swift in Sources */,
 				20F1F0DD2B0F7AAB001DCA3B /* NewMealView.swift in Sources */,
 				0574EF5B2AF1418400881448 /* Model.swift in Sources */,
 				3FB8A9C42B0F8803007BFA87 /* TotalMealsView.swift in Sources */,
 				20F64B892AFE611C00D452B2 /* AddItemModalView.swift in Sources */,
 				05501AC32AF149E5004DCA2C /* DayPlanView.swift in Sources */,
 				209A65B72B0CF27D00A36DBF /* FilterView.swift in Sources */,
+				A7A33A712B17B950006E5919 /* LoginView.swift in Sources */,
+				A7A33A752B17CDAF006E5919 /* ProfileView.swift in Sources */,
+				A7A33A422B17741C006E5919 /* OnboardingView.swift in Sources */,
+				0598AC6B2B18CA0400449D40 /* MealType.swift in Sources */,
 				20F324812B0FD1D000CF9C7F /* CustomColors.swift in Sources */,
 				20F1F0E02B0F80E1001DCA3B /* HistoryView.swift in Sources */,
 				20E9CAB02B0D35A30020A495 /* SectionIndexTitles.swift in Sources */,
+				A7A33A6F2B17B945006E5919 /* WelcomeView.swift in Sources */,
 				202344A72B0E1EBE0041E818 /* EditItemView.swift in Sources */,
+				0598AC6D2B18CF2000449D40 /* ModelMealType.swift in Sources */,
 				A7508B072B03A58100FF6623 /* RegisterSatisfactionSheetView.swift in Sources */,
 				3F489C0A2ADEA786008F853C /* AlimFocoApp.swift in Sources */,
 				054F38F12B14CF2E009AB4F8 /* Meal.swift in Sources */,
@@ -364,6 +431,7 @@
 				3FB8A9C12B0F8171007BFA87 /* MainView.swift in Sources */,
 				052C72092B16125C00C7D9D3 /* ModelMeal.swift in Sources */,
 				0574EF5D2AF1418600881448 /* MealItem.swift in Sources */,
+				A7A33A792B1911E8006E5919 /* EmptyState.swift in Sources */,
 				A76F0B452B02552D007B2951 /* ErrorState.swift in Sources */,
 				05501AC12AF149B4004DCA2C /* DataSelectorView.swift in Sources */,
 				3F28DFCF2AFD0B6400F1E4EC /* CardScrollView.swift in Sources */,
@@ -441,6 +509,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
+				"INFOPLIST_FILE[sdk=*]" = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -496,6 +566,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
+				"INFOPLIST_FILE[sdk=*]" = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -520,7 +592,8 @@
 				DEVELOPMENT_TEAM = QS932KTLCZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = Nutrifi;
+				INFOPLIST_FILE = AlimFoco/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Nutrifica;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -559,7 +632,8 @@
 				DEVELOPMENT_TEAM = QS932KTLCZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = Nutrifi;
+				INFOPLIST_FILE = AlimFoco/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Nutrifica;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

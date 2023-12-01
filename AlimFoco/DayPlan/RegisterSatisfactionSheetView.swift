@@ -8,10 +8,13 @@
 import SwiftUI
 
 struct RegisterSatisfactionSheetView: View {
+    @EnvironmentObject private var model: ModelMealType
+    @Binding var selectedDate: Date
     @State private var selectedOption: Int? = nil
+    @Binding var meal: String
     @Environment(\.dismiss) var dismiss
     
-    let options = ["Pouco", "Médio", "Muito", "Não realizada"]
+    let options = ["Seguiu", "Não Seguiu"]
     
     var isButtonEnabled: Bool {
         return selectedOption != nil
@@ -28,7 +31,7 @@ struct RegisterSatisfactionSheetView: View {
                 }
             }
             Spacer()
-            Text("O quanto seguiu a refeição?")
+            Text("Você seguiu a sua refeição?")
                 .fontWeight(.semibold)
                 .multilineTextAlignment(.center)
                 .foregroundColor(.black)
@@ -41,6 +44,8 @@ struct RegisterSatisfactionSheetView: View {
 //                            .foregroundColor(.primary)
                         Spacer()
                         Image(systemName: self.selectedOption == index ? "checkmark.circle.fill" : "checkmark.circle")
+                            .resizable()
+                            .frame(width: 22.0, height: 22.0)
                             .onTapGesture {
                                 withAnimation {
                                     self.selectedOption = self.selectedOption == index ? nil : index
@@ -58,6 +63,10 @@ struct RegisterSatisfactionSheetView: View {
             }
             
             Button(action: {
+                let editedMeal = MealType(id: ObjectIdentifier(MealType.self), name: meal, date: selectedDate, fidelity: options[selectedOption!], registered: 1)
+                Task {
+                    try await model.updateMealType(editedMealType: editedMeal)
+                }
                 dismiss()
             }) {
                 HStack(
@@ -76,15 +85,15 @@ struct RegisterSatisfactionSheetView: View {
                     RoundedRectangle(cornerRadius: 14)
                         .fill(isButtonEnabled ? Color.informationGreen : Color.gray) // Change button color when disabled
                 )
-                .disabled(!isButtonEnabled)
             }
+            .disabled(!isButtonEnabled)
             .padding(.top, 16)
         }
         .padding(16)
     }
 }
 
-// Preview code remains unchanged
-#Preview {
-    RegisterSatisfactionSheetView()
-}
+//// Preview code remains unchanged
+//#Preview {
+//    RegisterSatisfactionSheetView()
+//}

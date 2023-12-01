@@ -8,8 +8,12 @@
 import SwiftUI
 
 struct DayPlanView: View {
+    @Binding var isPresentingOnboarding: Bool
+    @Binding var hasLoggedIn: Bool
     @EnvironmentObject private var model: Model
     @EnvironmentObject private var modelMeal: ModelMeal
+    @EnvironmentObject private var modelMealType: ModelMealType
+    @State var selectedMeal: String = ""
     @State var selectedDate = Date()
     @State var isNavigatingToNewMealView = false
     @State var isSatisfactionSheetPresented = false
@@ -29,21 +33,20 @@ struct DayPlanView: View {
                 
                 if meals.isEmpty {
                     VStack () {
-                        Spacer()
-                        ErrorState(
+                        EmptyState(
                             image: "empty_state",
                             title: "Ops! Está vazio.",
-                            description: "Não há refeições a serem exibidas para este dia.",
+                            description: "Adicione uma nova refeição clicando no + ou em ”Adicionar Refeição\"",
                             buttonText: "Criar nova refeição",
                             action: {
                                 isNavigatingToNewMealView.toggle()
                             }
                         )
                         Spacer()
-                    }
+                    }.padding(16)
                 } else {
                     List {
-                        Section(header: Text("Refeições")) {
+                        Section(header: Text("Próximas Refeições")) {
                             ForEach(mealTypes.indices) { index in
                                 let filteredMeals = meals.filter { meal in
                                     meal.mealType == mealTypes[index]
@@ -54,10 +57,11 @@ struct DayPlanView: View {
                                         CardScrollView(meals: filteredMeals)
                                             .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
                                          Button(action: {
+                                            selectedMeal = mealTypes[index]
                                             isSatisfactionSheetPresented.toggle()
                                         }) {
                                             HStack(alignment: .center, spacing: 4) {
-                                                Text("Nível de satisfação")
+                                                Text("Registrar Refeição")
                                                   .foregroundColor(.black)
                                                 Spacer()
                                                 Image(systemName: "plus")
@@ -89,26 +93,40 @@ struct DayPlanView: View {
                         .headerProminence(.increased)
                     }
                 }
-            }.task {
-                do {
-                    try await modelMeal.populateMeals()
-                    print(modelMeal.Meals)
-//                    try await model.populateMealItems()
-                } catch {
-                    VStack {
-                        Spacer()
-                        ErrorState(
-                            image: "no_connection",
-                            title: "Ops! Algo deu errado.",
-                            description: "Parece que você está sem conexão.",
-                            buttonText: "Tente novamente",
-                            action: {}
-                        )
-                        Spacer()
+            }.background(Color(red: 0.95, green: 0.95, blue: 0.97))
+            .onAppear {
+                Task {
+                    if hasLoggedIn {
+                        do {
+                            try await loadMealData()
+                            print(modelMeal.Meals)
+                        } catch {
+                            errorView()
+                            print(error)
+                        }
                     }
-                    print(error)
                 }
-            }
+            }.onChange(of: isPresentingOnboarding, perform: { value in
+                if value {
+                    Task {
+                        do {
+                            try await modelMeal.populateMeals()
+                        } catch {
+                            VStack {
+                                Spacer()
+                                ErrorState(
+                                    image: "no_connection",
+                                    title: "Ops! Algo deu errado.",
+                                    description: "Parece que você está sem conexão.",
+                                    buttonText: "Tente novamente",
+                                    action: {}
+                                )
+                                Spacer()
+                            }
+                        }
+                    }
+                }
+            })
             .toolbar {
                 ToolbarItemGroup {
                     NavigationLink(destination: NewMealView(meals: meals, mealTypes: $mealTypes)) {
@@ -122,8 +140,8 @@ struct DayPlanView: View {
             }
             .navigationTitle("Plano Alimentar")
             .sheet(isPresented: $isSatisfactionSheetPresented, content: {
-                RegisterSatisfactionSheetView().presentationDetents([.height(getHeight() / 2.5)])
-                    .tint(Color.informationGreen)
+                RegisterSatisfactionSheetView(selectedDate: $selectedDate, meal: $selectedMeal).presentationDetents([.height(getHeight() / 3.5)])
+                    .tint(Color.informationGreen).environmentObject(ModelMealType())
             })
         }
     }
@@ -137,10 +155,31 @@ struct DayPlanView: View {
         
         return dates
     }
+    
+    func loadMealData() async throws {
+        try await modelMeal.populateMeals()
+    }
+    
+    func errorView() -> some View {
+        VStack {
+            Spacer()
+            ErrorState(
+                image: "no_connection",
+                title: "Ops! Algo deu errado.",
+                description: "Parece que você está sem conexão.",
+                buttonText: "Tente novamente",
+                action: {}
+            )
+            Spacer()
+        }
+    }
 }
                             
 struct DayPlanView_Previews: PreviewProvider {
     static var previews: some View {
-        DayPlanView().environmentObject(Model())
+        DayPlanView(
+            isPresentingOnboarding: .constant(true),
+            hasLoggedIn: .constant(false)
+        ).environmentObject(Model())
     }
 }
