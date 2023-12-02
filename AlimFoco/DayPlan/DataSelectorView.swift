@@ -62,14 +62,24 @@ struct DateCircleView: View {
     
     var body: some View {
         ZStack {
-            Circle()
-                .frame(width: getWidth() / 10)
-                .foregroundColor(selected ? Color.teal : .clear)
-            
-            Text("\(dayNumber)")
-                .foregroundColor(selected ? .white: .black)
-                .font(.title2)
-            
+            if date.get(.day) == Date().get(.day) && !selected {
+                Circle()
+                    .frame(width: getWidth() / 10)
+                    .foregroundColor(.black)
+                    .opacity(0.2)
+                
+                Text("\(dayNumber)")
+                    .foregroundColor(.white)
+                    .font(.title2)
+            } else {
+                Circle()
+                    .frame(width: getWidth() / 10)
+                    .foregroundColor(selected ? Color.teal : .clear)
+                
+                Text("\(dayNumber)")
+                    .foregroundColor(selected ? .white : .black)
+                    .font(.title2)
+            }
         }
     }
     
