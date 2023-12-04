@@ -12,7 +12,6 @@ struct DayPlanView: View {
     @Binding var hasLoggedIn: Bool
     @EnvironmentObject private var model: Model
     @EnvironmentObject private var modelMeal: ModelMeal
-    @EnvironmentObject private var modelMealType: ModelMealType
     @State var selectedMeal: String = ""
     @State var selectedDate = Date()
     @State var isNavigatingToNewMealView = false
@@ -137,7 +136,7 @@ struct DayPlanView: View {
             .navigationTitle("Plano Alimentar")
             .sheet(isPresented: $isSatisfactionSheetPresented, content: {
                 RegisterSatisfactionSheetView(selectedDate: $selectedDate, meal: $selectedMeal).presentationDetents([.height(getHeight() / 3.5)])
-                    .tint(Color.informationGreen).environmentObject(ModelMealType())
+                    .tint(Color.informationGreen).environmentObject(ModelMeal())
             })
         }
     }

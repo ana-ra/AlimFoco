@@ -115,7 +115,6 @@ struct HistoryView: View {
         .task {
             do {
                 try await modelMeal.populateMeals()
-                print(modelMeal.Meals)
                 refreshView(monthNumToName(num: selectedDate.get(.month)))
             } catch {
                 VStack {

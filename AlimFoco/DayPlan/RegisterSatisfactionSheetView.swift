@@ -8,17 +8,22 @@
 import SwiftUI
 
 struct RegisterSatisfactionSheetView: View {
-    @EnvironmentObject private var model: ModelMealType
     @Binding var selectedDate: Date
+    @Binding var selectedMeal: String
     @State private var selectedOption: Int? = nil
-    @Binding var meal: String
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject private var modelMeal: ModelMeal
+    
+    var meals: [Meal] {
+        modelMeal.Meals
+    }
     
     let options = ["Seguiu", "Não Seguiu"]
     
     var isButtonEnabled: Bool {
         return selectedOption != nil
     }
+    
     
     var body: some View {
         VStack {
@@ -62,11 +67,39 @@ struct RegisterSatisfactionSheetView: View {
                 .padding(.horizontal, 16)
             }
             
-            Button(action: {
-                let editedMeal = MealType(id: ObjectIdentifier(MealType.self), name: meal, date: selectedDate, fidelity: options[selectedOption!], registered: 1)
-                Task {
-                    try await model.updateMealType(editedMealType: editedMeal)
+            let filteredMeals = meals.filter { meal in
+                meal.mealType == selectedMeal
+            }
+            ForEach(filteredMeals.indices) { index in
+                VStack {
+                    HStack {
+                        Text("\(filteredMeals[index].name)")
+//                            .foregroundColor(.primary)
+                        Spacer()
+                        Image(systemName: self.selectedOption == index ? "checkmark.circle.fill" : "checkmark.circle")
+                            .resizable()
+                            .frame(width: 22.0, height: 22.0)
+                            .onTapGesture {
+                                withAnimation {
+                                    self.selectedOption = self.selectedOption == index ? nil : index
+                                }
+                            }
+                            .foregroundColor(self.selectedOption == index ? Color.informationGreen : .secondary)
+                    }
+                    .padding(.vertical, 8)
+                    .background(
+                        RoundedRectangle(cornerRadius: 8)
+                            .fill(Color.white)
+                    )
                 }
+                .padding(.horizontal, 16)
+            }
+            
+            Button(action: {
+//                let editedMeal = MealType(id: ObjectIdentifier(MealType.self), name: meal, date: selectedDate, fidelity: options[selectedOption!], registered: 1)
+//                Task {
+//                    try await model.updateMealType(editedMealType: editedMeal)
+//                }
                 dismiss()
             }) {
                 HStack(

@@ -25,7 +25,7 @@ struct Meal: CKRecordValueProtocol, Identifiable {
     var registered: Int
     
     var record: CKRecord {
-        let record = CKRecord(recordType: RecordKeysMealType.type.rawValue)
+        let record = CKRecord(recordType: RecordKeysMeal.type.rawValue)
         record[RecordKeysMeal.name.rawValue] = name
         record[RecordKeysMeal.date.rawValue] = date
         record[RecordKeysMeal.itens.rawValue] = itens
