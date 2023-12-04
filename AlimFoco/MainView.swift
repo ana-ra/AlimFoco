@@ -50,6 +50,7 @@ struct MainView: View {
         .onAppear {
             alreadyLogged = hasOnboardingCompleted
             isPresentingOnboarding = true
+            UITabBar.appearance().backgroundColor = UIColor.white
         }
     }
 }

@@ -38,8 +38,6 @@ struct SectionIndexTitles: View {
     
     private func dragObserver(geometry: GeometryProxy, title: String) -> some View {
         if geometry.frame(in: .global).contains(dragLocation) {
-        // we need to dispatch to the main queue because we cannot access to the
-        // `ScrollViewProxy` instance while the body is rendering
             DispatchQueue.main.async {
                 proxy.scrollTo(title, anchor: .trailing)
             }
