@@ -136,10 +136,6 @@ struct DayPlanView: View {
                     NavigationLink(destination: NewMealView(meals: meals, mealTypes: $mealTypes)) {
                         Image(systemName: "plus")
                     }
-                    
-                    NavigationLink(destination: HistoryView()) {
-                        Image(systemName: "calendar")
-                    }
                 }
             }
             .navigationTitle("Plano Alimentar")

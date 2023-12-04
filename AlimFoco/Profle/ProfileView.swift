@@ -10,6 +10,7 @@ import SwiftUI
 struct ProfileView: View {
     @State private var isDeleteAccountSheetViewPresented = false
     @State private var isLogoutViewSheetViewPresented = false
+    @State var showCalorias = true
     let accountName: String
     
     var body: some View {
@@ -21,7 +22,7 @@ struct ProfileView: View {
                             HStack {
                                 Image(systemName: "bag")
                                     .frame(width: 16, height: 16)
-                                    .foregroundColor(.black)
+                                    .foregroundColor(.lightGreen)
                                     .padding(.trailing, 12)
                                 VStack (alignment: .leading, content: {
                                     Text("Assinatura")
@@ -34,28 +35,11 @@ struct ProfileView: View {
                             }
                             
                         }
-                        NavigationLink(destination: Text("Histórico")) {
-                            HStack {
-                                Image(systemName: "wallet.pass")
-                                    .frame(width: 16, height: 16)
-                                    .foregroundColor(.black)
-                                    .padding(.trailing, 12)
-                                VStack (alignment: .leading, content: {
-                                    Text("Histórico")
-                                        .font(.system(size: 16))
-                                    Text("Meu histórico de refeições")
-                                        .font(.system(size: 14))
-                                        .foregroundColor(.gray)
-                                    
-                                })
-                            }
-                            
-                        }
                         NavigationLink(destination: TotalMealsView()) {
                             HStack {
                                 Image(systemName: "carrot")
                                     .frame(width: 16, height: 16)
-                                    .foregroundColor(.black)
+                                    .foregroundColor(.lightGreen)
                                     .padding(.trailing, 12)
                                 VStack (alignment: .leading, content: {
                                     Text("Refeições")
@@ -68,6 +52,20 @@ struct ProfileView: View {
                             }
                             
                         }
+                    }
+                    
+                    Section(header: Text("Preferências")) {
+                        
+                            Toggle(isOn: $showCalorias) {
+                                HStack{
+                                    Image(systemName: "chart.bar")
+                                        .frame(width: 16, height: 16)
+                                        .foregroundColor(.salmon)
+                                        .padding(.trailing, 12)
+                                    Text("Mostrar calorias")
+                                        .font(.system(size: 16))
+                            }
+                            }.tint(.teal)
                     }
                     
                     Section(header: Text("Conta")) {
@@ -100,5 +98,5 @@ struct ProfileView: View {
 }
 
 #Preview {
-    ProfileView(accountName: "Carol")
+   ProfileView(accountName: "Carol")
 }

@@ -31,6 +31,7 @@
 		3F489C112ADEA787008F853C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F489C102ADEA787008F853C /* Preview Assets.xcassets */; };
 		3FB8A9C12B0F8171007BFA87 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB8A9C02B0F8171007BFA87 /* MainView.swift */; };
 		3FB8A9C42B0F8803007BFA87 /* TotalMealsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB8A9C32B0F8803007BFA87 /* TotalMealsView.swift */; };
+		9AEECA162B1A0AA0006AA925 /* SubscriptionPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEECA152B1A0AA0006AA925 /* SubscriptionPlan.swift */; };
 		A7508B072B03A58100FF6623 /* RegisterSatisfactionSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7508B062B03A58100FF6623 /* RegisterSatisfactionSheetView.swift */; };
 		A7508B602B14CF3F00FF6623 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7508B5F2B14CF3F00FF6623 /* WidgetKit.framework */; };
 		A7508B622B14CF3F00FF6623 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7508B612B14CF3F00FF6623 /* SwiftUI.framework */; };
@@ -104,6 +105,7 @@
 		3F489C172ADEA787008F853C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3FB8A9C02B0F8171007BFA87 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		3FB8A9C32B0F8803007BFA87 /* TotalMealsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalMealsView.swift; sourceTree = "<group>"; };
+		9AEECA152B1A0AA0006AA925 /* SubscriptionPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionPlan.swift; sourceTree = "<group>"; };
 		A7508B062B03A58100FF6623 /* RegisterSatisfactionSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterSatisfactionSheetView.swift; sourceTree = "<group>"; };
 		A7508B5D2B14CF3F00FF6623 /* AlimFocoWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AlimFocoWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7508B5F2B14CF3F00FF6623 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -276,6 +278,7 @@
 			children = (
 				A7A33A412B17741C006E5919 /* OnboardingView.swift */,
 				A7A33A6E2B17B945006E5919 /* WelcomeView.swift */,
+				9AEECA152B1A0AA0006AA925 /* SubscriptionPlan.swift */,
 				A7A33A702B17B950006E5919 /* LoginView.swift */,
 				A7A33A742B17CDAF006E5919 /* ProfileView.swift */,
 				A7A33A762B182264006E5919 /* ProfileAccountSheetView.swift */,
@@ -428,6 +431,7 @@
 				052C72092B16125C00C7D9D3 /* ModelMeal.swift in Sources */,
 				0574EF5D2AF1418600881448 /* MealItem.swift in Sources */,
 				A7A33A792B1911E8006E5919 /* EmptyState.swift in Sources */,
+				9AEECA162B1A0AA0006AA925 /* SubscriptionPlan.swift in Sources */,
 				A76F0B452B02552D007B2951 /* ErrorState.swift in Sources */,
 				05501AC12AF149B4004DCA2C /* DataSelectorView.swift in Sources */,
 				3F28DFCF2AFD0B6400F1E4EC /* CardScrollView.swift in Sources */,
@@ -601,7 +605,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.LarissaOkabayashi.AlimFoco;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -641,7 +645,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.LarissaOkabayashi.AlimFoco;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
