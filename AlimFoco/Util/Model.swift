@@ -27,7 +27,6 @@ class Model: ObservableObject {
         } catch {
             Dictionary[editedMealItem.recordId!] = editedMealItem
             print(error)
-            // throw an error to tell the user that something has happened and the update was not successfull
         }
     }
     
