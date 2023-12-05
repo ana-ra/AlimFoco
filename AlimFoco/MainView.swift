@@ -25,7 +25,7 @@ struct MainView: View {
             HistoryView()
                 .environmentObject(ModelMeal())
                 .tabItem {
-                    Label("Relatórios", systemImage: "note.text")
+                    Label("Resumo", systemImage: "note.text")
                 }
             ProfileView(accountName: accountName)
                 .environmentObject(Model())
