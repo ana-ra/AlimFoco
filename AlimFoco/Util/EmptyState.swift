@@ -13,7 +13,7 @@ struct EmptyState: View {
     let image: String
     let title: String
     let description: String
-    let buttonText: String
+    let buttonText: String?
     let action: () -> Void
     
     var meals: [Meal] {
@@ -44,19 +44,21 @@ struct EmptyState: View {
                 .padding(.top, 8)
             
             
-            NavigationLink(destination: NewMealView(meals: meals, mealTypes: $mealTypes)) {
-                HStack(alignment: .center) {
-                    Text("Adicionar Refeição")
-                        .font(.system(size: 16))
-                        .fontWeight(.semibold)
-                        .foregroundColor(.white)
-                }
-                .frame(maxWidth: .infinity)
-                .padding(.horizontal, 20)
-                .padding(.vertical, 14)
-                .background(Color.teal)
-                .cornerRadius(12)
-            }.padding(.top, 28)
+            if(buttonText != nil) {
+                NavigationLink(destination: NewMealView(meals: meals, mealTypes: $mealTypes)) {
+                    HStack(alignment: .center) {
+                        Text("Adicionar Refeição")
+                            .font(.system(size: 16))
+                            .fontWeight(.semibold)
+                            .foregroundColor(.white)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 14)
+                    .background(Color.teal)
+                    .cornerRadius(12)
+                }.padding(.top, 28)
+            }
             
         }
         .padding(.horizontal, 16)
