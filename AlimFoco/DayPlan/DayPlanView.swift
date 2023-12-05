@@ -16,6 +16,7 @@ struct DayPlanView: View {
     @State var selectedDate = Date()
     @State var isNavigatingToNewMealView = false
     @State var isSatisfactionSheetPresented = false
+    @State var filteredMealsState: [Meal] = []
     var mealItems: [MealItem] {
         model.Mealitems
     }
@@ -44,53 +45,94 @@ struct DayPlanView: View {
                         Spacer()
                     }.padding(16)
                 } else {
-                    List {
+                    List{
                         Section(header: Text("Próximas Refeições")) {
                             ForEach(mealTypes.indices) { index in
                                 let filteredMeals = meals.filter { meal in
-                                    meal.mealType == mealTypes[index]
+                                    meal.mealType == mealTypes[index] && meal.registered == 0
                                 }
-                            
+                                
                                 if !filteredMeals.isEmpty {
                                     DisclosureGroup {
                                         CardScrollView(meals: filteredMeals)
                                             .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
-                                         Button(action: {
+                                        Button(action: {
+                                            filteredMealsState = filteredMeals
                                             selectedMeal = mealTypes[index]
                                             isSatisfactionSheetPresented.toggle()
                                         }) {
                                             HStack(alignment: .center, spacing: 4) {
-                                                Text("Registrar Refeição")
-                                                  .foregroundColor(.black)
-                                                Spacer()
-                                                Image(systemName: "plus")
-                                                    .foregroundColor(.black)
+                                                Image(systemName: "note.text.badge.plus")
+                                                    .foregroundColor(Color.white)
+                                                
+                                                Text("Registrar")
+                                                    .foregroundColor(Color.white)
                                                 
                                             }
                                             .padding(.horizontal, 16)
-                                            .frame(width: getWidth() / 1.2, height: getHeight() / 17)
-                                            .background(Color.secondary2)
-                                            .cornerRadius(10)
+                                            .frame(width: getWidth() / 2.8, height: getHeight() / 20)
+                                            .background(Color(red: 0.05, green: 0.51, blue: 0.44))
+                                            .cornerRadius(14)
                                         }
                                         .padding(.vertical, 8)
                                         .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
+                                        
                                     } label: {
                                         Text(mealTypes[index])
                                             .fontWeight(.semibold)
                                     }
                                     .listRowSeparator(.hidden)
                                     .listRowInsets(EdgeInsets(top: 50, leading: 20, bottom: 20, trailing: 10))
-                                } // Adiciona espaço vertical
+                                }
                             }
                             
-                        }
-                        .headerProminence(.increased)
+                        }.listRowBackground(Color(red: 0.95, green: 0.95, blue: 0.97))
+                            .headerProminence(.increased)
+                            .background(Color(red: 0.95, green: 0.95, blue: 0.97))
                         
                         Section(header: Text("Registrado")) {
-                            
+                            ForEach(mealTypes.indices) { index in
+                                let filteredMeals = meals.filter { meal in
+                                    meal.mealType == mealTypes[index] && meal.registered == 1
+                                }
+                                
+                                if !filteredMeals.isEmpty {
+                                    DisclosureGroup {
+                                        CardScrollView(meals: filteredMeals)
+                                            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
+                                        Button(action: {
+                                            filteredMealsState = filteredMeals
+                                            selectedMeal = mealTypes[index]
+                                            isSatisfactionSheetPresented.toggle()
+                                        }) {
+                                            HStack(alignment: .center, spacing: 4) {
+                                                Image(systemName: "note.text.badge.plus")
+                                                    .foregroundColor(Color.white)
+                                                
+                                                Text("Registrar")
+                                                    .foregroundColor(Color.white)
+                                                
+                                            }
+                                            .padding(.horizontal, 16)
+                                            .frame(width: getWidth() / 2.8, height: getHeight() / 20)
+                                            .background(Color(red: 0.05, green: 0.51, blue: 0.44))
+                                            .cornerRadius(14)
+                                        }
+                                        .padding(.vertical, 8)
+                                        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
+                                        
+                                    } label: {
+                                        Text(mealTypes[index])
+                                            .fontWeight(.semibold)
+                                    }
+                                    .listRowSeparator(.hidden)
+                                    .listRowInsets(EdgeInsets(top: 50, leading: 20, bottom: 20, trailing: 10))
+                                }
+                            }
                         }
                         .headerProminence(.increased)
                     }
+                    .background(Color(red: 0.95, green: 0.95, blue: 0.97))
                 }
             }.background(Color(red: 0.95, green: 0.95, blue: 0.97))
             .onAppear {
@@ -98,7 +140,6 @@ struct DayPlanView: View {
                     if hasLoggedIn {
                         do {
                             try await loadMealData()
-                            print(modelMeal.Meals)
                         } catch {
                             errorView()
                             print(error)
@@ -135,8 +176,8 @@ struct DayPlanView: View {
             }
             .navigationTitle("Plano Alimentar")
             .sheet(isPresented: $isSatisfactionSheetPresented, content: {
-                RegisterSatisfactionSheetView(selectedDate: $selectedDate, meal: $selectedMeal).presentationDetents([.height(getHeight() / 3.5)])
-                    .tint(Color.informationGreen).environmentObject(ModelMeal())
+                RegisterSatisfactionSheetView(selectedMeal: $selectedMeal, filteredMeals: $filteredMealsState).presentationDetents([.height(getHeight())])
+                    .tint(Color.informationGreen).environmentObject(ModelMeal()).background(Color(red: 0.95, green: 0.95, blue: 0.97))
             })
         }
     }

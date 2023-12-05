@@ -146,7 +146,7 @@ struct NewMealView: View {
     
     func deleteNavigationLinks(at offsets: IndexSet) {
         addedItems.itens.remove(atOffsets: offsets)
-        print(addedItems)
+//        print(addedItems)
     }
 }
 

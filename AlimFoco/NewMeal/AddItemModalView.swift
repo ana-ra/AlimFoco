@@ -68,7 +68,7 @@ struct AddItemModalView: View {
 //                            try await model.addMealItem(mealItem: meal)
 //                        }
                         
-                        print(newItem)
+//                        print(newItem)
                         addedItems.addItem(item: newItem)
                         dismiss()
                     }

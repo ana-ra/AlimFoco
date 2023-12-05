@@ -29,4 +29,18 @@ class ModelMeal: ObservableObject {
         Meals = Dictionary.values.compactMap { $0 }
     }
     
+    func updateMealItem(editedMeal: Meal) async throws {
+        Dictionary[editedMeal.recordId!]?.registered = 1
+        
+        do {
+            let record = try await db.record(for: editedMeal.recordId!)
+            record[RecordKeysMeal.registered.rawValue] = 1
+            try await db.save(record)
+        } catch {
+            Dictionary[editedMeal.recordId!] = editedMeal
+            print(error)
+            // throw an error to tell the user that something has happened and the update was not successfull
+        }
+    }
+    
 }
