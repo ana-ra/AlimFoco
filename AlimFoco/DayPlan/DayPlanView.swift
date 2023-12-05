@@ -133,6 +133,7 @@ struct DayPlanView: View {
                         .headerProminence(.increased)
                     }
                     .background(Color(red: 0.95, green: 0.95, blue: 0.97))
+                    
                 }
             }.background(Color(red: 0.95, green: 0.95, blue: 0.97))
             .onAppear {

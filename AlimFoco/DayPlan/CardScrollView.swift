@@ -1,49 +1,73 @@
-//
-//  CardScrollView.swift
-//  AlimFoco
-//
-//  Created by Silvana Rodrigues Alves on 09/11/23.
-//
 import SwiftUI
+
 struct CardScrollView: View {
+    @State private var isExpanded: Bool = false
     var meals: [Meal]
     @EnvironmentObject private var model: ModelMeal
     
     var body: some View {
-        ScrollView(.horizontal, showsIndicators: false){
-            HStack(spacing: 0) {
-                VStack(alignment:.leading) {
-                    ForEach(meals, id: \.self){ meal in
-                        ForEach(meal.itens.indices) { itemIndex in
-                            HStack {
-                                VStack(alignment: .leading) {
-                                    Text("\(meal.itens[itemIndex]) ")
-                                        .foregroundStyle(.black)
-                                    Text("\(meal.weights[itemIndex]) g")
-                                        .foregroundStyle(.gray)
-                                }
-                                .padding(.horizontal, 16)
-                                .padding(.vertical, 4)
-                                Spacer()
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 10) {
+                ForEach(meals, id: \.self) { meal in
+                    VStack(alignment: .leading) {
+                        Text("\(meal.name)")
+                            .bold()
+                            .padding(.top, 8)
+                            .padding(.horizontal, 16)
+                            .frame(maxWidth: .infinity, alignment: .leading) // Alinha o nome da refeição à esquerda
+                        
+                        // Display the first two items and weights
+                        ForEach(meal.itens.indices.prefix(2), id: \.self) { itemIndex in
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text("\(meal.itens[itemIndex])")
+                                Text("\(meal.weights[itemIndex]) g")
+                                    .foregroundColor(.gray) // Cor cinza padrão para os pesos
                             }
-                            .frame(width: getWidth() / 1.3)
+                            .padding(.horizontal, 16)
+                            .padding(.bottom, 4)
                         }
-                        //                      if(food < foods.count - 1){
-                        //                          Divider()
-                        //                      }
+                        
+                        // Use DisclosureGroup for additional items and weights
+                        if meal.itens.count > 2 {
+                            DisclosureGroup(isExpanded: $isExpanded) {
+                                VStack(alignment: .leading, spacing: 2) {
+                                    ForEach(2..<meal.itens.count, id: \.self) { itemIndex in
+                                        VStack(alignment: .leading, spacing: 2) {
+                                            Text("\(meal.itens[itemIndex])")
+                                            Text("\(meal.weights[itemIndex]) g")
+                                                .foregroundColor(.gray) // Cor cinza padrão para os pesos
+                                        }
+                                        .padding(.horizontal, 8)
+                                        .padding(.bottom, 4)
+                                    }
+                                }
+                            } label: {
+                                Text("Ver refeição completa")
+                                    .bold()
+                                    .foregroundColor(Color(red: 0.05, green: 0.51, blue: 0.44))
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .padding(.bottom, 4)
+
+                            }
+                            .padding(.horizontal, 8)
+                        }
                     }
-                    .padding(.vertical, 4)
-                    
-                    Spacer()
+                    .frame(width: 267, alignment: .leading)
+                    .background(.white)
+                    .cornerRadius(14)
+                    .padding(.bottom, 8)
                 }
-                .background(Color.secondary1)
-                .cornerRadius(20)
-                .padding(.vertical, 4)
             }
+            .padding(.horizontal, 10)
         }
     }
 }
 
-//#Preview {
-//  CardScrollView(meals)
-//}
+
+
+// Exemplo de uso com Preview
+struct CardScrollView_Previews: PreviewProvider {
+    static var previews: some View {
+        CardScrollView(meals: [Meal(id: ObjectIdentifier(Meal.self), name: "Opção A", date: Date(), satisfaction: "", itens: ["Arroz", "Feijão"], weights: ["20","30"], mealType: "Almoço", registered: 0), Meal(id: ObjectIdentifier(Meal.self), name: "Opção B", date: Date(), satisfaction: "", itens: ["Macarrao", "Ervilha"], weights: ["20","30"], mealType: "Almoço", registered: 0)])
+    }
+}

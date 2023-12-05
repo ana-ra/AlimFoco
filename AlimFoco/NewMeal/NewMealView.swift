@@ -20,6 +20,7 @@ struct NewMealView: View {
     @State private var isAddItemModalPresented = false
     @State var meals: [Meal]
     @State var selection: String = ""
+    @State var mealTitle: String = ""
     @State var addedItems = MealItemList()
     @Binding var mealTypes: [String]
     
@@ -27,11 +28,21 @@ struct NewMealView: View {
         NavigationStack {
             ZStack {
                 List {
-                    Picker("Refeição", selection: $selection) {
-                        ForEach(mealTypes, id: \.self) {
-                            Text($0)
-                        }
-                    }
+                    Section(header: Text("Título")
+                        .foregroundColor(.black) // Cor preta
+                        .textCase(.none)
+                        .font(Font.custom("SF Pro", size: 17))) {
+                                       TextField("Insira o título da refeição", text: $mealTitle)
+                                           .padding()
+                                   }
+                    Section() {
+                                        Picker("Refeição", selection: $selection) {
+                                            ForEach(mealTypes, id: \.self) {
+                                                Text($0)
+                                            }
+                                        }
+                                    }
+                    
                     
                     if addedItems.itens != [] {
                         Section {
@@ -68,7 +79,6 @@ struct NewMealView: View {
                     
                     Section {
                         Button {
-                            // abrir o modal de adicionar item
                             isAddItemModalPresented.toggle()
                         } label: {
                             HStack {
@@ -92,7 +102,7 @@ struct NewMealView: View {
                                     weights.append(item.weight)
                                 }
                                 
-                                let newMeal = Meal(id: ObjectIdentifier(Meal.self), name: "", date: Date(), satisfaction: "", itens: items, weights: weights, mealType: selection, registered: 0)
+                                let newMeal = Meal(id: ObjectIdentifier(Meal.self), name: mealTitle, date: Date(), satisfaction: "", itens: items, weights: weights, mealType: selection, registered: 0)
                                 
                                 Task {
                                     try await model.addMeal(meal: newMeal)
@@ -101,7 +111,6 @@ struct NewMealView: View {
                                 withAnimation {
                                     showPopup.toggle()
 
-                                    // fazer logica de cadastro de nova refeição
                                 }
                             } label: {
                                 Text("Cadastrar")
