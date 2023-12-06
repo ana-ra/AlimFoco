@@ -92,7 +92,7 @@ struct HistoryView: View {
                 .padding(20)
                 
             } header: {
-                Text("Nível e fidelidade das refeições")
+                Text("Porcentagem de refeições realizadas")
                     .font(.headline)
             }
             .headerProminence(.increased)

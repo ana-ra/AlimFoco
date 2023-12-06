@@ -31,6 +31,8 @@
 		3F489C112ADEA787008F853C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F489C102ADEA787008F853C /* Preview Assets.xcassets */; };
 		3FB8A9C12B0F8171007BFA87 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB8A9C02B0F8171007BFA87 /* MainView.swift */; };
 		3FB8A9C42B0F8803007BFA87 /* TotalMealsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB8A9C32B0F8803007BFA87 /* TotalMealsView.swift */; };
+		9A1B3D592B1F47C100337F3B /* MealSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B3D582B1F47C100337F3B /* MealSheetView.swift */; };
+		9A1B3D5B2B1F61C300337F3B /* DisclosureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B3D5A2B1F61C300337F3B /* DisclosureView.swift */; };
 		9AEECA162B1A0AA0006AA925 /* SubscriptionPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEECA152B1A0AA0006AA925 /* SubscriptionPlan.swift */; };
 		A7508B072B03A58100FF6623 /* RegisterSatisfactionSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7508B062B03A58100FF6623 /* RegisterSatisfactionSheetView.swift */; };
 		A7508B602B14CF3F00FF6623 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7508B5F2B14CF3F00FF6623 /* WidgetKit.framework */; };
@@ -105,6 +107,8 @@
 		3F489C172ADEA787008F853C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3FB8A9C02B0F8171007BFA87 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		3FB8A9C32B0F8803007BFA87 /* TotalMealsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalMealsView.swift; sourceTree = "<group>"; };
+		9A1B3D582B1F47C100337F3B /* MealSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealSheetView.swift; sourceTree = "<group>"; };
+		9A1B3D5A2B1F61C300337F3B /* DisclosureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclosureView.swift; sourceTree = "<group>"; };
 		9AEECA152B1A0AA0006AA925 /* SubscriptionPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionPlan.swift; sourceTree = "<group>"; };
 		A7508B062B03A58100FF6623 /* RegisterSatisfactionSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterSatisfactionSheetView.swift; sourceTree = "<group>"; };
 		A7508B5D2B14CF3F00FF6623 /* AlimFocoWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AlimFocoWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -265,8 +269,10 @@
 				05501AC22AF149E5004DCA2C /* DayPlanView.swift */,
 				3F28DFCE2AFD0B6400F1E4EC /* CardScrollView.swift */,
 				0574EF5C2AF1418600881448 /* MealItem.swift */,
+				9A1B3D5A2B1F61C300337F3B /* DisclosureView.swift */,
 				05501AC02AF149B4004DCA2C /* DataSelectorView.swift */,
 				A7508B062B03A58100FF6623 /* RegisterSatisfactionSheetView.swift */,
+				9A1B3D582B1F47C100337F3B /* MealSheetView.swift */,
 				054F38F02B14CF2E009AB4F8 /* Meal.swift */,
 				0598AC6A2B18CA0400449D40 /* MealType.swift */,
 			);
@@ -405,12 +411,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A1B3D592B1F47C100337F3B /* MealSheetView.swift in Sources */,
 				A7A33A772B182264006E5919 /* ProfileAccountSheetView.swift in Sources */,
 				20F1F0DD2B0F7AAB001DCA3B /* NewMealView.swift in Sources */,
 				0574EF5B2AF1418400881448 /* Model.swift in Sources */,
 				3FB8A9C42B0F8803007BFA87 /* TotalMealsView.swift in Sources */,
 				20F64B892AFE611C00D452B2 /* AddItemModalView.swift in Sources */,
 				05501AC32AF149E5004DCA2C /* DayPlanView.swift in Sources */,
+				9A1B3D5B2B1F61C300337F3B /* DisclosureView.swift in Sources */,
 				209A65B72B0CF27D00A36DBF /* FilterView.swift in Sources */,
 				A7A33A712B17B950006E5919 /* LoginView.swift in Sources */,
 				A7A33A752B17CDAF006E5919 /* ProfileView.swift in Sources */,

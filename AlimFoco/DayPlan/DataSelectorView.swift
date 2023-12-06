@@ -1,10 +1,3 @@
-//
-//  DateSelectorView.swift
-//  AlimFoco
-//
-//  Created by Gustavo Sacramento on 26/10/23.
-//
-
 import SwiftUI
 
 struct DateSelectorView: View {
@@ -42,12 +35,25 @@ struct DateSelectorView: View {
             
             HStack(spacing: getWidth() / 35) {
                 ForEach(self.dates, id: \.self) { date in
-                    DateCircleView(date: date, selected: DateSelectorView.calendar.isDate(date, equalTo: selectedDate, toGranularity: .day), namespace: namespace)
-                        .onTapGesture {
-                            withAnimation(.bouncy) {
-                                self.selectedDate = date
-                            }
+                    VStack{
+                        if date.get(.day) == Date().get(.day){
+                            Circle().frame(width: 8,height: 8)
+                                .foregroundColor(.gray)
+                                .padding(.top, -10)
                         }
+                        else{
+                            Circle().frame(width: 8,height: 8)
+                                .foregroundColor(.clear)
+                                .padding(.top, -10)
+                        }
+                        DateCircleView(date: date, selected: DateSelectorView.calendar.isDate(date, equalTo: selectedDate, toGranularity: .day), namespace: namespace)
+                            .onTapGesture {
+                                withAnimation(.bouncy) {
+                                    self.selectedDate = date
+                                }
+                            }
+                            
+                    }
                 }
             }
         }
@@ -64,7 +70,7 @@ struct DateCircleView: View {
         ZStack {
             Circle()
                 .frame(width: getWidth() / 10)
-                .foregroundColor(selected ? Color.teal : .clear)
+                .foregroundColor(selected ? Color.teal : .white)
             
             Text("\(dayNumber)")
                 .foregroundColor(selected ? .white: .black)
