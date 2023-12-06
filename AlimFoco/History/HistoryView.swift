@@ -20,120 +20,141 @@ struct HistoryView: View {
     
     
     var body: some View {
-        List {
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack {
-                    ForEach(getMonths(currentMonth: monthNumToName(num: selectedDate.get(.month))), id: \.self) { month in
-                        Button {
-                            refreshView(month)
-                        } label: {
-                            ZStack {
-                                Rectangle()
-                                    .frame(height: getHeight() / 20 )
-                                    .foregroundStyle(selectedMonth == month ? Color.informationGreen : Color.white)
-                                    .cornerRadius(40)
-
-                                Text(month)
-                                    .padding(20)
-                                    .foregroundStyle(selectedMonth == month ? Color.white : Color.black)
+        NavigationStack {
+            List {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack {
+                        ForEach(getMonths(currentMonth: monthNumToName(num: selectedDate.get(.month))), id: \.self) { month in
+                            Button {
+                                refreshView(month)
+                            } label: {
+                                ZStack {
+                                    Rectangle()
+                                        .frame(height: getHeight() / 20 )
+                                        .foregroundStyle(selectedMonth == month ? Color.informationGreen : Color.white)
+                                        .cornerRadius(40)
+                                    
+                                    Text(month)
+                                        .padding(20)
+                                        .foregroundStyle(selectedMonth == month ? Color.white : Color.black)
+                                }
                             }
                         }
                     }
                 }
-            }
-            .background(Color(red: 0.95, green: 0.95, blue: 0.97))
-            .listRowInsets(EdgeInsets())
-            
-            Section {
-                VStack {                    
-                    ZStack {
-                        Rectangle()
-                            .cornerRadius(15)
-                            .foregroundStyle(Color.informationGreen)
-                            .opacity(0.2)
-                        
-                        HStack {
-                            Text("Realizadas")
-                                .fontWeight(.semibold)
-                                .foregroundStyle(Color.primary4)
-                            
-                            Spacer()
-                            
-                            Text("\(getPercentage(registered)) %")
-                                .fontWeight(.semibold)
-                                .foregroundStyle(Color.primary4)
-                        }
-                        .padding(.horizontal, 20)
-                        .padding(.vertical, 10)
-                    }
-                    
-                    
-                    ZStack {
-                        Rectangle()
-                            .cornerRadius(15)
-                            .foregroundStyle(Color.errorRed)
-                            .opacity(0.2)
-                        
-                        HStack {
-                            Text("Não realizadas")
-                                .fontWeight(.semibold)
-                                .foregroundStyle(Color.secondary4)
-                            
-                            Spacer()
-                            
-                            Text("\(getPercentage(notRegistered)) %")
-                                .fontWeight(.semibold)
-                                .foregroundStyle(Color.secondary4)
-                        }
-                        .padding(.horizontal, 20)
-                        .padding(.vertical, 10)
-                    }
-                }
-                .padding(20)
+                .background(Color(red: 0.95, green: 0.95, blue: 0.97))
+                .listRowInsets(EdgeInsets())
                 
-            } header: {
-                Text("Porcentagem de refeições realizadas")
-                    .font(.headline)
+                if(notRegistered != 0 || registered != 0) {
+                    Section {
+                        VStack {
+                            ZStack {
+                                Rectangle()
+                                    .cornerRadius(15)
+                                    .foregroundStyle(Color.informationGreen)
+                                    .opacity(0.2)
+                                
+                                HStack {
+                                    Text("Realizadas")
+                                        .fontWeight(.semibold)
+                                        .foregroundStyle(Color.primary4)
+                                    
+                                    Spacer()
+                                    
+                                    Text("\(getPercentage(registered)) %")
+                                        .fontWeight(.semibold)
+                                        .foregroundStyle(Color.primary4)
+                                }
+                                .padding(.horizontal, 20)
+                                .padding(.vertical, 10)
+                            }
+                            
+                            
+                            ZStack {
+                                Rectangle()
+                                    .cornerRadius(15)
+                                    .foregroundStyle(Color.errorRed)
+                                    .opacity(0.2)
+                                
+                                HStack {
+                                    Text("Não realizadas")
+                                        .fontWeight(.semibold)
+                                        .foregroundStyle(Color.secondary4)
+                                    
+                                    Spacer()
+                                    
+                                    Text("\(getPercentage(notRegistered)) %")
+                                        .fontWeight(.semibold)
+                                        .foregroundStyle(Color.secondary4)
+                                }
+                                .padding(.horizontal, 20)
+                                .padding(.vertical, 10)
+                            }
+                        }
+                        .padding(20)
+                        
+                    } header: {
+                        Text("Nível e fidelidade das refeições")
+                            .font(.headline)
+                    }
+                    .headerProminence(.increased)
+                    .listRowSeparator(.hidden)
+                    .listRowInsets(EdgeInsets())
+                    
+                    Section {
+                        Text("Você seguiu \(registered) refeições de um total de \(registered + notRegistered) refeições.")
+                    } } else {
+                        Section {
+                            VStack {
+                                Spacer()
+                                HStack {
+                                    Spacer()
+                                    ErrorState(
+                                        image: "empty_state_tela_de_registros",
+                                        title: "Está vazio aqui.",
+                                        description: "Não foi feito nenhum registro de refeição ainda.",
+                                        buttonText: nil,
+                                        action: {}
+                                    )
+                                    Spacer()
+                                }
+                                Spacer()
+                            }
+                        }
+                    }
             }
-            .headerProminence(.increased)
-            .listRowSeparator(.hidden)
-            .listRowInsets(EdgeInsets())
-            
-            Section {
-                Text("Você seguiu \(registered) refeições de um total de \(registered + notRegistered) refeições.")
-            }
-        }
-        .onAppear(perform: {
-            for meal in meals {
-                if meal.registered == 0 {
-                    naoRealizados += 1
+           // .listStyle(.plain)
+            .navigationTitle("Resumo Mensal")
+                .onAppear(perform: {
+                    for meal in meals {
+                        if meal.registered == 0 {
+                            naoRealizados += 1
+                        }
+                    }
+                    
+                    selectedMonth = monthNumToName(num: selectedDate.get(.month))
+                })
+                .task {
+                    do {
+                        try await modelMeal.populateMeals()
+                        print(modelMeal.Meals)
+                        refreshView(monthNumToName(num: selectedDate.get(.month)))
+                    } catch {
+                        VStack {
+                            Spacer()
+                            ErrorState(
+                                image: "no_connection",
+                                title: "Ops! Algo deu errado.",
+                                description: "Parece que você está sem conexão.",
+                                buttonText: "Tente novamente",
+                                action: {}
+                            )
+                            Spacer()
+                        }
+                        print(error)
+                    }
                 }
-            }
-            
-            selectedMonth = monthNumToName(num: selectedDate.get(.month))
-        })
-        .task {
-            do {
-                try await modelMeal.populateMeals()
-                print(modelMeal.Meals)
-                refreshView(monthNumToName(num: selectedDate.get(.month)))
-            } catch {
-                VStack {
-                    Spacer()
-                    ErrorState(
-                        image: "no_connection",
-                        title: "Ops! Algo deu errado.",
-                        description: "Parece que você está sem conexão.",
-                        buttonText: "Tente novamente",
-                        action: {}
-                    )
-                    Spacer()
-                }
-                print(error)
-            }
         }
-        .navigationTitle("Resumo Mensal")
-        .navigationBarTitleDisplayMode(.inline)
     }
     
     func monthNumToName(num: Int) -> String {

@@ -12,9 +12,13 @@ struct DayPlanView: View {
     @Binding var hasLoggedIn: Bool
     @EnvironmentObject private var model: Model
     @EnvironmentObject private var modelMeal: ModelMeal
-    @EnvironmentObject private var modelMealType: ModelMealType
+    @State var selectedMeal: String = ""
     @State var selectedDate = Date()
     @State var isNavigatingToNewMealView = false
+    @State var isSatisfactionSheetPresented = false
+    @State var filteredMealsState: [Meal] = []
+    let filteredMeals: [Meal] = []
+    let nextMeals: [String] = ["Café da manhã", "Colação", "Almoço", "Lanche da Tarde", "Jantar"]
     var mealItems: [MealItem] {
         model.Mealitems
     }
@@ -43,26 +47,55 @@ struct DayPlanView: View {
                         Spacer()
                     }.padding(16)
                 } else {
-                    List {
+                    List{
                         Section(header: Text("Próximas Refeições")) {
                             DisclosureView(meals: meals)
                             
                         }.headerProminence(.increased)
                         Section(header: Text("Registrado")) {
-                            
+                            ForEach(mealTypes.indices) { index in
+                                let filteredMeals = meals.filter { meal in
+                                    meal.mealType == mealTypes[index] && meal.registered == 1
+                                }
+                                
+                                if !filteredMeals.isEmpty {
+                                    DisclosureGroup {
+                                        CardScrollView(meals: filteredMeals)
+                                            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
+                                        Button(action: {
+                                            filteredMealsState = filteredMeals
+                                            selectedMeal = mealTypes[index]
+                                            isSatisfactionSheetPresented.toggle()
+                                        }) {
+                                                
+                                            Text("Alterar Registro")
+                                                .foregroundColor(Color.informationGreen)
+                                                
+                                        }
+                                        .padding(.vertical, 8)
+                                        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
+                                        
+                                    } label: {
+                                        Text(mealTypes[index])
+                                            .fontWeight(.semibold)
+                                    }
+                                    .listRowSeparator(.hidden)
+                                    .listRowInsets(EdgeInsets(top: 50, leading: 20, bottom: 20, trailing: 10))
+                                }
+                            }
                         }
-                        .headerProminence(.increased)
+                        .listRowBackground(Color(red: 0.95, green: 0.95, blue: 0.97))
+                            .headerProminence(.increased)
+                            .background(Color(red: 0.95, green: 0.95, blue: 0.97))
                     }
                     .background(Color(red: 0.95, green: 0.95, blue: 0.97))
-                    
                 }
             }.background(Color(red: 0.95, green: 0.95, blue: 0.97))
             .onAppear {
                 Task {
                     if hasLoggedIn {
                         do {
-                            try await loadMealData()
-                            print(modelMeal.Meals)
+                            try await modelMeal.populateMeals()
                         } catch {
                             errorView()
                             print(error)
@@ -98,6 +131,10 @@ struct DayPlanView: View {
                 }
             }
             .navigationTitle("Plano Alimentar")
+            .sheet(isPresented: $isSatisfactionSheetPresented, content: {
+                RegisterSatisfactionSheetView(selectedMeal: $selectedMeal, filteredMeals: $filteredMealsState).presentationDetents([.height(getHeight())])
+                    .tint(Color.informationGreen).environmentObject(ModelMeal()).background(Color(red: 0.95, green: 0.95, blue: 0.97))
+            })
         }
     }
     
@@ -110,11 +147,6 @@ struct DayPlanView: View {
         
         return dates
     }
-    
-    func loadMealData() async throws {
-        try await modelMeal.populateMeals()
-    }
-    
     func errorView() -> some View {
         VStack {
             Spacer()
@@ -130,11 +162,11 @@ struct DayPlanView: View {
     }
 }
                             
-struct DayPlanView_Previews: PreviewProvider {
-    static var previews: some View {
-        DayPlanView(
-            isPresentingOnboarding: .constant(true),
-            hasLoggedIn: .constant(false)
-        ).environmentObject(Model())
-    }
-}
+//struct DayPlanView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        DayPlanView(
+//            isPresentingOnboarding: .constant(true),
+//            hasLoggedIn: .constant(false)
+//        ).environmentObject(Model())
+//    }
+//}
