@@ -12,7 +12,7 @@ struct DayPlanView: View {
     @Binding var hasLoggedIn: Bool
     @EnvironmentObject private var model: Model
     @EnvironmentObject private var modelMeal: ModelMeal
-    @EnvironmentObject private var modelMealType: ModelMealType
+//    @EnvironmentObject private var modelMealType: ModelMealType
     @State var selectedMeal: String = ""
     @State var selectedDate = Date()
     @State var isNavigatingToNewMealView = false
@@ -47,7 +47,7 @@ struct DayPlanView: View {
                 } else {
                     List {
                         Section(header: Text("Próximas Refeições")) {
-                            ForEach(mealTypes.indices) { index in
+                            ForEach(mealTypes.indices, id: \.self) { index in
                                 let filteredMeals = meals.filter { meal in
                                     meal.mealType == mealTypes[index]
                                 }

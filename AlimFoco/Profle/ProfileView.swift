@@ -35,7 +35,7 @@ struct ProfileView: View {
                             }
                             
                         }
-                        NavigationLink(destination: TotalMealsView()) {
+                        NavigationLink(destination: TotalMealsView().environmentObject(ModelMeal())) {
                             HStack {
                                 Image(systemName: "carrot")
                                     .frame(width: 16, height: 16)

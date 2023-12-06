@@ -18,6 +18,8 @@
 		0598AC6B2B18CA0400449D40 /* MealType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0598AC6A2B18CA0400449D40 /* MealType.swift */; };
 		0598AC6D2B18CF2000449D40 /* ModelMealType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0598AC6C2B18CF2000449D40 /* ModelMealType.swift */; };
 		202344A72B0E1EBE0041E818 /* EditItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202344A62B0E1EBE0041E818 /* EditItemView.swift */; };
+		205DAD452B1E106F001F1D85 /* CollapsibleSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205DAD442B1E106F001F1D85 /* CollapsibleSection.swift */; };
+		205DAD472B1F577B001F1D85 /* EditMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205DAD462B1F577B001F1D85 /* EditMealView.swift */; };
 		209A65B72B0CF27D00A36DBF /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A65B62B0CF27D00A36DBF /* FilterView.swift */; };
 		20CE3E882B0E7760004521A4 /* NewMealPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE3E872B0E7760004521A4 /* NewMealPopUpView.swift */; };
 		20E9CAB02B0D35A30020A495 /* SectionIndexTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E9CAAF2B0D35A30020A495 /* SectionIndexTitles.swift */; };
@@ -90,6 +92,8 @@
 		0598AC6A2B18CA0400449D40 /* MealType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealType.swift; sourceTree = "<group>"; };
 		0598AC6C2B18CF2000449D40 /* ModelMealType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelMealType.swift; sourceTree = "<group>"; };
 		202344A62B0E1EBE0041E818 /* EditItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemView.swift; sourceTree = "<group>"; };
+		205DAD442B1E106F001F1D85 /* CollapsibleSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsibleSection.swift; sourceTree = "<group>"; };
+		205DAD462B1F577B001F1D85 /* EditMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMealView.swift; sourceTree = "<group>"; };
 		209A65B62B0CF27D00A36DBF /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		20CE3E872B0E7760004521A4 /* NewMealPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMealPopUpView.swift; sourceTree = "<group>"; };
 		20E9CAAF2B0D35A30020A495 /* SectionIndexTitles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionIndexTitles.swift; sourceTree = "<group>"; };
@@ -208,6 +212,8 @@
 			isa = PBXGroup;
 			children = (
 				3FB8A9C32B0F8803007BFA87 /* TotalMealsView.swift */,
+				205DAD442B1E106F001F1D85 /* CollapsibleSection.swift */,
+				205DAD462B1F577B001F1D85 /* EditMealView.swift */,
 			);
 			path = TotalMeals;
 			sourceTree = "<group>";
@@ -418,6 +424,7 @@
 				0598AC6B2B18CA0400449D40 /* MealType.swift in Sources */,
 				20F324812B0FD1D000CF9C7F /* CustomColors.swift in Sources */,
 				20F1F0E02B0F80E1001DCA3B /* HistoryView.swift in Sources */,
+				205DAD472B1F577B001F1D85 /* EditMealView.swift in Sources */,
 				20E9CAB02B0D35A30020A495 /* SectionIndexTitles.swift in Sources */,
 				A7A33A6F2B17B945006E5919 /* WelcomeView.swift in Sources */,
 				202344A72B0E1EBE0041E818 /* EditItemView.swift in Sources */,
@@ -425,6 +432,7 @@
 				A7508B072B03A58100FF6623 /* RegisterSatisfactionSheetView.swift in Sources */,
 				3F489C0A2ADEA786008F853C /* AlimFocoApp.swift in Sources */,
 				054F38F12B14CF2E009AB4F8 /* Meal.swift in Sources */,
+				205DAD452B1E106F001F1D85 /* CollapsibleSection.swift in Sources */,
 				05280D5E2AEAB50D007F0310 /* tbca.swift in Sources */,
 				20CE3E882B0E7760004521A4 /* NewMealPopUpView.swift in Sources */,
 				3FB8A9C12B0F8171007BFA87 /* MainView.swift in Sources */,

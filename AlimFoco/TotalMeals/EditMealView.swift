@@ -1,13 +1,14 @@
 //
-//  NewMealView.swift
+//  EditMealView.swift
 //  AlimFoco
 //
-//  Created by Gustavo Sacramento on 08/11/23.
+//  Created by Gustavo Sacramento on 05/12/23.
 //
 
 import SwiftUI
+import CloudKit
 
-struct NewMealView: View {
+struct EditMealView: View {
     @EnvironmentObject private var model: ModelMeal
     @Environment(\.dismiss) private var dismiss
     @State private var editMode = EditMode.inactive
@@ -18,6 +19,7 @@ struct NewMealView: View {
     @State var selection: String = ""
     @State var addedItems = MealItemList()
     @Binding var mealTypes: [String]
+    @State var meal: Meal
     
     var body: some View {
         NavigationStack {
@@ -41,7 +43,8 @@ struct NewMealView: View {
                                     }
                                 }
                             }
-                           .onDelete(perform: deleteNavigationLinks)
+                            .onDelete(perform: deleteNavigationLinks)
+                            
                         } header: {
                             HStack {
                                 Text("Itens")
@@ -88,10 +91,14 @@ struct NewMealView: View {
                                     weights.append(item.weight)
                                 }
                                 
-                                let newMeal = Meal(id: ObjectIdentifier(Meal.self), name: "", date: Date(), satisfaction: "", itens: items, weights: weights, mealType: selection, registered: 0)
+//                                let newMeal = Meal(id: ObjectIdentifier(Meal.self), name: "", date: Date(), satisfaction: "", itens: items, weights: weights, mealType: selection, registered: 0)
+                                meal.itens = items
+                                meal.weights = weights
+                                meal.mealType = selection
                                 
                                 Task {
-                                    try await model.addMeal(meal: newMeal)
+//                                    try await model.addMeal(meal: newMeal)
+                                    try await model.updateMeal(editedMeal: meal)
                                 }
                                 
                                 withAnimation {
@@ -133,10 +140,14 @@ struct NewMealView: View {
                 AddItemModalView(selectedRefeicao: $selection, addedItems: $addedItems)
             }
         })
-        .navigationTitle("Nova Refeição")
+        .navigationTitle("Editar Refeição")
         .navigationBarTitleDisplayMode(.inline)
         .onAppear(perform: {
-            selection = mealTypes[0]
+            for i in 0..<meal.itens.count {
+                addedItems.addItem(item: MealItem(id: ObjectIdentifier(MealItem.self), alimento: meal.itens[i], weight: meal.weights[i]))
+            }
+            
+            selection = meal.mealType
         })
     }
     
@@ -146,22 +157,6 @@ struct NewMealView: View {
     }
 }
 
-class MealItemList {
-    var itens: [MealItem]
-    
-    init() {
-        itens = []
-    }
-    
-    func addItem(item: MealItem) {
-        itens.append(item)
-    }
-    
-    func editItem(index: Int, newItem: Alimento, weight: String) {
-        itens[index] = MealItem(id: ObjectIdentifier(MealItem.self), alimento: newItem.nome, weight: weight)
-    }
-}
-
 //#Preview {
-//    NewMealView(refeicoes: .constant(["Café da manhã", "Colação", "Almoço", "Lanche da Tarde", "Jantar"]))
+//    EditMealView()
 //}
