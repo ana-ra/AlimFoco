@@ -114,7 +114,6 @@ struct NewMealView: View {
                             } label: {
                                 if mealTitle != "" && addedItems.itens != [] {
                                     Text("Cadastrar")
-                                        .foregroundColor( .accentColor)
                                         .fontWeight(.semibold)
                                 } else {
                                     Text("Cadastrar")

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MealSheetView: View {
     var meal: Meal
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         List{
@@ -20,6 +21,18 @@ struct MealSheetView: View {
                 }
             }
         }
+        .toolbar{
+            ToolbarItem(placement: .topBarTrailing){
+                Button{
+                    dismiss()
+                }
+            label: {
+                    Text("Ok")
+                }
+            }
+        }
+        .navigationTitle(meal.name)
+        .navigationBarTitleDisplayMode(.inline)
          
         
     }
