@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct RegisterSatisfactionSheetView: View {
-    @EnvironmentObject private var model: ModelMealType
-    @Binding var selectedDate: Date
+    @Binding var selectedMeal: String
+    @Binding var filteredMeals: [Meal]
     @State private var selectedOption: Int? = nil
-    @Binding var meal: String
+    @State private var selectedMealOption: Int? = nil
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var model: ModelMeal
     
     let options = ["Seguiu", "Não Seguiu"]
     
@@ -30,43 +31,76 @@ struct RegisterSatisfactionSheetView: View {
                     Text("Cancelar")
                 }
             }
-            Spacer()
             Text("Você seguiu a sua refeição?")
+                .frame(maxWidth: .infinity, alignment: .leading)
                 .fontWeight(.semibold)
-                .multilineTextAlignment(.center)
                 .foregroundColor(.black)
-                .padding(.bottom, 16)
-  
-            ForEach(0..<options.count, id: \.self) { index in
-                VStack {
-                    HStack {
-                        Text(options[index])
-//                            .foregroundColor(.primary)
-                        Spacer()
-                        Image(systemName: self.selectedOption == index ? "checkmark.circle.fill" : "checkmark.circle")
-                            .resizable()
-                            .frame(width: 22.0, height: 22.0)
-                            .onTapGesture {
-                                withAnimation {
-                                    self.selectedOption = self.selectedOption == index ? nil : index
-                                }
-                            }
-                            .foregroundColor(self.selectedOption == index ? Color.informationGreen : .secondary)
-                    }
-                    .padding(.vertical, 8)
-                    .background(
-                        RoundedRectangle(cornerRadius: 8)
-                            .fill(Color.white)
-                    )
-                }
-                .padding(.horizontal, 16)
-            }
+                .padding(.bottom, 8)
             
-            Button(action: {
-                let editedMeal = MealType(id: ObjectIdentifier(MealType.self), name: meal, date: selectedDate, fidelity: options[selectedOption!], registered: 1)
-                Task {
-                    try await model.updateMealType(editedMealType: editedMeal)
+            List{
+                ForEach(0..<options.count, id: \.self) { index in
+                    VStack {
+                        HStack {
+                            Text(options[index])
+                            //                            .foregroundColor(.primary)
+                            Spacer()
+                            Image(systemName: self.selectedOption == index ? "checkmark.circle.fill" : "checkmark.circle")
+                                .resizable()
+                                .frame(width: 22.0, height: 22.0)
+                                .onTapGesture {
+                                    withAnimation {
+                                        self.selectedOption = self.selectedOption == index ? nil : index
+                                    }
+                                }
+                                .foregroundColor(self.selectedOption == index ? Color.informationGreen : .secondary)
+                        }
+                        .padding(.vertical, 8)
+                    }
+                    .padding(.horizontal, 8)
+                    .frame(height: getHeight()/32)
                 }
+            }.frame(height: getHeight()/6)
+            
+            if (selectedOption == 0){
+                Text("Qual dessas opções você comeu?")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.black)
+                    .padding(.bottom, 8)
+                
+                List{
+                    ForEach(0..<filteredMeals.count, id: \.self) { index in
+                        VStack {
+                            HStack {
+                                Text("\(filteredMeals[index].name)")
+                                //                            .foregroundColor(.primary)
+                                Spacer()
+                                Image(systemName: self.selectedMealOption == index ? "checkmark.circle.fill" : "checkmark.circle")
+                                    .resizable()
+                                    .frame(width: 22.0, height: 22.0)
+                                    .onTapGesture {
+                                        withAnimation {
+                                            filteredMeals[index].registered = 1
+                                            self.selectedMealOption = self.selectedMealOption == index ? nil : index
+                                        }
+                                    }
+                                    .foregroundColor(self.selectedMealOption == index ? Color.informationGreen : .secondary)
+                            }
+                            .padding(.vertical, 8)
+                        }
+                        .padding(.horizontal, 8)
+                        .frame(height: getHeight()/32, alignment: .center)
+                    }
+                }
+            }
+            Spacer()
+            Button(action: {
+                let editedMeal = filteredMeals[selectedMealOption!]
+                
+                Task {
+                    try await model.updateMeal(editedMeal: editedMeal)
+                }
+
                 dismiss()
             }) {
                 HStack(
@@ -88,6 +122,7 @@ struct RegisterSatisfactionSheetView: View {
             }
             .disabled(!isButtonEnabled)
             .padding(.top, 16)
+//            Spacer()
         }
         .padding(16)
     }

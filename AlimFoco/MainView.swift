@@ -26,7 +26,7 @@ struct MainView: View {
 //                .environmentObject(ModelMeal())
 //                .environmentObject(Model())
                 .tabItem {
-                    Label("Relatórios", systemImage: "note.text")
+                    Label("Resumo", systemImage: "note.text")
                 }
             ProfileView(accountName: accountName)
 //                .environmentObject(ModelMeal())
@@ -52,6 +52,7 @@ struct MainView: View {
         .onAppear {
             alreadyLogged = hasOnboardingCompleted
             isPresentingOnboarding = true
+            UITabBar.appearance().backgroundColor = UIColor.white
         }
     }
 }
