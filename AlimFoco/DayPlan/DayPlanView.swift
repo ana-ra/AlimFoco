@@ -47,48 +47,7 @@ struct DayPlanView: View {
                         Spacer()
                     }.padding(16)
                 } else {
-                    List{
-                        Section(header: Text("Próximas Refeições")) {
-                            DisclosureView(meals: meals)
-                            
-                        }.headerProminence(.increased)
-                        Section(header: Text("Registrado")) {
-                            ForEach(mealTypes.indices) { index in
-                                let filteredMeals = meals.filter { meal in
-                                    meal.mealType == mealTypes[index] && meal.registered == 1
-                                }
-                                
-                                if !filteredMeals.isEmpty {
-                                    DisclosureGroup {
-                                        CardScrollView(meals: filteredMeals)
-                                            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
-                                        Button(action: {
-                                            filteredMealsState = filteredMeals
-                                            selectedMeal = mealTypes[index]
-                                            isSatisfactionSheetPresented.toggle()
-                                        }) {
-                                                
-                                            Text("Alterar Registro")
-                                                .foregroundColor(Color.informationGreen)
-                                                
-                                        }
-                                        .padding(.vertical, 8)
-                                        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
-                                        
-                                    } label: {
-                                        Text(mealTypes[index])
-                                            .fontWeight(.semibold)
-                                    }
-                                    .listRowSeparator(.hidden)
-                                    .listRowInsets(EdgeInsets(top: 50, leading: 20, bottom: 20, trailing: 10))
-                                }
-                            }
-                        }
-                        .listRowBackground(Color(red: 0.95, green: 0.95, blue: 0.97))
-                            .headerProminence(.increased)
-                            .background(Color(red: 0.95, green: 0.95, blue: 0.97))
-                    }
-                    .background(Color(red: 0.95, green: 0.95, blue: 0.97))
+                    DisclosureView(meals: meals)
                 }
             }.background(Color(red: 0.95, green: 0.95, blue: 0.97))
             .onAppear {

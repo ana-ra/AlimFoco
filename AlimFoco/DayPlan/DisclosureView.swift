@@ -13,57 +13,145 @@ struct DisclosureView: View {
     @State var isSatisfactionSheetPresented = false
     @StateObject private var expansionHandler = ExpansionHandler<ExpandableSection>()
     @State var selectedDate = Date()
+    @State var filteredMealsState: [Meal] = []
     @State var mealTypes = ["Café da manhã", "Colação", "Almoço", "Lanche da Tarde", "Jantar"]
     
     var body: some View {
-        ForEach(mealTypes.indices) { index in
-            let filteredMeals = meals.filter { meal in
-                meal.mealType == mealTypes[index]
-            }
-            
-            if !filteredMeals.isEmpty {
-             
-        DisclosureGroup(
-            isExpanded: self.expansionHandler.isExpanded(.refeicao(mealTypes[index])),
-            content: {
-                CardScrollView(meals: filteredMeals)
-                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
-                Button(action: {
-                    selectedMeal = mealTypes[index]
-                    isSatisfactionSheetPresented.toggle()
-                }) {
-                    HStack(alignment: .center, spacing: 4) {
-                        Image(systemName: "note.text.badge.plus")
-                            .foregroundColor(Color.white)
-                        
-                        Text("Registrar")
-                            .foregroundColor(Color.white)
-                        
+        List{
+            Section(header: Text("Próximas Refeições")) {
+                ForEach(mealTypes.indices) { index in
+                    let filteredMeals = meals.filter { meal in
+                        meal.mealType == mealTypes[index] && meal.registered == 0
                     }
-                    .padding(.horizontal, 16)
-                    .frame(width: getWidth() / 2.8, height: getHeight() / 20)
-                    .background(Color(red: 0.05, green: 0.51, blue: 0.44))
-                    .cornerRadius(14)
+                    if !filteredMeals.isEmpty {
+                        DisclosureGroup (isExpanded: self.expansionHandler.isExpanded(.refeicao(mealTypes[index])),
+                                         content: {
+                            CardScrollView(meals: filteredMeals)
+                                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
+                            Button(action: {
+                                filteredMealsState = filteredMeals
+                                selectedMeal = mealTypes[index]
+                                isSatisfactionSheetPresented.toggle()
+                            }) {
+                                HStack(alignment: .center, spacing: 4) {
+                                    Image(systemName: "note.text.badge.plus")
+                                        .foregroundColor(Color.white)
+                                    
+                                    Text("Registrar")
+                                        .foregroundColor(Color.white)
+                                    
+                                }
+                                .padding(.horizontal, 16)
+                                .frame(width: getWidth() / 2.8, height: getHeight() / 20)
+                                .background(Color(red: 0.05, green: 0.51, blue: 0.44))
+                                .cornerRadius(14)
+                            }
+                            .padding(.vertical, 8)
+                            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
+                            
+                        }, label: {
+                            Text(mealTypes[index])
+                                .fontWeight(.semibold)
+                        }
+                        )
+                        .listRowSeparator(.hidden)
+                        .listRowInsets(EdgeInsets(top: 50, leading: 20, bottom: 20, trailing: 10))
+                    }
                 }
-                .padding(.vertical, 8)
-                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
-                
-            },
-            label: {
-                Text(mealTypes[index])
-                    .fontWeight(.medium)
-             }
-        )
-            .listRowSeparator(.hidden)
-            .listRowBackground(Color(red: 0.95, green: 0.95, blue: 0.97))
-            .background(Color(red: 0.95, green: 0.95, blue: 0.97))
-            .sheet(isPresented: $isSatisfactionSheetPresented, content: {
-                        RegisterSatisfactionSheetView(selectedDate: $selectedDate, meal: $selectedMeal).presentationDetents([.height(getHeight() / 3.5)])
-                            .tint(Color.informationGreen).environmentObject(ModelMealType())
-                    })
                 
             }
+                .listRowBackground(Color(red: 0.95, green: 0.95, blue: 0.97))
+                    .headerProminence(.increased)
+                    .background(Color(red: 0.95, green: 0.95, blue: 0.97))
+            Section(header: Text("Registrado")) {
+                ForEach(mealTypes.indices) { index in
+                    let filteredMeals = meals.filter { meal in
+                        meal.mealType == mealTypes[index] && meal.registered == 1
+                    }
+                    
+                    if !filteredMeals.isEmpty {
+                        DisclosureGroup (isExpanded: self.expansionHandler.isExpanded(.refeicao(mealTypes[index] + "Registered")),
+                                         content: {
+                            CardScrollView(meals: filteredMeals)
+                                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
+                            Button(action: {
+                                filteredMealsState = filteredMeals
+                                selectedMeal = mealTypes[index]
+                                isSatisfactionSheetPresented.toggle()
+                            }) {
+                                HStack(alignment: .center, spacing: 4) {
+                                    Image(systemName: "note.text.badge.plus")
+                                        .foregroundColor(Color.white)
+                                    
+                                    Text("Registrar")
+                                        .foregroundColor(Color.white)
+                                    
+                                }
+                                .padding(.horizontal, 16)
+                                .frame(width: getWidth() / 2.8, height: getHeight() / 20)
+                                .background(Color(red: 0.05, green: 0.51, blue: 0.44))
+                                .cornerRadius(14)
+                            }
+                            .padding(.vertical, 8)
+                            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
+                            
+                        }, label: {
+                            Text(mealTypes[index])
+                                .fontWeight(.semibold)
+                        }
+                        )
+                        .listRowSeparator(.hidden)
+                        .listRowInsets(EdgeInsets(top: 50, leading: 20, bottom: 20, trailing: 10))
+                    }
+                }
+            }
+            .listRowBackground(Color(red: 0.95, green: 0.95, blue: 0.97))
+                .headerProminence(.increased)
+                .background(Color(red: 0.95, green: 0.95, blue: 0.97))
         }
+        .background(Color(red: 0.95, green: 0.95, blue: 0.97))
+        .sheet(isPresented: $isSatisfactionSheetPresented, content: {
+                        RegisterSatisfactionSheetView(selectedMeal: $selectedMeal, filteredMeals: $filteredMealsState).presentationDetents([.height(getHeight())])
+                            .tint(Color.informationGreen).environmentObject(ModelMeal()).background(Color(red: 0.95, green: 0.95, blue: 0.97))
+                    })
+            
+             
+//        DisclosureGroup(
+//            isExpanded: self.expansionHandler.isExpanded(.refeicao(mealTypes[index])),
+//            content: {
+//                CardScrollView(meals: filteredMeals)
+//                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
+//                Button(action: {
+//                    selectedMeal = mealTypes[index]
+//                    isSatisfactionSheetPresented.toggle()
+//                }) {
+//                    HStack(alignment: .center, spacing: 4) {
+//                        Image(systemName: "note.text.badge.plus")
+//                            .foregroundColor(Color.white)
+//                        
+//                        Text("Registrar")
+//                            .foregroundColor(Color.white)
+//                        
+//                    }
+//                    .padding(.horizontal, 16)
+//                    .frame(width: getWidth() / 2.8, height: getHeight() / 20)
+//                    .background(Color(red: 0.05, green: 0.51, blue: 0.44))
+//                    .cornerRadius(14)
+//                }
+//                .padding(.vertical, 8)
+//                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
+//                
+//            },
+//            label: {
+//                Text(mealTypes[index])
+//                    .fontWeight(.medium)
+//             }
+////        )
+//            .listRowSeparator(.hidden)
+//            .listRowBackground(Color(red: 0.95, green: 0.95, blue: 0.97))
+//            .background(Color(red: 0.95, green: 0.95, blue: 0.97))
+            
+                
     }
     
 }
