@@ -10,6 +10,7 @@ import SwiftUI
 struct DayPlanView: View {
     @Binding var isPresentingOnboarding: Bool
     @Binding var hasLoggedIn: Bool
+    @State var hasUpdated: Bool
     @EnvironmentObject private var model: Model
     @EnvironmentObject private var modelMeal: ModelMeal
     @State var selectedMeal: String = ""
@@ -60,6 +61,14 @@ struct DayPlanView: View {
                                             filteredMealsState = filteredMeals
                                             selectedMeal = mealTypes[index]
                                             isSatisfactionSheetPresented.toggle()
+                                            Task{
+                                                do {
+                                                    try await loadMealData()
+                                                } catch {
+                                                    errorView()
+                                                    print(error)
+                                                }
+                                            }
                                         }) {
                                             HStack(alignment: .center, spacing: 4) {
                                                 Image(systemName: "note.text.badge.plus")
@@ -87,8 +96,8 @@ struct DayPlanView: View {
                             }
                             
                         }.listRowBackground(Color(red: 0.95, green: 0.95, blue: 0.97))
-                            .headerProminence(.increased)
-                            .background(Color(red: 0.95, green: 0.95, blue: 0.97))
+                        .headerProminence(.increased)
+                        .background(Color(red: 0.95, green: 0.95, blue: 0.97))
                         
                         Section(header: Text("Registrado")) {
                             ForEach(mealTypes.indices) { index in
@@ -105,14 +114,9 @@ struct DayPlanView: View {
                                             selectedMeal = mealTypes[index]
                                             isSatisfactionSheetPresented.toggle()
                                         }) {
-                                            HStack(alignment: .center, spacing: 4) {
-                                                Image(systemName: "note.text.badge.plus")
-                                                    .foregroundColor(Color.white)
+                                            Text("Alterar Registro")
+                                                .foregroundColor(Color.white)
                                                 
-                                                Text("Registrar")
-                                                    .foregroundColor(Color.white)
-                                                
-                                            }
                                             .padding(.horizontal, 16)
                                             .frame(width: getWidth() / 2.8, height: getHeight() / 20)
                                             .background(Color(red: 0.05, green: 0.51, blue: 0.44))
@@ -130,7 +134,9 @@ struct DayPlanView: View {
                                 }
                             }
                         }
+                        .listRowBackground(Color(red: 0.95, green: 0.95, blue: 0.97))
                         .headerProminence(.increased)
+                        .background(Color(red: 0.95, green: 0.95, blue: 0.97))
                     }
                     .background(Color(red: 0.95, green: 0.95, blue: 0.97))
                     
@@ -138,7 +144,7 @@ struct DayPlanView: View {
             }.background(Color(red: 0.95, green: 0.95, blue: 0.97))
             .onAppear {
                 Task {
-                    if hasLoggedIn {
+                    if hasLoggedIn || hasUpdated {
                         do {
                             try await loadMealData()
                         } catch {
@@ -168,6 +174,27 @@ struct DayPlanView: View {
                     }
                 }
             })
+            onChange(of: hasUpdated, perform: { value in
+                if value {
+                    Task {
+                        do {
+                            try await modelMeal.populateMeals()
+                        } catch {
+                            VStack {
+                                Spacer()
+                                ErrorState(
+                                    image: "no_connection",
+                                    title: "Ops! Algo deu errado.",
+                                    description: "Parece que você está sem conexão.",
+                                    buttonText: "Tente novamente",
+                                    action: {}
+                                )
+                                Spacer()
+                            }
+                        }
+                    }
+                }
+            })
             .toolbar {
                 ToolbarItemGroup {
                     NavigationLink(destination: NewMealView(meals: meals, mealTypes: $mealTypes)) {
@@ -177,7 +204,7 @@ struct DayPlanView: View {
             }
             .navigationTitle("Plano Alimentar")
             .sheet(isPresented: $isSatisfactionSheetPresented, content: {
-                RegisterSatisfactionSheetView(selectedMeal: $selectedMeal, filteredMeals: $filteredMealsState).presentationDetents([.height(getHeight())])
+                RegisterSatisfactionSheetView(selectedMeal: $selectedMeal, filteredMeals: $filteredMealsState, hasUpdated: $hasUpdated).presentationDetents([.height(getHeight())])
                     .tint(Color.informationGreen).environmentObject(ModelMeal()).background(Color(red: 0.95, green: 0.95, blue: 0.97))
             })
         }
@@ -216,7 +243,8 @@ struct DayPlanView_Previews: PreviewProvider {
     static var previews: some View {
         DayPlanView(
             isPresentingOnboarding: .constant(true),
-            hasLoggedIn: .constant(false)
+            hasLoggedIn: .constant(false),
+            hasUpdated: false
         ).environmentObject(Model())
     }
 }

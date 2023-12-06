@@ -16,7 +16,7 @@ struct MainView: View {
     var body: some View {
         TabView{
             DayPlanView(isPresentingOnboarding: $hasOnboardingCompleted,
-                        hasLoggedIn: $alreadyLogged)
+                        hasLoggedIn: $alreadyLogged, hasUpdated: false)
                 .environmentObject(ModelMeal())
                 .environmentObject(Model())
                 .tabItem {

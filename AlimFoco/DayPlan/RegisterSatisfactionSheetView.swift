@@ -12,6 +12,7 @@ struct RegisterSatisfactionSheetView: View {
     @Binding var filteredMeals: [Meal]
     @State private var selectedOption: Int? = nil
     @State private var selectedMealOption: Int? = nil
+    @Binding var hasUpdated: Bool
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var model: ModelMeal
     
@@ -96,9 +97,11 @@ struct RegisterSatisfactionSheetView: View {
             Spacer()
             Button(action: {
                 let editedMeal = filteredMeals[selectedMealOption!]
+                
                 Task {
-                    try await model.updateMealItem(editedMeal: editedMeal)
+                    try await model.updateMeal(editedMeal: editedMeal)
                 }
+                hasUpdated = true
                 dismiss()
             }) {
                 HStack(

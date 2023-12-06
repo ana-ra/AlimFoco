@@ -29,7 +29,7 @@ class ModelMeal: ObservableObject {
         Meals = Dictionary.values.compactMap { $0 }
     }
     
-    func updateMealItem(editedMeal: Meal) async throws {
+    func updateMeal(editedMeal: Meal) async throws {
         Dictionary[editedMeal.recordId!]?.registered = 1
         
         do {
