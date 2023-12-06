@@ -14,6 +14,7 @@ struct AlimFocoApp: App {
         WindowGroup {
             MainView()
                 .tint(Color.informationGreen)
+                .preferredColorScheme(.light)
         }
     }
 }
