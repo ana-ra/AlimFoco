@@ -47,12 +47,12 @@ struct RegisterSatisfactionSheetView: View {
                             Image(systemName: self.selectedOption == index ? "checkmark.circle.fill" : "checkmark.circle")
                                 .resizable()
                                 .frame(width: 22.0, height: 22.0)
-                                .onTapGesture {
-                                    withAnimation {
-                                        self.selectedOption = self.selectedOption == index ? nil : index
-                                    }
-                                }
                                 .foregroundColor(self.selectedOption == index ? Color.informationGreen : .secondary)
+                        }
+                        .onTapGesture {
+                            withAnimation {
+                                self.selectedOption = self.selectedOption == index ? nil : index
+                            }
                         }
                         .padding(.vertical, 8)
                     }
@@ -78,13 +78,13 @@ struct RegisterSatisfactionSheetView: View {
                                 Image(systemName: self.selectedMealOption == index ? "checkmark.circle.fill" : "checkmark.circle")
                                     .resizable()
                                     .frame(width: 22.0, height: 22.0)
-                                    .onTapGesture {
-                                        withAnimation {
-                                            filteredMeals[index].registered = 1
-                                            self.selectedMealOption = self.selectedMealOption == index ? nil : index
-                                        }
-                                    }
                                     .foregroundColor(self.selectedMealOption == index ? Color.informationGreen : .secondary)
+                            }
+                            .onTapGesture {
+                                withAnimation {
+                                    filteredMeals[index].registered = 1
+                                    self.selectedMealOption = self.selectedMealOption == index ? nil : index
+                                }
                             }
                             .padding(.vertical, 8)
                         }
