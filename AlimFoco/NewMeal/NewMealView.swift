@@ -105,7 +105,11 @@ struct NewMealView: View {
                                 let newMeal = Meal(id: ObjectIdentifier(Meal.self), name: mealTitle, date: Date(), satisfaction: "", itens: items, weights: weights, mealType: selection, registered: 0)
                                 
                                 Task {
-                                    try await model.addMeal(meal: newMeal)
+                                    do {
+                                        try await model.addMeal(meal: newMeal)
+                                    } catch {
+                                        print(error)
+                                    }
                                 }
                                 
                                 withAnimation {

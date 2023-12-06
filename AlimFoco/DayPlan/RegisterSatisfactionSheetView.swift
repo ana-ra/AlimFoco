@@ -100,6 +100,7 @@ struct RegisterSatisfactionSheetView: View {
                 Task {
                     try await model.updateMeal(editedMeal: editedMeal)
                 }
+
                 dismiss()
             }) {
                 HStack(
@@ -121,7 +122,7 @@ struct RegisterSatisfactionSheetView: View {
             }
             .disabled(!isButtonEnabled)
             .padding(.top, 16)
-            Spacer()
+//            Spacer()
         }
         .padding(16)
     }

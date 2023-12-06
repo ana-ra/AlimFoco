@@ -17,6 +17,8 @@ struct DayPlanView: View {
     @State var isNavigatingToNewMealView = false
     @State var isSatisfactionSheetPresented = false
     @State var filteredMealsState: [Meal] = []
+    let filteredMeals: [Meal] = []
+    let nextMeals: [String] = ["Café da manhã", "Colação", "Almoço", "Lanche da Tarde", "Jantar"]
     var mealItems: [MealItem] {
         model.Mealitems
     }
@@ -47,11 +49,17 @@ struct DayPlanView: View {
                 } else {
                     List{
                         Section(header: Text("Próximas Refeições")) {
+//                            ForEach(mealTypes.indices) { index in
+//                                ForEach(meals, id: \.self){ meal in
+//                                    if (meal.mealType == mealTypes[index] && meal.registered == 1){
+//                                        nextMeals.remove(at: index)
+//                                    }
+//                                }
+//                            }
                             ForEach(mealTypes.indices) { index in
                                 let filteredMeals = meals.filter { meal in
                                     meal.mealType == mealTypes[index] && meal.registered == 0
                                 }
-                                
                                 if !filteredMeals.isEmpty {
                                     DisclosureGroup {
                                         CardScrollView(meals: filteredMeals)
@@ -105,18 +113,10 @@ struct DayPlanView: View {
                                             selectedMeal = mealTypes[index]
                                             isSatisfactionSheetPresented.toggle()
                                         }) {
-                                            HStack(alignment: .center, spacing: 4) {
-                                                Image(systemName: "note.text.badge.plus")
-                                                    .foregroundColor(Color.white)
                                                 
-                                                Text("Registrar")
-                                                    .foregroundColor(Color.white)
+                                            Text("Alterar Registro")
+                                                .foregroundColor(Color.informationGreen)
                                                 
-                                            }
-                                            .padding(.horizontal, 16)
-                                            .frame(width: getWidth() / 2.8, height: getHeight() / 20)
-                                            .background(Color(red: 0.05, green: 0.51, blue: 0.44))
-                                            .cornerRadius(14)
                                         }
                                         .padding(.vertical, 8)
                                         .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
@@ -130,7 +130,9 @@ struct DayPlanView: View {
                                 }
                             }
                         }
-                        .headerProminence(.increased)
+                        .listRowBackground(Color(red: 0.95, green: 0.95, blue: 0.97))
+                            .headerProminence(.increased)
+                            .background(Color(red: 0.95, green: 0.95, blue: 0.97))
                     }
                     .background(Color(red: 0.95, green: 0.95, blue: 0.97))
                 }
@@ -139,7 +141,7 @@ struct DayPlanView: View {
                 Task {
                     if hasLoggedIn {
                         do {
-                            try await loadMealData()
+                            try await modelMeal.populateMeals()
                         } catch {
                             errorView()
                             print(error)
@@ -191,11 +193,6 @@ struct DayPlanView: View {
         
         return dates
     }
-    
-    func loadMealData() async throws {
-        try await modelMeal.populateMeals()
-    }
-    
     func errorView() -> some View {
         VStack {
             Spacer()

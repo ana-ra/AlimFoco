@@ -11,6 +11,7 @@ struct CardScrollView: View {
                 ForEach(meals, id: \.self) { meal in
                     VStack(alignment: .leading) {
                         Text("\(meal.name)")
+                            .foregroundColor(Color.informationGreen)
                             .bold()
                             .padding(.top, 8)
                             .padding(.horizontal, 16)
