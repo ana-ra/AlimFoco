@@ -13,7 +13,7 @@ struct ErrorState: View {
     let image: String
     let title: String
     let description: String
-    let buttonText: String
+    let buttonText: String?
     let action: () -> Void
     var meals: [Meal] {
         modelMeal.Meals
@@ -21,35 +21,29 @@ struct ErrorState: View {
     @State var mealTypes: [String] = ["Café da manhã", "Colação", "Almoço", "Lanche da Tarde", "Jantar"]
     
     var body: some View {
-        Image(image)
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .frame(width: 100, height: 100) 
-        
-        Text(title)
-            .font(.title)
-            .fontWeight(.bold)
-            .foregroundColor(.black)
-        
-        Text(description)
-            .foregroundColor(.gray)
-            .padding(.top, 8)
-            .padding(.horizontal, 16)
-            .multilineTextAlignment(.center)
-        
-        //        Button(action: {
-        //            self.action()
-        //        }) {
-        //            Text(buttonText)
-        //                .foregroundColor(.accentColor)
-        //                .font(.system(size: 15))
-        //        }
-        //        .padding(.top, 8)
-        
-        NavigationLink(destination: NewMealView(meals: meals, mealTypes: $mealTypes)) {
-            Text(buttonText)
-                .fontWeight(.semibold)
-        }.padding(.top, 8)
+        VStack (alignment: .center) {
+            Image(image)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 100, height: 100)
+            
+            Text(title)
+                .font(.system(size: 17))
+                .foregroundColor(.black)
+            
+            Text(description)
+                .foregroundColor(.gray)
+                .padding(.top, 8)
+                .padding(.horizontal, 16)
+                .multilineTextAlignment(.center)
+            
+            if(buttonText != nil) {
+                NavigationLink(destination: NewMealView(meals: meals, mealTypes: $mealTypes)) {
+                    Text(buttonText ?? "Carregar")
+                        .fontWeight(.semibold)
+                }.padding(.top, 8)
+            }
+        }
     }
 }
 
