@@ -18,7 +18,7 @@ struct RegisterSatisfactionSheetView: View {
     let options = ["Seguiu", "Não Seguiu"]
     
     var isButtonEnabled: Bool {
-        return selectedOption != nil
+        return selectedOption != nil && selectedMealOption != nil
     }
     
     var body: some View {
@@ -37,12 +37,11 @@ struct RegisterSatisfactionSheetView: View {
                 .foregroundColor(.black)
                 .padding(.bottom, 8)
             
-            List{
+            List {
                 ForEach(0..<options.count, id: \.self) { index in
                     VStack {
                         HStack {
                             Text(options[index])
-                            //                            .foregroundColor(.primary)
                             Spacer()
                             Image(systemName: self.selectedOption == index ? "checkmark.circle.fill" : "checkmark.circle")
                                 .resizable()
@@ -59,21 +58,21 @@ struct RegisterSatisfactionSheetView: View {
                     .padding(.horizontal, 8)
                     .frame(height: getHeight()/32)
                 }
-            }.frame(height: getHeight()/6)
+            }
+            .frame(height: getHeight()/6)
             
-            if (selectedOption == 0){
+            if selectedOption == 0 && selectedMealOption == nil {
                 Text("Qual dessas opções você comeu?")
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .fontWeight(.semibold)
                     .foregroundColor(.black)
                     .padding(.bottom, 8)
                 
-                List{
+                List {
                     ForEach(0..<filteredMeals.count, id: \.self) { index in
                         VStack {
                             HStack {
                                 Text("\(filteredMeals[index].name)")
-                                //                            .foregroundColor(.primary)
                                 Spacer()
                                 Image(systemName: self.selectedMealOption == index ? "checkmark.circle.fill" : "checkmark.circle")
                                     .resizable()
@@ -95,10 +94,15 @@ struct RegisterSatisfactionSheetView: View {
             }
             Spacer()
             Button(action: {
-                let editedMeal = filteredMeals[selectedMealOption!]
-                
-                Task {
-                    try await model.updateMeal(editedMeal: editedMeal)
+                if let selectedIndex = selectedMealOption {
+                    let editedMeal = filteredMeals[selectedIndex]
+                    
+                    Task {
+                        try await model.updateMeal(editedMeal: editedMeal)
+                    }
+
+                    filteredMeals.remove(at: selectedIndex) // Remove a refeição selecionada da lista
+                    selectedMealOption = nil // Reseta a opção selecionada para nil
                 }
 
                 dismiss()
@@ -114,21 +118,15 @@ struct RegisterSatisfactionSheetView: View {
                 .padding(.horizontal, 14)
                 .padding(.vertical, 7)
                 .frame(maxWidth: .infinity, alignment: .center)
-                .foregroundColor(isButtonEnabled ? Color.informationGreen : .gray) // Disable button if no checkbox is selected
+                .foregroundColor(isButtonEnabled ? Color.informationGreen : .gray)
                 .background(
                     RoundedRectangle(cornerRadius: 14)
-                        .fill(isButtonEnabled ? Color.informationGreen : Color.gray) // Change button color when disabled
+                        .fill(isButtonEnabled ? Color.informationGreen : Color.gray)
                 )
             }
             .disabled(!isButtonEnabled)
             .padding(.top, 16)
-//            Spacer()
         }
         .padding(16)
     }
 }
-
-//// Preview code remains unchanged
-//#Preview {
-//    RegisterSatisfactionSheetView()
-//}
