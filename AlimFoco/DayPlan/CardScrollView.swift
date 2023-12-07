@@ -10,25 +10,23 @@ struct CardScrollView: View {
             HStack(spacing: 10) {
                 ForEach(meals, id: \.self) { meal in
                     VStack(alignment: .leading) {
-                        Text("\(meal.name)")
+                        Text(meal.name == "" ? "Sem Título" : "\(meal.name)")
                             .foregroundColor(Color.informationGreen)
                             .bold()
                             .padding(.top, 8)
                             .padding(.horizontal, 16)
-                            .frame(maxWidth: .infinity, alignment: .leading) // Alinha o nome da refeição à esquerda
-                        
-                        // Display the first two items and weights
+                            .frame(maxWidth: .infinity, alignment: .leading)
+
                         ForEach(meal.itens.indices.prefix(2), id: \.self) { itemIndex in
                             VStack(alignment: .leading, spacing: 2) {
                                 Text("\(meal.itens[itemIndex])")
                                 Text("\(meal.weights[itemIndex]) g")
-                                    .foregroundColor(.gray) // Cor cinza padrão para os pesos
+                                    .foregroundColor(.gray)
                             }
                             .padding(.horizontal, 16)
                             .padding(.bottom, 4)
                         }
                         
-                        // Use DisclosureGroup for additional items and weights
                         if meal.itens.count > 2 {
                             DisclosureGroup(isExpanded: $isExpanded) {
                                 VStack(alignment: .leading, spacing: 2) {
@@ -36,7 +34,7 @@ struct CardScrollView: View {
                                         VStack(alignment: .leading, spacing: 2) {
                                             Text("\(meal.itens[itemIndex])")
                                             Text("\(meal.weights[itemIndex]) g")
-                                                .foregroundColor(.gray) // Cor cinza padrão para os pesos
+                                                .foregroundColor(.gray)
                                         }
                                         .padding(.horizontal, 8)
                                         .padding(.bottom, 4)
@@ -66,7 +64,6 @@ struct CardScrollView: View {
 
 
 
-// Exemplo de uso com Preview
 struct CardScrollView_Previews: PreviewProvider {
     static var previews: some View {
         CardScrollView(meals: [Meal(id: ObjectIdentifier(Meal.self), name: "Opção A", date: Date(), satisfaction: "", itens: ["Arroz", "Feijão"], weights: ["20","30"], mealType: "Almoço", registered: 0), Meal(id: ObjectIdentifier(Meal.self), name: "Opção B", date: Date(), satisfaction: "", itens: ["Macarrao", "Ervilha"], weights: ["20","30"], mealType: "Almoço", registered: 0)])

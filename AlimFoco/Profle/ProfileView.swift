@@ -18,24 +18,24 @@ struct ProfileView: View {
             NavigationStack {
                 List {
                     Section(header: Text("Configurações")) {
-                        NavigationLink(destination: Text("Assinatura")) {
-                            HStack {
-                                Image(systemName: "bag")
-                                    .frame(width: 16, height: 16)
-                                    .foregroundColor(.lightGreen)
-                                    .padding(.trailing, 12)
-                                VStack (alignment: .leading, content: {
-                                    Text("Assinatura")
-                                        .font(.system(size: 16))
-                                    Text("Planos de assinatura do app")
-                                        .font(.system(size: 14))
-                                        .foregroundColor(.gray)
-                                    
-                                })
-                            }
-                            
-                        }
-                        NavigationLink(destination: TotalMealsView().environmentObject(ModelMeal())) {
+//                        NavigationLink(destination: Text("Assinatura")) {
+//                            HStack {
+//                                Image(systemName: "bag")
+//                                    .frame(width: 16, height: 16)
+//                                    .foregroundColor(.lightGreen)
+//                                    .padding(.trailing, 12)
+//                                VStack (alignment: .leading, content: {
+//                                    Text("Assinatura")
+//                                        .font(.system(size: 16))
+//                                    Text("Planos de assinatura do app")
+//                                        .font(.system(size: 14))
+//                                        .foregroundColor(.gray)
+//                                    
+//                                })
+//                            }
+//                            
+//                        }
+                        NavigationLink(destination: TotalMealsView()) {
                             HStack {
                                 Image(systemName: "carrot")
                                     .frame(width: 16, height: 16)
