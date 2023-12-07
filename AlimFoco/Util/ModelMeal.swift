@@ -48,4 +48,15 @@ class ModelMeal: ObservableObject {
             // throw an error to tell the user that something has happened and the update was not successfull
         }
     }
+    
+    func deleteMeal(MealToBeDeleted: Meal) async throws {
+        Dictionary.removeValue(forKey: MealToBeDeleted.recordId!)
+        
+        do {
+            let _ = try await db.deleteRecord(withID: MealToBeDeleted.recordId!)
+        } catch {
+            Dictionary[MealToBeDeleted.recordId!] = MealToBeDeleted
+            print(error)
+        }
+    }
 }

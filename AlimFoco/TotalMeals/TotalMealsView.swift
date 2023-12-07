@@ -37,18 +37,27 @@ struct TotalMealsView: View {
             } else {
                 List {
                     ForEach(mealTypes, id:\.self) { mealType in
-                        let filteredMeals = meals.filter { meal in
-                            meal.mealType == mealType
+                        let filteredMeals = meals.filter {
+                            $0.mealType == mealType
                         }
                         
                         if !filteredMeals.isEmpty {
                             CollapsibleSection(dictionary: $showingSection, mealType: mealType, content: {
                                 ForEach(filteredMeals, id: \.self) { meal in
-                                    NavigationLink(destination: EditMealView(meals: meals, mealTypes: $mealTypes, meal: meal)) {
-                                        Text("Name will be here")
+                                    NavigationLink(destination: EditMealView(meals: meals, mealTypes: mealTypes, meal: meal)) {
+
+                                        if meal.name != "" {
+                                            Text(meal.name)
+                                        } else {
+                                            Text("Sem título")
+                                        }
                                     }
                                 }
-                                .onDelete(perform: deleteNavigationLinks)
+//                                .onDelete { offsets in
+//                                    for index in offsets {
+//                                        deleteNavigationLinks(filteredMeals[index])
+//                                    }
+//                                }
                             }, header: {
                                 Text(mealType)
                                     .fontWeight(.semibold)
@@ -67,26 +76,28 @@ struct TotalMealsView: View {
                                 Text("Adicionar Refeição")
                             }
                             
-                            Button {
-                                withAnimation(.spring()) {
-                                    isEditing.toggle()
-                                    editMode = isEditing ? .active : .inactive
-                                }
-                            } label: {
-                                let buttonText = isEditing ? "OK" : "Editar"
-                                Text(buttonText)
-                            }
+//                            Button {
+//                                withAnimation(.spring()) {
+//                                    isEditing.toggle()
+//                                    editMode = isEditing ? .active : .inactive
+//                                }
+//                            } label: {
+//                                let buttonText = isEditing ? "OK" : "Editar"
+//                                Text(buttonText)
+//                            }
                         } label: {
                             Image(systemName: "ellipsis.circle")
                                 .foregroundStyle(Color.informationGreen)
                         }
                     }
                 }
-                .environment(\.editMode, $editMode)
+//                .environment(\.editMode, $editMode)
             }
         }
 
         .onAppear(perform: {
+            print("carol")
+            
             Task {
                 do {
                     try await mealModel.populateMeals()
@@ -107,9 +118,17 @@ struct TotalMealsView: View {
         })
     }
     
-    func deleteNavigationLinks(at offsets: IndexSet) {
-//        addedItems.itens.remove(atOffsets: offsets)
-//        print(addedItems)
+    func deleteNavigationLinks(_ selectedMeal: Meal) {
+        withAnimation {
+            Task {
+                do {
+                    try await mealModel.deleteMeal(MealToBeDeleted: selectedMeal)
+//                    try await mealModel.populateMeals()
+                } catch {
+                    print(error)
+                }
+            }
+        }
         print("hello")
     }
 }

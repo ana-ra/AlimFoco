@@ -18,7 +18,7 @@ struct EditMealView: View {
     @State var meals: [Meal]
     @State var selection: String = ""
     @State var addedItems = MealItemList()
-    @Binding var mealTypes: [String]
+    @State var mealTypes: [String]
     @State var meal: Meal
     
     var body: some View {
