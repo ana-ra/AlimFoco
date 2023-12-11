@@ -20,8 +20,6 @@ struct DayPlanView: View {
     @State var isSatisfactionSheetPresented = false
     @State var filteredMealsState: [Meal] = []
     @State var accountStatusMessage: String? = nil
-    
-    let filteredMeals: [Meal] = []
     @State var nextMeals = ["Café da manhã", "Colação", "Almoço", "Lanche da Tarde", "Jantar"]
     var mealItems: [MealItem] {
         model.Mealitems
@@ -67,7 +65,7 @@ struct DayPlanView: View {
                 } else {
                     List{
                         Section(header: Text("Próximas refeições")) {
-                            if verifyRegister() {
+                            if verifyRegister() == 1 {
                                 HStack{
                                     Text("Todas as refeições do dia foram registradas")
                                 }
@@ -126,7 +124,7 @@ struct DayPlanView: View {
                             .background(Color(red: 0.95, green: 0.95, blue: 0.97))
                         
                         Section(header: Text("Registrado")) {
-                            if !verifyRegister() {
+                            if verifyRegister() == 0 {
                                 Text("Nenhuma refeição foi registrada.")
                             } else {
                                 ForEach(mealTypes.indices) { index in
@@ -171,7 +169,6 @@ struct DayPlanView: View {
                             if hasLoggedIn {
                                 do {
                                     try await modelMeal.populateMeals()
-//                                    filter()
                                 } catch {
                                     errorView()
                                     print(error)
@@ -179,21 +176,6 @@ struct DayPlanView: View {
                             }
                         }
                     }
-//                    .refreshable(action: {
-//                        withAnimation {
-//                            Task {
-//                                if hasLoggedIn {
-//                                    do {
-//                                        try await modelMeal.populateMeals()
-//                                        filter()
-//                                    } catch {
-//                                        errorView()
-//                                        print(error)
-//                                    }
-//                                }
-//                            }
-//                        }
-//                    })
                 }
             }.background(Color(UIColor.systemGroupedBackground))
             .onAppear {
@@ -205,7 +187,6 @@ struct DayPlanView: View {
                             case .available:
                                 accountStatusMessage = nil
                                 try await modelMeal.populateMeals()
-                                filter()
                             case .noAccount:
                                 accountStatusMessage = "Usuário não está logado no iCloud"
                             case .restricted:
@@ -226,7 +207,6 @@ struct DayPlanView: View {
                     Task {
                         do {
                             try await modelMeal.populateMeals()
-//                            filter()
                         } catch {
                             VStack {
                                 Spacer()
@@ -247,7 +227,6 @@ struct DayPlanView: View {
                 Task {
                     do {
                         try await modelMeal.populateMeals()
-//                        filter()
                     } catch {
                         VStack {
                             Spacer()
@@ -301,7 +280,7 @@ struct DayPlanView: View {
         }
     }
     
-    func verifyRegister() -> Bool {
+    func verifyRegister() -> Int {
         var contador = 0
         var numTypes = 5
         
@@ -327,9 +306,11 @@ struct DayPlanView: View {
         }
         
         if contador == numTypes {
-            return true
+            return 1
+        } else if contador == 0 {
+            return 0
         } else {
-            return false
+           return -1
         }
     }
 }
