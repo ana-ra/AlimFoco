@@ -80,7 +80,7 @@ struct ProfileView: View {
                 
             }
         }.sheet(isPresented: $isDeleteAccountSheetViewPresented, content: {
-            ProfileAccountSheetView( title: "Deseja resetar todos os dados associados ao aplicativo do iCloud?", secondaryButtonTitle: "Resetar conta").presentationDetents([.height(getHeight() / 3.5)])
+            ProfileAccountSheetView( title: "Deseja resetar todos os dados associados ao aplicativo do iCloud?", secondaryButtonTitle: "Resetar conta").presentationDetents([.height(getHeight() / 3.0)])
             
         })
     }
