@@ -26,7 +26,6 @@ struct CardScrollView: View {
                                 VStack(alignment: .leading, spacing: 2) {
                                     Text("\(meal.itens[itemIndex])")
                                     Text("\(meal.weights[itemIndex]) g")
-                                        .foregroundColor(.gray) // Cor cinza padrão para os pesos
                                 }.padding(.horizontal, 16)
                             }
                             }.foregroundColor(.black)

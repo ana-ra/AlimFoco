@@ -43,7 +43,6 @@ struct DisclosureView: View {
                                 }
                                 .padding(.horizontal, 16)
                                 .frame(width: getWidth() / 2.8, height: getHeight() / 20)
-                                .background(Color(red: 0.05, green: 0.51, blue: 0.44))
                                 .cornerRadius(14)
                             }
                             .padding(.vertical, 8)
@@ -60,9 +59,7 @@ struct DisclosureView: View {
                 }
                 
             }
-                .listRowBackground(Color(red: 0.95, green: 0.95, blue: 0.97))
                     .headerProminence(.increased)
-                    .background(Color(red: 0.95, green: 0.95, blue: 0.97))
             Section(header: Text("Registrado")) {
                 ForEach(mealTypes.indices) { index in
                     let filteredMeals = meals.filter { meal in
@@ -89,7 +86,6 @@ struct DisclosureView: View {
                                 }
                                 .padding(.horizontal, 16)
                                 .frame(width: getWidth() / 2.8, height: getHeight() / 20)
-                                .background(Color(red: 0.05, green: 0.51, blue: 0.44))
                                 .cornerRadius(14)
                             }
                             .padding(.vertical, 8)
@@ -105,11 +101,9 @@ struct DisclosureView: View {
                     }
                 }
             }
-            .listRowBackground(Color(red: 0.95, green: 0.95, blue: 0.97))
                 .headerProminence(.increased)
                 .background(Color(red: 0.95, green: 0.95, blue: 0.97))
         }
-        .background(Color(red: 0.95, green: 0.95, blue: 0.97))
         .sheet(isPresented: $isSatisfactionSheetPresented, content: {
                         RegisterSatisfactionSheetView(selectedMeal: $selectedMeal, filteredMeals: $filteredMealsState).presentationDetents([.height(getHeight())])
                             .tint(Color.informationGreen).environmentObject(ModelMeal()).background(Color(red: 0.95, green: 0.95, blue: 0.97))
