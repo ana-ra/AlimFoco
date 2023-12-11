@@ -13,7 +13,10 @@ struct AlimFocoApp: App {
     var body: some Scene {
         WindowGroup {
             MainView()
+                .environmentObject(ModelMeal())
+                .environmentObject(Model())
                 .tint(Color.informationGreen)
+                .preferredColorScheme(.light)
         }
     }
 }

@@ -8,15 +8,11 @@
 import SwiftUI
 
 struct NewMealView: View {
-//    @EnvironmentObject private var modelMealItem: Model
     @EnvironmentObject private var model: ModelMeal
     @Environment(\.dismiss) private var dismiss
     @State private var editMode = EditMode.inactive
     @State var showPopup: Bool = false
     @State var isEditing = false
-//    var mealItems: [MealItem] {
-//        model.Mealitems
-//    }
     @State private var isAddItemModalPresented = false
     @State var meals: [Meal]
     @State var selection: String = ""
@@ -28,15 +24,14 @@ struct NewMealView: View {
         NavigationStack {
             ZStack {
                 List {
-                    Section(header: Text("Título")
-                        .foregroundColor(.black) // Cor preta
-                        .textCase(.none)
-                        .font(Font.custom("SF Pro", size: 17))) {
-                                       TextField("Insira o título da refeição", text: $mealTitle)
-                                           .padding()
-                                   }
+                    Section{
+                        HStack {
+                            Text("Título")
+                            TextField("Insira o título da refeição", text: $mealTitle)
+                        }
+                    }
                     Section() {
-                                        Picker("Refeição", selection: $selection) {
+                        Picker(selection: $selection, label: Text("Selecione")) {
                                             ForEach(mealTypes, id: \.self) {
                                                 Text($0)
                                             }
@@ -44,7 +39,6 @@ struct NewMealView: View {
                                     }
                     
                     
-                    if addedItems.itens != [] {
                         Section {
                             ForEach(addedItems.itens.indices, id: \.self) { index in
                                 NavigationLink(destination: EditItemView(addedItems: $addedItems, index: index, item: addedItems.itens[index])) {
@@ -57,67 +51,73 @@ struct NewMealView: View {
                                 }
                             }
                            .onDelete(perform: deleteNavigationLinks)
+                            
+                            Button {
+                                isAddItemModalPresented.toggle()
+                            } label: {
+                                HStack {
+                                    Text("Adicionar Item")
+                                        .foregroundStyle(.black)
+                                    Spacer()
+                                    Image(systemName: "plus")
+                                }
+                            }
+                            
                         } header: {
                             HStack {
                                 Text("Itens")
                                 
                                 Spacer()
-                                
-                                Button {
-                                    withAnimation(.spring()) {
-                                        isEditing.toggle()
-                                        editMode = isEditing ? .active : .inactive
+                                if addedItems.itens != [] {
+                                    Button {
+                                        withAnimation(.spring()) {
+                                            isEditing.toggle()
+                                            editMode = isEditing ? .active : .inactive
+                                        }
+                                    } label: {
+                                        let buttonText = isEditing ? "OK" : "Editar"
+                                        Text(buttonText)
                                     }
-                                } label: {
-                                    let buttonText = isEditing ? "OK" : "Editar"
-                                    Text(buttonText)
                                 }
                             }
                         }
                         .headerProminence(.increased)
-                    }
                     
-                    Section {
-                        Button {
-                            isAddItemModalPresented.toggle()
-                        } label: {
-                            HStack {
-                                Text("Adicionar Item")
-                                    .foregroundStyle(.black)
-                                Spacer()
-                                Image(systemName: "plus")
-                            }
-                        }
-                    }
                 }
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
-                        if !showPopup {
                             Button {
-                                var items: [String] = []
-                                var weights: [String] = []
-                                
-                                for item in addedItems.itens {
-                                    items.append(item.alimento)
-                                    weights.append(item.weight)
-                                }
-                                
-                                let newMeal = Meal(id: ObjectIdentifier(Meal.self), name: mealTitle, date: Date(), satisfaction: "", itens: items, weights: weights, mealType: selection, registered: 0)
-                                
-                                Task {
-                                    try await model.addMeal(meal: newMeal)
-                                }
-                                
-                                withAnimation {
-                                    showPopup.toggle()
-
+                                if mealTitle != "" && addedItems.itens != [] {
+                                    var items: [String] = []
+                                    var weights: [String] = []
+                                    
+                                    for item in addedItems.itens {
+                                        items.append(item.alimento)
+                                        weights.append(item.weight)
+                                    }
+                                    
+                                    let newMeal = Meal(id: ObjectIdentifier(Meal.self), name: mealTitle, date: Date(), satisfaction: "", itens: items, weights: weights, mealType: selection, registered: 0)
+                                    
+                                    Task {
+                                        try await model.addMeal(meal: newMeal)
+                                    }
+                                    
+                                    withAnimation {
+                                        showPopup.toggle()
+                                        
+                                    }
                                 }
                             } label: {
-                                Text("Cadastrar")
-                                    .fontWeight(.semibold)
+                                if mealTitle != "" && addedItems.itens != [] {
+                                    Text("Cadastrar")
+                                        .fontWeight(.semibold)
+                                } else {
+                                    Text("Cadastrar")
+                                        .foregroundColor( .gray)
+                                }
+                                
                             }
                             .padding()
-                        }
                     }
                 }
                 .environment(\.editMode, $editMode)

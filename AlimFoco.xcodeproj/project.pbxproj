@@ -15,9 +15,9 @@
 		05501AC32AF149E5004DCA2C /* DayPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05501AC22AF149E5004DCA2C /* DayPlanView.swift */; };
 		0574EF5B2AF1418400881448 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0574EF5A2AF1418400881448 /* Model.swift */; };
 		0574EF5D2AF1418600881448 /* MealItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0574EF5C2AF1418600881448 /* MealItem.swift */; };
-		0598AC6B2B18CA0400449D40 /* MealType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0598AC6A2B18CA0400449D40 /* MealType.swift */; };
-		0598AC6D2B18CF2000449D40 /* ModelMealType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0598AC6C2B18CF2000449D40 /* ModelMealType.swift */; };
 		202344A72B0E1EBE0041E818 /* EditItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202344A62B0E1EBE0041E818 /* EditItemView.swift */; };
+		205DAD452B1E106F001F1D85 /* CollapsibleSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205DAD442B1E106F001F1D85 /* CollapsibleSection.swift */; };
+		205DAD472B1F577B001F1D85 /* EditMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205DAD462B1F577B001F1D85 /* EditMealView.swift */; };
 		209A65B72B0CF27D00A36DBF /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A65B62B0CF27D00A36DBF /* FilterView.swift */; };
 		20CE3E882B0E7760004521A4 /* NewMealPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE3E872B0E7760004521A4 /* NewMealPopUpView.swift */; };
 		20E9CAB02B0D35A30020A495 /* SectionIndexTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E9CAAF2B0D35A30020A495 /* SectionIndexTitles.swift */; };
@@ -31,6 +31,8 @@
 		3F489C112ADEA787008F853C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F489C102ADEA787008F853C /* Preview Assets.xcassets */; };
 		3FB8A9C12B0F8171007BFA87 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB8A9C02B0F8171007BFA87 /* MainView.swift */; };
 		3FB8A9C42B0F8803007BFA87 /* TotalMealsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB8A9C32B0F8803007BFA87 /* TotalMealsView.swift */; };
+		9A1B3D592B1F47C100337F3B /* MealSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B3D582B1F47C100337F3B /* MealSheetView.swift */; };
+		9A1B3D5B2B1F61C300337F3B /* DisclosureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B3D5A2B1F61C300337F3B /* DisclosureView.swift */; };
 		9AEECA162B1A0AA0006AA925 /* SubscriptionPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEECA152B1A0AA0006AA925 /* SubscriptionPlan.swift */; };
 		A7508B072B03A58100FF6623 /* RegisterSatisfactionSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7508B062B03A58100FF6623 /* RegisterSatisfactionSheetView.swift */; };
 		A7508B602B14CF3F00FF6623 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7508B5F2B14CF3F00FF6623 /* WidgetKit.framework */; };
@@ -87,9 +89,9 @@
 		0574EF552AF12C7A00881448 /* AlimFoco.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AlimFoco.entitlements; sourceTree = "<group>"; };
 		0574EF5A2AF1418400881448 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		0574EF5C2AF1418600881448 /* MealItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealItem.swift; sourceTree = "<group>"; };
-		0598AC6A2B18CA0400449D40 /* MealType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealType.swift; sourceTree = "<group>"; };
-		0598AC6C2B18CF2000449D40 /* ModelMealType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelMealType.swift; sourceTree = "<group>"; };
 		202344A62B0E1EBE0041E818 /* EditItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemView.swift; sourceTree = "<group>"; };
+		205DAD442B1E106F001F1D85 /* CollapsibleSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsibleSection.swift; sourceTree = "<group>"; };
+		205DAD462B1F577B001F1D85 /* EditMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMealView.swift; sourceTree = "<group>"; };
 		209A65B62B0CF27D00A36DBF /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		20CE3E872B0E7760004521A4 /* NewMealPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMealPopUpView.swift; sourceTree = "<group>"; };
 		20E9CAAF2B0D35A30020A495 /* SectionIndexTitles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionIndexTitles.swift; sourceTree = "<group>"; };
@@ -105,6 +107,8 @@
 		3F489C172ADEA787008F853C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3FB8A9C02B0F8171007BFA87 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		3FB8A9C32B0F8803007BFA87 /* TotalMealsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalMealsView.swift; sourceTree = "<group>"; };
+		9A1B3D582B1F47C100337F3B /* MealSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealSheetView.swift; sourceTree = "<group>"; };
+		9A1B3D5A2B1F61C300337F3B /* DisclosureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclosureView.swift; sourceTree = "<group>"; };
 		9AEECA152B1A0AA0006AA925 /* SubscriptionPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionPlan.swift; sourceTree = "<group>"; };
 		A7508B062B03A58100FF6623 /* RegisterSatisfactionSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterSatisfactionSheetView.swift; sourceTree = "<group>"; };
 		A7508B5D2B14CF3F00FF6623 /* AlimFocoWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AlimFocoWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -208,6 +212,8 @@
 			isa = PBXGroup;
 			children = (
 				3FB8A9C32B0F8803007BFA87 /* TotalMealsView.swift */,
+				205DAD442B1E106F001F1D85 /* CollapsibleSection.swift */,
+				205DAD462B1F577B001F1D85 /* EditMealView.swift */,
 			);
 			path = TotalMeals;
 			sourceTree = "<group>";
@@ -253,7 +259,6 @@
 				A76F0B442B02552D007B2951 /* ErrorState.swift */,
 				20F324802B0FD1D000CF9C7F /* CustomColors.swift */,
 				052C72082B16125C00C7D9D3 /* ModelMeal.swift */,
-				0598AC6C2B18CF2000449D40 /* ModelMealType.swift */,
 				A7A33A782B1911E8006E5919 /* EmptyState.swift */,
 			);
 			path = Util;
@@ -265,10 +270,11 @@
 				05501AC22AF149E5004DCA2C /* DayPlanView.swift */,
 				3F28DFCE2AFD0B6400F1E4EC /* CardScrollView.swift */,
 				0574EF5C2AF1418600881448 /* MealItem.swift */,
+				9A1B3D5A2B1F61C300337F3B /* DisclosureView.swift */,
 				05501AC02AF149B4004DCA2C /* DataSelectorView.swift */,
 				A7508B062B03A58100FF6623 /* RegisterSatisfactionSheetView.swift */,
+				9A1B3D582B1F47C100337F3B /* MealSheetView.swift */,
 				054F38F02B14CF2E009AB4F8 /* Meal.swift */,
-				0598AC6A2B18CA0400449D40 /* MealType.swift */,
 			);
 			path = DayPlan;
 			sourceTree = "<group>";
@@ -405,26 +411,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A1B3D592B1F47C100337F3B /* MealSheetView.swift in Sources */,
 				A7A33A772B182264006E5919 /* ProfileAccountSheetView.swift in Sources */,
 				20F1F0DD2B0F7AAB001DCA3B /* NewMealView.swift in Sources */,
 				0574EF5B2AF1418400881448 /* Model.swift in Sources */,
 				3FB8A9C42B0F8803007BFA87 /* TotalMealsView.swift in Sources */,
 				20F64B892AFE611C00D452B2 /* AddItemModalView.swift in Sources */,
 				05501AC32AF149E5004DCA2C /* DayPlanView.swift in Sources */,
+				9A1B3D5B2B1F61C300337F3B /* DisclosureView.swift in Sources */,
 				209A65B72B0CF27D00A36DBF /* FilterView.swift in Sources */,
 				A7A33A712B17B950006E5919 /* LoginView.swift in Sources */,
 				A7A33A752B17CDAF006E5919 /* ProfileView.swift in Sources */,
 				A7A33A422B17741C006E5919 /* OnboardingView.swift in Sources */,
-				0598AC6B2B18CA0400449D40 /* MealType.swift in Sources */,
 				20F324812B0FD1D000CF9C7F /* CustomColors.swift in Sources */,
 				20F1F0E02B0F80E1001DCA3B /* HistoryView.swift in Sources */,
+				205DAD472B1F577B001F1D85 /* EditMealView.swift in Sources */,
 				20E9CAB02B0D35A30020A495 /* SectionIndexTitles.swift in Sources */,
 				A7A33A6F2B17B945006E5919 /* WelcomeView.swift in Sources */,
 				202344A72B0E1EBE0041E818 /* EditItemView.swift in Sources */,
-				0598AC6D2B18CF2000449D40 /* ModelMealType.swift in Sources */,
 				A7508B072B03A58100FF6623 /* RegisterSatisfactionSheetView.swift in Sources */,
 				3F489C0A2ADEA786008F853C /* AlimFocoApp.swift in Sources */,
 				054F38F12B14CF2E009AB4F8 /* Meal.swift in Sources */,
+				205DAD452B1E106F001F1D85 /* CollapsibleSection.swift in Sources */,
 				05280D5E2AEAB50D007F0310 /* tbca.swift in Sources */,
 				20CE3E882B0E7760004521A4 /* NewMealPopUpView.swift in Sources */,
 				3FB8A9C12B0F8171007BFA87 /* MainView.swift in Sources */,
