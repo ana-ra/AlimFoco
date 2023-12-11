@@ -20,6 +20,7 @@ struct EditMealView: View {
     @State var addedItems = MealItemList()
     @State var mealTypes: [String]
     @State var meal: Meal
+    @State var firstAppearence = true
     
     var body: some View {
         NavigationStack {
@@ -147,8 +148,12 @@ struct EditMealView: View {
         .navigationTitle("Editar Refeição")
         .navigationBarTitleDisplayMode(.inline)
         .onAppear(perform: {
-            for i in 0..<meal.itens.count {
-                addedItems.addItem(item: MealItem(id: ObjectIdentifier(MealItem.self), alimento: meal.itens[i], weight: meal.weights[i]))
+            if firstAppearence {
+                for i in 0..<meal.itens.count {
+                    addedItems.addItem(item: MealItem(id: ObjectIdentifier(MealItem.self), alimento: meal.itens[i], weight: meal.weights[i]))
+                }
+                
+                firstAppearence.toggle()
             }
             
             selection = meal.mealType

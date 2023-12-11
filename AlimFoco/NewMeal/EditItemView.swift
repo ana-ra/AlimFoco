@@ -55,14 +55,6 @@ struct EditItemView: View {
                 
                 Section {
                     Button {
-//                        for i in 0..<addedItems.itens{
-//                            if let item = item {
-//                                if meal.items[i].name == item.nome {
-//                                    meal.items.remove(at: i)
-//                                    break
-//                                }
-//                            }
-//                        }
                         // insirar logica de apagar item
                         addedItems.itens.remove(at: index)
                         dismiss()
