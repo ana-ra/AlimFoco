@@ -18,7 +18,6 @@ struct HistoryView: View {
     }
     @State var naoRealizados = 0
     
-    
     var body: some View {
         NavigationStack {
             List {

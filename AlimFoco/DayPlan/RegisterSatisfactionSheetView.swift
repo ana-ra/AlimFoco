@@ -94,8 +94,9 @@ struct RegisterSatisfactionSheetView: View {
             }
             Spacer()
             Button(action: {
-                let editedMeal = filteredMeals[selectedMealOption!]
-                
+                var editedMeal = filteredMeals[selectedMealOption!]
+                editedMeal.registered = 1
+                editedMeal.date = Date()
                 Task {
                     try await model.updateMeal(editedMeal: editedMeal)
                 }
