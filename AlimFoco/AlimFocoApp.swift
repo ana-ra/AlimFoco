@@ -16,6 +16,7 @@ struct AlimFocoApp: App {
                 .environmentObject(ModelMeal())
                 .environmentObject(Model())
                 .tint(Color.informationGreen)
+                .preferredColorScheme(.light)
         }
     }
 }

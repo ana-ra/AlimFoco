@@ -1,63 +1,49 @@
 import SwiftUI
 
 struct CardScrollView: View {
-    @State private var isExpanded: Bool = false
     var meals: [Meal]
+    @State var isMealSheetViewPresented = false
+
     @EnvironmentObject private var model: ModelMeal
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 10) {
+            HStack(spacing: 8) {
                 ForEach(meals, id: \.self) { meal in
-                    VStack(alignment: .leading) {
-                        Text(meal.name == "" ? "Sem Título" : "\(meal.name)")
-                            .foregroundColor(Color.informationGreen)
-                            .bold()
-                            .padding(.top, 8)
-                            .padding(.horizontal, 16)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-
-                        ForEach(meal.itens.indices.prefix(2), id: \.self) { itemIndex in
-                            VStack(alignment: .leading, spacing: 2) {
-                                Text("\(meal.itens[itemIndex])")
-                                Text("\(meal.weights[itemIndex]) g")
-                                    .foregroundColor(.gray)
-                            }
-                            .padding(.horizontal, 16)
-                            .padding(.bottom, 4)
-                        }
-                        
-                        if meal.itens.count > 2 {
-                            DisclosureGroup(isExpanded: $isExpanded) {
-                                VStack(alignment: .leading, spacing: 2) {
-                                    ForEach(2..<meal.itens.count, id: \.self) { itemIndex in
-                                        VStack(alignment: .leading, spacing: 2) {
-                                            Text("\(meal.itens[itemIndex])")
-                                            Text("\(meal.weights[itemIndex]) g")
-                                                .foregroundColor(.gray)
-                                        }
-                                        .padding(.horizontal, 8)
-                                        .padding(.bottom, 4)
-                                    }
-                                }
-                            } label: {
-                                Text("Ver refeição completa")
+                        Button {
+                            isMealSheetViewPresented.toggle()
+                        } label: {
+                            VStack(alignment: .leading) {
+                                Text(meal.name == "" ? "Sem Título" : "\(meal.name)")
                                     .bold()
-                                    .foregroundColor(Color(red: 0.05, green: 0.51, blue: 0.44))
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    .padding(.bottom, 4)
-
+                                    .padding(.top, 8)
+                                    .padding(.horizontal, 16)
+                                    .frame(maxWidth: .infinity, alignment: .leading) // Alinha o nome da refeição à esquerda
+                                    .foregroundStyle(Color(.teal))
+                                
+                                // Display the first two items and weights
+                            ForEach(meal.itens.indices.prefix(1), id: \.self) { itemIndex in
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text("\(meal.itens[itemIndex])")
+                                    Text("\(meal.weights[itemIndex]) g")
+                                }.padding(.horizontal, 16)
                             }
-                            .padding(.horizontal, 8)
+                            }.foregroundColor(.black)
+                            .padding(.bottom, 8)
+                        
+                        // Use DisclosureGroup for additional items and weights
+                        
+                    }.sheet(isPresented: $isMealSheetViewPresented, content: {
+                        NavigationStack {
+                            MealSheetView(meal: meal)
                         }
-                    }
-                    .frame(width: 267, alignment: .leading)
-                    .background(.white)
-                    .cornerRadius(14)
-                    .padding(.bottom, 8)
+                    })
                 }
+                .frame(width: 267, alignment: .leading)
+                .background(.white)
+                .cornerRadius(14)
+                .padding(.bottom, 8)
             }
-            .padding(.horizontal, 10)
         }
     }
 }
