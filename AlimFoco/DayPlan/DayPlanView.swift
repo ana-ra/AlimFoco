@@ -49,81 +49,92 @@ struct DayPlanView: View {
                 } else {
                     List{
                         Section(header: Text("Próximas Refeições")) {
-                            ForEach(nextMeals.indices) { index in
-                                let filteredMeals = meals.filter { meal in
-                                    meal.mealType == nextMeals[index]
-                                }
-                                if !filteredMeals.isEmpty {
-                                    DisclosureGroup {
-                                        CardScrollView(meals: filteredMeals)
-                                            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
-                                        Button(action: {
-                                            filteredMealsState = filteredMeals
-                                            selectedMeal = mealTypes[index]
-                                            isSatisfactionSheetPresented.toggle()
-                                        }) {
-                                            HStack(alignment: .center, spacing: 4) {
-                                                Image(systemName: "note.text.badge.plus")
-                                                    .foregroundColor(Color.white)
-                                                
-                                                Text("Registrar")
-                                                    .foregroundColor(Color.white)
-                                                
-                                            }
-                                            .padding(.horizontal, 16)
-                                            .frame(width: getWidth() / 2.8, height: getHeight() / 20)
-                                            .background(Color(red: 0.05, green: 0.51, blue: 0.44))
-                                            .cornerRadius(14)
-                                        }
-                                        .padding(.vertical, 8)
-                                        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
-                                        
-                                    } label: {
-                                        Text(mealTypes[index])
-                                            .fontWeight(.semibold)
+                            if verifyRegister(n: 0) {
+                                HStack{
+                                    Text("Todas as refeições do dia foram registradas")
+                                }.padding( 8)
+                                    .background(Color.white)
+                                    .cornerRadius(14)
+                            } else {
+                                ForEach(nextMeals.indices) { index in
+                                    let filteredMeals = meals.filter { meal in
+                                        meal.mealType == nextMeals[index]
                                     }
-                                    .listRowSeparator(.hidden)
-                                    .listRowInsets(EdgeInsets(top: 50, leading: 20, bottom: 20, trailing: 10))
+                                    if !filteredMeals.isEmpty {
+                                        DisclosureGroup {
+                                            CardScrollView(meals: filteredMeals)
+                                                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
+                                            Button(action: {
+                                                filteredMealsState = filteredMeals
+                                                selectedMeal = mealTypes[index]
+                                                isSatisfactionSheetPresented.toggle()
+                                            }) {
+                                                HStack(alignment: .center, spacing: 4) {
+                                                    Image(systemName: "note.text.badge.plus")
+                                                        .foregroundColor(Color.white)
+                                                    
+                                                    Text("Registrar")
+                                                        .foregroundColor(Color.white)
+                                                    
+                                                }
+                                                .padding(.horizontal, 16)
+                                                .frame(width: getWidth() / 2.8, height: getHeight() / 20)
+                                                .background(Color.teal)
+                                                .cornerRadius(14)
+                                            }
+                                            .padding(.vertical, 8)
+                                            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
+                                            
+                                        } label: {
+                                            Text(mealTypes[index])
+                                                .fontWeight(.semibold)
+                                        }
+                                        .listRowSeparator(.hidden)
+                                        .listRowInsets(EdgeInsets(top: 50, leading: 20, bottom: 20, trailing: 10))
+                                    }
                                 }
                             }
-                            
-                        }.listRowBackground(Color(red: 0.95, green: 0.95, blue: 0.97))
+                        }.listRowBackground(Color.clear)
                             .headerProminence(.increased)
                             .background(Color(red: 0.95, green: 0.95, blue: 0.97))
                         
                         Section(header: Text("Registrado")) {
-                            ForEach(mealTypes.indices) { index in
-                                let filteredMeals = meals.filter { meal in
-                                    meal.mealType == mealTypes[index] && meal.registered == 1 && selectedDate.get(.month) == meal.date.get(.month) && selectedDate.get(.day) == meal.date.get(.day)
-                                }
-                                
-                                if !filteredMeals.isEmpty {
-                                    DisclosureGroup {
-                                        CardScrollView(meals: filteredMeals)
-                                            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
-                                        Button(action: {
-                                            filteredMealsState = filteredMeals
-                                            selectedMeal = mealTypes[index]
-                                            isSatisfactionSheetPresented.toggle()
-                                        }) {
-                                                
-                                            Text("Alterar Registro")
-                                                .foregroundColor(Color.informationGreen)
-                                                
-                                        }
-                                        .padding(.vertical, 8)
-                                        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
-                                        
-                                    } label: {
-                                        Text(mealTypes[index])
-                                            .fontWeight(.semibold)
+                            if verifyRegister(n: 1) {
+                                Text("Nenhuma refeição foi registrada.")
+                            } else {
+                                ForEach(mealTypes.indices) { index in
+                                    let filteredMeals = meals.filter { meal in
+                                        meal.mealType == mealTypes[index] && meal.registered == 1 && selectedDate.get(.month) == meal.date.get(.month) && selectedDate.get(.day) == meal.date.get(.day)
                                     }
-                                    .listRowSeparator(.hidden)
-                                    .listRowInsets(EdgeInsets(top: 50, leading: 20, bottom: 20, trailing: 10))
+                                    
+                                    if !filteredMeals.isEmpty {
+                                        DisclosureGroup {
+                                            CardScrollView(meals: filteredMeals)
+                                                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
+                                            Button(action: {
+                                                filteredMealsState = filteredMeals
+                                                selectedMeal = mealTypes[index]
+                                                isSatisfactionSheetPresented.toggle()
+                                            }) {
+                                                
+                                                Text("Alterar Registro")
+                                                    .foregroundColor(Color.informationGreen)
+                                                
+                                            }
+                                            .padding(.vertical, 8)
+                                            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
+                                            
+                                        } label: {
+                                            Text(mealTypes[index])
+                                                .fontWeight(.semibold)
+                                        }
+                                        .listRowSeparator(.hidden)
+                                        .listRowInsets(EdgeInsets(top: 50, leading: 20, bottom: 20, trailing: 10))
+                                    }
                                 }
                             }
                         }
-                        .listRowBackground(Color(red: 0.95, green: 0.95, blue: 0.97))
+                        .listRowBackground(Color.clear)
                             .headerProminence(.increased)
                             .background(Color(red: 0.95, green: 0.95, blue: 0.97))
                     }
@@ -262,6 +273,30 @@ struct DayPlanView: View {
             )
             Spacer()
         }
+    }
+    
+    func verifyRegister(n: Int) -> Bool {
+        
+        if n == 0 {
+            for  index in nextMeals.indices {
+                let filteredMeals = meals.filter { meal in
+                    meal.mealType == nextMeals[index]
+                }
+                if !filteredMeals.isEmpty {
+                    return(false)
+                }
+            }
+        } else {
+                for index in mealTypes.indices {
+                    let filteredMeals = meals.filter { meal in
+                        meal.mealType == mealTypes[index] && meal.registered == 1 && selectedDate.get(.month) == meal.date.get(.month) && selectedDate.get(.day) == meal.date.get(.day)
+                    }
+                }
+                if !filteredMeals.isEmpty {
+                    return(false)
+                }
+            }
+        return(true)
     }
 }
                             
