@@ -81,6 +81,7 @@ struct RegisterSatisfactionSheetView: View {
                             }
                             .onTapGesture {
                                 withAnimation {
+                                    
                                     filteredMeals[index].registered = 1
                                     self.selectedMealOption = self.selectedMealOption == index ? nil : index
                                 }

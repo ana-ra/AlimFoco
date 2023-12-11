@@ -17,7 +17,7 @@ struct Meal: CKRecordValueProtocol, Identifiable {
     var id: ObjectIdentifier
     var recordId: CKRecord.ID?
     var name: String
-    var date: Date
+    var date: Date?
     var satisfaction: String
     var itens: [String]
     var weights: [String]

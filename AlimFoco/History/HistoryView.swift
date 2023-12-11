@@ -185,15 +185,15 @@ struct HistoryView: View {
         notRegistered = 0
         
         let registeredMeals = meals.filter { meal in
-            var mealMonth = monthNumToName(num: meal.date.get(.month))
-            var mealYear = meal.date.get(.year)
+            var mealMonth = monthNumToName(num: meal.date!.get(.month))
+            var mealYear = meal.date!.get(.year)
             
             return (selectedMonth == mealMonth && mealYear == selectedDate.get(.year) && meal.registered == 1)
         }
         
         let notRegisteredMeals = meals.filter { meal in
-            var mealMonth = monthNumToName(num: meal.date.get(.month))
-            var mealYear = meal.date.get(.year)
+            var mealMonth = monthNumToName(num: meal.date!.get(.month))
+            var mealYear = meal.date!.get(.year)
             
             return (selectedMonth == mealMonth && mealYear == selectedDate.get(.year) && meal.registered == 0)
         }
