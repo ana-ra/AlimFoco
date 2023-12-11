@@ -13,7 +13,7 @@ struct DayPlanView: View {
     
     @EnvironmentObject private var model: Model
     @EnvironmentObject private var modelMeal: ModelMeal
-    
+    @State var isAlter = false
     @State var selectedMeal: String = ""
     @State var selectedDate = Date()
     @State var isNavigatingToNewMealView = false
@@ -92,6 +92,7 @@ struct DayPlanView: View {
                                             Button(action: {
                                                 filteredMealsState = filteredMeals
                                                 selectedMeal = mealTypes[index]
+                                                isAlter = false
                                                 isSatisfactionSheetPresented.toggle()
                                             }) {
                                                 HStack(alignment: .center, spacing: 4) {
@@ -132,12 +133,17 @@ struct DayPlanView: View {
                                         meal.mealType == mealTypes[index] && meal.registered == 1 && selectedDate.get(.month) == meal.date.get(.month) && selectedDate.get(.day) == meal.date.get(.day)
                                     }
                                     
+                                    let registrationSheetMeals = meals.filter { meal in
+                                        meal.mealType == mealTypes[index]
+                                    }
+                                    
                                     if !filteredMeals.isEmpty {
                                         DisclosureGroup {
                                             CardScrollView(meals: filteredMeals)
                                                 .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
                                             Button(action: {
-                                                filteredMealsState = filteredMeals
+                                                filteredMealsState = registrationSheetMeals
+                                                isAlter = true
                                                 selectedMeal = mealTypes[index]
                                                 isSatisfactionSheetPresented.toggle()
                                             }) {
@@ -251,7 +257,7 @@ struct DayPlanView: View {
             }
             .navigationTitle("Plano Alimentar")
             .sheet(isPresented: $isSatisfactionSheetPresented, content: {
-                RegisterSatisfactionSheetView(selectedMeal: $selectedMeal, filteredMeals: $filteredMealsState).presentationDetents([.height(getHeight())])
+                RegisterSatisfactionSheetView(selectedMeal: $selectedMeal, filteredMeals: $filteredMealsState, isAlter: isAlter, selectedDate: selectedDate).presentationDetents([.height(getHeight())])
                     .tint(Color.informationGreen).environmentObject(ModelMeal()).background(Color(red: 0.95, green: 0.95, blue: 0.97))
             })
         }

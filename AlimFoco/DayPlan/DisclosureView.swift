@@ -119,7 +119,7 @@ struct DisclosureView: View {
         }
         
         .sheet(isPresented: $isSatisfactionSheetPresented, content: {
-                        RegisterSatisfactionSheetView(selectedMeal: $selectedMeal, filteredMeals: $filteredMealsState).presentationDetents([.height(getHeight())])
+            RegisterSatisfactionSheetView(selectedMeal: $selectedMeal, filteredMeals: $filteredMealsState, isAlter: false, selectedDate: selectedDate).presentationDetents([.height(getHeight())])
                             .tint(Color.informationGreen).environmentObject(ModelMeal()).background(Color(red: 0.95, green: 0.95, blue: 0.97))
                     })
             
