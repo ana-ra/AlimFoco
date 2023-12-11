@@ -30,14 +30,14 @@ class ModelMeal: ObservableObject {
     }
     
     func updateMeal(editedMeal: Meal) async throws {
-//        Dictionary[editedMeal.recordId!]?.registered = 1
+        Dictionary[editedMeal.recordId!]?.registered = editedMeal.registered
         Dictionary[editedMeal.recordId!]?.itens = editedMeal.itens
         Dictionary[editedMeal.recordId!]?.weights = editedMeal.weights
         Dictionary[editedMeal.recordId!]?.mealType = editedMeal.mealType
         
         do {
             let record = try await db.record(for: editedMeal.recordId!)
-//            record[RecordKeysMeal.registered.rawValue] = 1
+            record[RecordKeysMeal.registered.rawValue] = editedMeal.registered
             record[RecordKeysMeal.itens.rawValue] = editedMeal.itens
             record[RecordKeysMeal.weights.rawValue] = editedMeal.weights
             record[RecordKeysMeal.mealType.rawValue] = editedMeal.mealType

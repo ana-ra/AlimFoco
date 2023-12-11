@@ -46,12 +46,12 @@ struct RegisterSatisfactionSheetView: View {
                             Image(systemName: self.selectedOption == index ? "checkmark.circle.fill" : "checkmark.circle")
                                 .resizable()
                                 .frame(width: 22.0, height: 22.0)
-                                .onTapGesture {
-                                    withAnimation {
-                                        self.selectedOption = self.selectedOption == index ? nil : index
-                                    }
-                                }
                                 .foregroundColor(self.selectedOption == index ? Color.informationGreen : .secondary)
+                        }
+                        .onTapGesture {
+                            withAnimation {
+                                self.selectedOption = self.selectedOption == index ? nil : index
+                            }
                         }
                         .padding(.vertical, 8)
                     }
@@ -61,7 +61,7 @@ struct RegisterSatisfactionSheetView: View {
             }
             .frame(height: getHeight()/6)
             
-            if selectedOption == 0 && selectedMealOption == nil {
+            if selectedOption == 0  {
                 Text("Qual dessas opções você comeu?")
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .fontWeight(.semibold)
@@ -77,13 +77,12 @@ struct RegisterSatisfactionSheetView: View {
                                 Image(systemName: self.selectedMealOption == index ? "checkmark.circle.fill" : "checkmark.circle")
                                     .resizable()
                                     .frame(width: 22.0, height: 22.0)
-                                    .onTapGesture {
-                                        withAnimation {
-                                            filteredMeals[index].registered = 1
-                                            self.selectedMealOption = self.selectedMealOption == index ? nil : index
-                                        }
-                                    }
                                     .foregroundColor(self.selectedMealOption == index ? Color.informationGreen : .secondary)
+                            }
+                            .onTapGesture {
+                                withAnimation {
+                                    self.selectedMealOption = self.selectedMealOption == index ? nil : index
+                                }
                             }
                             .padding(.vertical, 8)
                         }
@@ -94,15 +93,11 @@ struct RegisterSatisfactionSheetView: View {
             }
             Spacer()
             Button(action: {
-                if let selectedIndex = selectedMealOption {
-                    let editedMeal = filteredMeals[selectedIndex]
-                    
-                    Task {
-                        try await model.updateMeal(editedMeal: editedMeal)
-                    }
-
-                    filteredMeals.remove(at: selectedIndex) // Remove a refeição selecionada da lista
-                    selectedMealOption = nil // Reseta a opção selecionada para nil
+                var editedMeal = filteredMeals[selectedMealOption!]
+                editedMeal.registered = 1
+                editedMeal.date = Date()
+                Task {
+                    try await model.updateMeal(editedMeal: editedMeal)
                 }
 
                 dismiss()
