@@ -49,7 +49,7 @@ struct DayPlanView: View {
                 } else {
                     DisclosureView(meals: meals)
                 }
-            }.background(Color(red: 0.95, green: 0.95, blue: 0.97))
+            }
             .onAppear {
                 Task {
                     if hasLoggedIn {
