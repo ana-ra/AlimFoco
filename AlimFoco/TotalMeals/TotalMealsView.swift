@@ -53,11 +53,11 @@ struct TotalMealsView: View {
                                         }
                                     }
                                 }
-//                                .onDelete { offsets in
-//                                    for index in offsets {
-//                                        deleteNavigationLinks(filteredMeals[index])
-//                                    }
-//                                }
+                                .onDelete { offsets in
+                                    for index in offsets {
+                                        deleteNavigationLinks(filteredMeals[index])
+                                    }
+                                }
                             }, header: {
                                 Text(mealType)
                                     .fontWeight(.semibold)
@@ -76,28 +76,26 @@ struct TotalMealsView: View {
                                 Text("Adicionar Refeição")
                             }
                             
-//                            Button {
-//                                withAnimation(.spring()) {
-//                                    isEditing.toggle()
-//                                    editMode = isEditing ? .active : .inactive
-//                                }
-//                            } label: {
-//                                let buttonText = isEditing ? "OK" : "Editar"
-//                                Text(buttonText)
-//                            }
+                            Button {
+                                withAnimation(.spring()) {
+                                    isEditing.toggle()
+                                    editMode = isEditing ? .active : .inactive
+                                }
+                            } label: {
+                                let buttonText = isEditing ? "OK" : "Editar"
+                                Text(buttonText)
+                            }
                         } label: {
                             Image(systemName: "ellipsis.circle")
                                 .foregroundStyle(Color.informationGreen)
                         }
                     }
                 }
-//                .environment(\.editMode, $editMode)
+                .environment(\.editMode, $editMode)
             }
         }
 
         .onAppear(perform: {
-            print("carol")
-            
             Task {
                 do {
                     try await mealModel.populateMeals()
@@ -123,7 +121,7 @@ struct TotalMealsView: View {
             Task {
                 do {
                     try await mealModel.deleteMeal(MealToBeDeleted: selectedMeal)
-//                    try await mealModel.populateMeals()
+                    try await mealModel.populateMeals()
                 } catch {
                     print(error)
                 }
