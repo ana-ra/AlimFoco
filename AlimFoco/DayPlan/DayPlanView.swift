@@ -128,6 +128,34 @@ struct DayPlanView: View {
                             .background(Color(red: 0.95, green: 0.95, blue: 0.97))
                     }
                     .background(Color(red: 0.95, green: 0.95, blue: 0.97))
+                    .refreshable {
+                        Task {
+                            if hasLoggedIn {
+                                do {
+                                    try await modelMeal.populateMeals()
+                                    filter()
+                                } catch {
+                                    errorView()
+                                    print(error)
+                                }
+                            }
+                        }
+                    }
+//                    .refreshable(action: {
+//                        withAnimation {
+//                            Task {
+//                                if hasLoggedIn {
+//                                    do {
+//                                        try await modelMeal.populateMeals()
+//                                        filter()
+//                                    } catch {
+//                                        errorView()
+//                                        print(error)
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    })
                 }
             }.background(Color(UIColor.systemGroupedBackground))
             .onAppear {

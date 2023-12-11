@@ -30,6 +30,12 @@ struct EditMealView: View {
                             Text($0)
                         }
                     }
+                    .onAppear(perform: {
+                        withAnimation {
+                            selection = ""
+                            selection = meal.mealType
+                        }
+                    })
                     
                     if addedItems.itens != [] {
                         Section {
@@ -91,13 +97,11 @@ struct EditMealView: View {
                                     weights.append(item.weight)
                                 }
                                 
-//                                let newMeal = Meal(id: ObjectIdentifier(Meal.self), name: "", date: Date(), satisfaction: "", itens: items, weights: weights, mealType: selection, registered: 0)
                                 meal.itens = items
                                 meal.weights = weights
                                 meal.mealType = selection
                                 
                                 Task {
-//                                    try await model.addMeal(meal: newMeal)
                                     try await model.updateMeal(editedMeal: meal)
                                 }
                                 
