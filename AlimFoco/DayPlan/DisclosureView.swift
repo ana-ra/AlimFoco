@@ -19,91 +19,105 @@ struct DisclosureView: View {
     var body: some View {
         List{
             Section(header: Text("Próximas Refeições")) {
-                ForEach(mealTypes.indices) { index in
-                    let filteredMeals = meals.filter { meal in
-                        meal.mealType == mealTypes[index] && meal.registered == 0
-                    }
-                    if !filteredMeals.isEmpty {
-                        DisclosureGroup (isExpanded: self.expansionHandler.isExpanded(.refeicao(mealTypes[index])),
-                                         content: {
-                            CardScrollView(meals: filteredMeals)
-                                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
-                            Button(action: {
-                                filteredMealsState = filteredMeals
-                                selectedMeal = mealTypes[index]
-                                isSatisfactionSheetPresented.toggle()
-                            }) {
-                                HStack(alignment: .center, spacing: 4) {
-                                    Image(systemName: "note.text.badge.plus")
-                                        .foregroundColor(Color.white)
-                                    
-                                    Text("Registrar")
-                                        .foregroundColor(Color.white)
-                                    
-                                }
-                                .padding(.horizontal, 16)
-                                .frame(width: getWidth() / 2.8, height: getHeight() / 20)
-                                .cornerRadius(14)
-                            }
-                            .padding(.vertical, 8)
-                            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
-                            
-                        }, label: {
-                            Text(mealTypes[index])
-                                .fontWeight(.semibold)
+                if verifyRegister(n: 0) {
+                    HStack{
+                        Text("Todas as refeições do dia foram registradas")
+                    }.padding( 8)
+                        .background(Color.white)
+                        .cornerRadius(14)
+                } else {
+                    ForEach(mealTypes.indices) { index in
+                        let filteredMeals = meals.filter { meal in
+                            meal.mealType == mealTypes[index] && meal.registered == 0
                         }
-                        )
-                        .listRowSeparator(.hidden)
-                        .listRowInsets(EdgeInsets(top: 50, leading: 20, bottom: 20, trailing: 10))
+                        if !filteredMeals.isEmpty {
+                            DisclosureGroup (isExpanded: self.expansionHandler.isExpanded(.refeicao(mealTypes[index])),
+                                             content: {
+                                CardScrollView(meals: filteredMeals)
+                                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
+                                Button(action: {
+                                    filteredMealsState = filteredMeals
+                                    selectedMeal = mealTypes[index]
+                                    isSatisfactionSheetPresented.toggle()
+                                }) {
+                                    HStack(alignment: .center, spacing: 4) {
+                                        Image(systemName: "note.text.badge.plus")
+                                            .foregroundColor(Color.white)
+                                        
+                                        Text("Registrar")
+                                            .foregroundColor(Color.white)
+                                        
+                                    }
+                                    .padding(.horizontal, 16)
+                                    .frame(width: getWidth() / 2.8, height: getHeight() / 20)
+                                    .background(Color(.teal))
+                                    .cornerRadius(14)
+                                }
+                                .padding(.vertical, 8)
+                                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
+                               
+                            }, label: {
+                                Text(mealTypes[index])
+                                    .fontWeight(.semibold)
+                            }
+                            )
+                            .listRowBackground(Color.clear)
+                            .listRowSeparator(.hidden)
+                            .listRowInsets(EdgeInsets(top: 50, leading: 20, bottom: 20, trailing: 10))
+                        }
                     }
                 }
                 
-            }
+            } .listRowSeparator(.hidden)
                     .headerProminence(.increased)
             Section(header: Text("Registrado")) {
-                ForEach(mealTypes.indices) { index in
-                    let filteredMeals = meals.filter { meal in
-                        meal.mealType == mealTypes[index] && meal.registered == 1
-                    }
-                    
-                    if !filteredMeals.isEmpty {
-                        DisclosureGroup (isExpanded: self.expansionHandler.isExpanded(.refeicao(mealTypes[index] + "Registered")),
-                                         content: {
-                            CardScrollView(meals: filteredMeals)
-                                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
-                            Button(action: {
-                                filteredMealsState = filteredMeals
-                                selectedMeal = mealTypes[index]
-                                isSatisfactionSheetPresented.toggle()
-                            }) {
-                                HStack(alignment: .center, spacing: 4) {
-                                    Image(systemName: "note.text.badge.plus")
-                                        .foregroundColor(Color.white)
-                                    
-                                    Text("Registrar")
-                                        .foregroundColor(Color.white)
-                                    
-                                }
-                                .padding(.horizontal, 16)
-                                .frame(width: getWidth() / 2.8, height: getHeight() / 20)
-                                .cornerRadius(14)
-                            }
-                            .padding(.vertical, 8)
-                            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
-                            
-                        }, label: {
-                            Text(mealTypes[index])
-                                .fontWeight(.semibold)
+                if verifyRegister(n: 1) {
+                    Text("Nenhuma refeição foi registrada.")
+                } else {
+                    ForEach(mealTypes.indices) { index in
+                        let filteredMeals = meals.filter { meal in
+                            meal.mealType == mealTypes[index] && meal.registered == 1
                         }
-                        )
-                        .listRowSeparator(.hidden)
-                        .listRowInsets(EdgeInsets(top: 50, leading: 20, bottom: 20, trailing: 10))
+                        
+                        if !filteredMeals.isEmpty {
+                            DisclosureGroup (isExpanded: self.expansionHandler.isExpanded(.refeicao(mealTypes[index] + "Registered")),
+                                             content: {
+                                CardScrollView(meals: filteredMeals)
+                                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
+                                Button(action: {
+                                    filteredMealsState = filteredMeals
+                                    selectedMeal = mealTypes[index]
+                                    isSatisfactionSheetPresented.toggle()
+                                }) {
+                                    HStack(alignment: .center, spacing: 4) {
+                                        
+                                        Text("Alterar Registro")
+                                            .foregroundColor(Color.teal)
+                                        
+                                    }
+                                    .padding(.horizontal, 16)
+                                    .frame( height: getHeight() / 20)
+                                    .cornerRadius(14)
+                                }
+                                .padding(.vertical, 8)
+                                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
+                                
+                                
+                            }, label: {
+                                Text(mealTypes[index])
+                                    .fontWeight(.semibold)
+                            }
+                            )
+                            .listRowSeparator(.hidden)
+                            .listRowBackground(Color.clear)
+                            .listRowInsets(EdgeInsets(top: 50, leading: 20, bottom: 20, trailing: 10))
+                        }
                     }
                 }
             }
                 .headerProminence(.increased)
-                .background(Color(red: 0.95, green: 0.95, blue: 0.97))
         }
+        
         .sheet(isPresented: $isSatisfactionSheetPresented, content: {
                         RegisterSatisfactionSheetView(selectedMeal: $selectedMeal, filteredMeals: $filteredMealsState).presentationDetents([.height(getHeight())])
                             .tint(Color.informationGreen).environmentObject(ModelMeal()).background(Color(red: 0.95, green: 0.95, blue: 0.97))
@@ -172,6 +186,22 @@ struct DisclosureView: View {
             case refeicao(String)
         }
     }
+
+extension DisclosureView {
+    
+    func verifyRegister(n: Int) -> Bool {
+        for index in mealTypes.indices {
+            let filteredMeals = meals.filter { meal in
+                meal.mealType == mealTypes[index] && meal.registered == n
+            }
+            if !filteredMeals.isEmpty {
+                return(false)
+            }
+        }
+        return(true)
+    }
+}
+
     
 
 #Preview {

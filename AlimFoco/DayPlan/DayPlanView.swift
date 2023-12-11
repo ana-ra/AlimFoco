@@ -49,7 +49,7 @@ struct DayPlanView: View {
                 } else {
                     DisclosureView(meals: meals)
                 }
-            }
+            }.background(Color(UIColor.systemGroupedBackground))
             .onAppear {
                 Task {
                     if hasLoggedIn {

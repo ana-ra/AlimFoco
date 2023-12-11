@@ -61,7 +61,7 @@ struct RegisterSatisfactionSheetView: View {
             }
             .frame(height: getHeight()/6)
             
-            if selectedOption == 0 && selectedMealOption == nil {
+            if selectedOption == 0 {
                 Text("Qual dessas opções você comeu?")
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .fontWeight(.semibold)
@@ -94,15 +94,10 @@ struct RegisterSatisfactionSheetView: View {
             }
             Spacer()
             Button(action: {
-                if let selectedIndex = selectedMealOption {
-                    let editedMeal = filteredMeals[selectedIndex]
-                    
-                    Task {
-                        try await model.updateMeal(editedMeal: editedMeal)
-                    }
-
-                    filteredMeals.remove(at: selectedIndex) // Remove a refeição selecionada da lista
-                    selectedMealOption = nil // Reseta a opção selecionada para nil
+                let editedMeal = filteredMeals[selectedMealOption!]
+                
+                Task {
+                    try await model.updateMeal(editedMeal: editedMeal)
                 }
 
                 dismiss()

@@ -33,14 +33,15 @@ struct CardScrollView: View {
                         
                         // Use DisclosureGroup for additional items and weights
                         
-                    }.sheet(isPresented: $isMealSheetViewPresented, content: {
+                    }
+                        .background(Color.white)
+                        .sheet(isPresented: $isMealSheetViewPresented, content: {
                         NavigationStack {
                             MealSheetView(meal: meal)
                         }
                     })
                 }
                 .frame(width: 267, alignment: .leading)
-                .background(.white)
                 .cornerRadius(14)
                 .padding(.bottom, 8)
             }
