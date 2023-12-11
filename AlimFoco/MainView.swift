@@ -17,20 +17,14 @@ struct MainView: View {
         TabView{
             DayPlanView(isPresentingOnboarding: $hasOnboardingCompleted,
                         hasLoggedIn: $alreadyLogged)
-//                .environmentObject(ModelMeal())
-//                .environmentObject(Model())
                 .tabItem {
                     Label("Ínicio", systemImage: "list.bullet.rectangle.portrait")
                 }
             HistoryView()
-//                .environmentObject(ModelMeal())
-//                .environmentObject(Model())
                 .tabItem {
                     Label("Resumo", systemImage: "note.text")
                 }
             ProfileView(accountName: accountName)
-//                .environmentObject(ModelMeal())
-//                .environmentObject(Model())
                 .tabItem {
                     Label("Perfil", systemImage: "person")
                 }
