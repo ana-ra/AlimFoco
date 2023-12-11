@@ -14,7 +14,7 @@ struct CardScrollView: View {
                             isMealSheetViewPresented.toggle()
                         } label: {
                             VStack(alignment: .leading) {
-                                Text("\(meal.name)")
+                                Text(meal.name == "" ? "Sem Título" : "\(meal.name)")
                                     .bold()
                                     .padding(.top, 8)
                                     .padding(.horizontal, 16)
@@ -51,7 +51,6 @@ struct CardScrollView: View {
 
 
 
-// Exemplo de uso com Preview
 struct CardScrollView_Previews: PreviewProvider {
     static var previews: some View {
         CardScrollView(meals: [Meal(id: ObjectIdentifier(Meal.self), name: "Opção A", date: Date(), satisfaction: "", itens: ["Arroz", "Feijão"], weights: ["20","30"], mealType: "Almoço", registered: 0), Meal(id: ObjectIdentifier(Meal.self), name: "Opção B", date: Date(), satisfaction: "", itens: ["Macarrao", "Ervilha"], weights: ["20","30"], mealType: "Almoço", registered: 0)])

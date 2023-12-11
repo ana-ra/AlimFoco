@@ -8,15 +8,11 @@
 import SwiftUI
 
 struct NewMealView: View {
-//    @EnvironmentObject private var modelMealItem: Model
     @EnvironmentObject private var model: ModelMeal
     @Environment(\.dismiss) private var dismiss
     @State private var editMode = EditMode.inactive
     @State var showPopup: Bool = false
     @State var isEditing = false
-//    var mealItems: [MealItem] {
-//        model.Mealitems
-//    }
     @State private var isAddItemModalPresented = false
     @State var meals: [Meal]
     @State var selection: String = ""
