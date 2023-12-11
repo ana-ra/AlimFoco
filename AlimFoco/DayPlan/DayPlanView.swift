@@ -17,7 +17,7 @@ struct DayPlanView: View {
     @State var isNavigatingToNewMealView = false
     @State var isSatisfactionSheetPresented = false
     @State var filteredMealsState: [Meal] = []
-    let filteredMeals: [Meal] = []
+    @State var allMealsAreRegistered: [String] = []
     @State var nextMeals = ["Café da manhã", "Colação", "Almoço", "Lanche da Tarde", "Jantar"]
     var mealItems: [MealItem] {
         model.Mealitems
@@ -48,19 +48,28 @@ struct DayPlanView: View {
                     }.padding(16)
                 } else {
                     List{
-                        Section(header: Text("Próximas Refeições")) {
-                            if verifyRegister(n: 0) {
+                        Section(header: Text("Próximas refeições")) {
+                            if verifyRegister() {
                                 HStack{
                                     Text("Todas as refeições do dia foram registradas")
-                                }.padding( 8)
-                                    .background(Color.white)
-                                    .cornerRadius(14)
+                                }
+                                .padding(8)
+                                .background(Color.white)
+                                .cornerRadius(14)
                             } else {
                                 ForEach(nextMeals.indices) { index in
                                     let filteredMeals = meals.filter { meal in
                                         meal.mealType == nextMeals[index]
                                     }
-                                    if !filteredMeals.isEmpty {
+                                    
+                                    var day = selectedDate.get(.day)
+                                    var month = selectedDate.get(.month)
+                                    
+                                    let registeredMeals = filteredMeals.filter { meal in
+                                        meal.registered == 1 && meal.date.get(.day) == day /*&& meal.date.get(.month) == month*/
+                                    }
+                                   
+                                    if !filteredMeals.isEmpty && registeredMeals.isEmpty {
                                         DisclosureGroup {
                                             CardScrollView(meals: filteredMeals)
                                                 .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
@@ -99,7 +108,7 @@ struct DayPlanView: View {
                             .background(Color(red: 0.95, green: 0.95, blue: 0.97))
                         
                         Section(header: Text("Registrado")) {
-                            if verifyRegister(n: 1) {
+                            if !verifyRegister() {
                                 Text("Nenhuma refeição foi registrada.")
                             } else {
                                 ForEach(mealTypes.indices) { index in
@@ -144,7 +153,7 @@ struct DayPlanView: View {
                             if hasLoggedIn {
                                 do {
                                     try await modelMeal.populateMeals()
-                                    filter()
+//                                    filter()
                                 } catch {
                                     errorView()
                                     print(error)
@@ -174,7 +183,7 @@ struct DayPlanView: View {
                     if hasLoggedIn {
                         do {
                             try await modelMeal.populateMeals()
-                            filter()
+//                            filter()
                         } catch {
                             errorView()
                             print(error)
@@ -186,7 +195,7 @@ struct DayPlanView: View {
                     Task {
                         do {
                             try await modelMeal.populateMeals()
-                            filter()
+//                            filter()
                         } catch {
                             VStack {
                                 Spacer()
@@ -207,7 +216,7 @@ struct DayPlanView: View {
                 Task {
                     do {
                         try await modelMeal.populateMeals()
-                        filter()
+//                        filter()
                     } catch {
                         VStack {
                             Spacer()
@@ -238,20 +247,6 @@ struct DayPlanView: View {
         }
     }
     
-    func filter() {
-        for mealType in mealTypes {
-            for meal in meals{
-                if (selectedDate.get(.month) == meal.date.get(.month) && selectedDate.get(.day) == meal.date.get(.day)){
-                    if (meal.mealType == mealType && meal.registered == 1){
-                        if let index = nextMeals.firstIndex(of: mealType) {
-                            nextMeals.remove(at: index)
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
     func dates(for startDate: Date) -> [Date] {
         var dates = [Date]()
         
@@ -275,28 +270,36 @@ struct DayPlanView: View {
         }
     }
     
-    func verifyRegister(n: Int) -> Bool {
+    func verifyRegister() -> Bool {
+        var contador = 0
+        var numTypes = 5
         
-        if n == 0 {
-            for  index in nextMeals.indices {
-                let filteredMeals = meals.filter { meal in
-                    meal.mealType == nextMeals[index]
-                }
-                if !filteredMeals.isEmpty {
-                    return(false)
-                }
+        for mealType in mealTypes {
+            let filteredMeals = meals.filter { meal in
+                meal.mealType == mealType
             }
+            
+            if filteredMeals.isEmpty {
+                numTypes -= 1
+            }
+            
+            let day = selectedDate.get(.day)
+            let month = selectedDate.get(.month)
+            
+            let registeredMeals = filteredMeals.filter { meal in
+                meal.registered == 1 && meal.date.get(.day) == day
+            }
+            
+            if !registeredMeals.isEmpty {
+                contador += 1
+            }
+        }
+        
+        if contador == numTypes {
+            return true
         } else {
-                for index in mealTypes.indices {
-                    let filteredMeals = meals.filter { meal in
-                        meal.mealType == mealTypes[index] && meal.registered == 1 && selectedDate.get(.month) == meal.date.get(.month) && selectedDate.get(.day) == meal.date.get(.day)
-                    }
-                }
-                if !filteredMeals.isEmpty {
-                    return(false)
-                }
-            }
-        return(true)
+            return false
+        }
     }
 }
                             

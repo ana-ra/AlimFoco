@@ -96,7 +96,7 @@ struct NewMealView: View {
                                         weights.append(item.weight)
                                     }
                                     
-                                    let newMeal = Meal(id: ObjectIdentifier(Meal.self), name: mealTitle, date: Date(), satisfaction: "", itens: items, weights: weights, mealType: selection, registered: 0)
+                                    let newMeal = Meal(id: ObjectIdentifier(Meal.self), name: mealTitle, date: createDate(today: Date()), satisfaction: "", itens: items, weights: weights, mealType: selection, registered: 0)
                                     
                                     Task {
                                         try await model.addMeal(meal: newMeal)
@@ -156,6 +156,17 @@ struct NewMealView: View {
     func deleteNavigationLinks(at offsets: IndexSet) {
         addedItems.itens.remove(atOffsets: offsets)
         print(addedItems)
+    }
+    
+    func createDate(today: Date) -> Date {
+        var components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: today)
+        components.year = 2000
+        
+        if let modifiedDate = Calendar.current.date(from: components) {
+            return modifiedDate
+        } else {
+            return today
+        }
     }
 }
 
