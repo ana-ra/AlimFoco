@@ -10,14 +10,18 @@ import SwiftUI
 struct DayPlanView: View {
     @Binding var isPresentingOnboarding: Bool
     @Binding var hasLoggedIn: Bool
+    
     @EnvironmentObject private var model: Model
     @EnvironmentObject private var modelMeal: ModelMeal
+    
     @State var selectedMeal: String = ""
     @State var selectedDate = Date()
     @State var isNavigatingToNewMealView = false
     @State var isSatisfactionSheetPresented = false
     @State var filteredMealsState: [Meal] = []
-    @State var allMealsAreRegistered: [String] = []
+    @State var accountStatusMessage: String? = nil
+    
+    let filteredMeals: [Meal] = []
     @State var nextMeals = ["Café da manhã", "Colação", "Almoço", "Lanche da Tarde", "Jantar"]
     var mealItems: [MealItem] {
         model.Mealitems
@@ -33,7 +37,21 @@ struct DayPlanView: View {
                 DateSelectorView(dates: dates(for: Date()), selectedDate: $selectedDate)
                 Spacer()
                 
-                if meals.isEmpty {
+                if accountStatusMessage != nil {
+                    VStack {
+                        ErrorState(
+                            image: "no_connection",
+                            title: "Ops! Algo deu errado. Parece que você não fez login no iCloud.",
+                            description: "Faça login no iCloud para usar o app.",
+                            buttonText: nil,
+                            action: {}
+                        )
+                    }
+                    .padding(16)
+                    .background(.white)
+                    .cornerRadius(12)
+                }
+                else if meals.isEmpty {
                     VStack () {
                         EmptyState(
                             image: "empty_state",
@@ -182,8 +200,21 @@ struct DayPlanView: View {
                 Task {
                     if hasLoggedIn {
                         do {
-                            try await modelMeal.populateMeals()
-//                            filter()
+                            let status = await modelMeal.login()
+                            switch status {
+                            case .available:
+                                accountStatusMessage = nil
+                                try await modelMeal.populateMeals()
+                                filter()
+                            case .noAccount:
+                                accountStatusMessage = "Usuário não está logado no iCloud"
+                            case .restricted:
+                                accountStatusMessage = "Acesso ao iCloud está restrito"
+                            case .couldNotDetermine:
+                                accountStatusMessage = "Não foi possível determinar o status da conta"
+                            case .unknown:
+                                accountStatusMessage = "Status da conta desconhecido"
+                            }
                         } catch {
                             errorView()
                             print(error)

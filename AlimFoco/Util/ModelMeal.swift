@@ -5,14 +5,16 @@ import CloudKit
 @MainActor
 class ModelMeal: ObservableObject {
     
-    private var db = CKContainer.default().privateCloudDatabase
+    private var container = CKContainer.default()
+    private lazy var db = container.privateCloudDatabase
+    
     @Published private var Dictionary: [CKRecord.ID: Meal] = [:]
     @Published var Meals: [Meal] = []
     
     func addMeal(meal: Meal) async throws {
-          let record = try await db.save(meal.record)
-          guard let meal = Meal(record: record) else { return }
-          Dictionary[meal.recordId!] = meal
+        let record = try await db.save(meal.record)
+        guard let meal = Meal(record: record) else { return }
+        Dictionary[meal.recordId!] = meal
     }
     
     func populateMeals() async throws {
@@ -59,4 +61,38 @@ class ModelMeal: ObservableObject {
             print(error)
         }
     }
+    
+    func login() async -> AccountStatus {
+        await withCheckedContinuation { continuation in
+            container.accountStatus { status, error in
+                if let error = error {
+                    print("Erro ao verificar o status da conta: \(error)")
+                    continuation.resume(returning: .couldNotDetermine)
+                } else {
+                    switch status {
+                    case .available:
+                        print("Usuário logado no iCloud")
+                        continuation.resume(returning: .available)
+                    case .noAccount:
+                        print("Usuário não está logado no iCloud")
+                        continuation.resume(returning: .noAccount)
+                    case .restricted, .couldNotDetermine:
+                        print("Status da conta iCloud restrito ou indeterminado")
+                        continuation.resume(returning: .restricted)
+                    @unknown default:
+                        print("Status da conta desconhecido")
+                        continuation.resume(returning: .couldNotDetermine)
+                    }
+                }
+            }
+        }
+    }
+}
+
+enum AccountStatus {
+    case available
+    case noAccount
+    case restricted
+    case couldNotDetermine
+    case unknown
 }
