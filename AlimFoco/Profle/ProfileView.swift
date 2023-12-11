@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ProfileView: View {
     @State private var isDeleteAccountSheetViewPresented = false
-    @State private var isLogoutViewSheetViewPresented = false
     @State var showCalorias = true
     let accountName: String
     
@@ -70,16 +69,9 @@ struct ProfileView: View {
                     
                     Section(header: Text("Conta")) {
                         Button(action: {
-                            isLogoutViewSheetViewPresented.toggle()
-                        }) {
-                            Text("Sair")
-                                .font(.system(size: 16))
-                                .foregroundColor(.errorRed)
-                        }
-                        Button(action: {
                             isDeleteAccountSheetViewPresented.toggle()
                         }) {
-                            Text("Deletar conta")
+                            Text("Resetar conta")
                                 .font(.system(size: 16))
                                 .foregroundColor(.errorRed)
                         }
@@ -88,11 +80,8 @@ struct ProfileView: View {
                 
             }
         }.sheet(isPresented: $isDeleteAccountSheetViewPresented, content: {
-            ProfileAccountSheetView( title: "Tem certeza de que deseja deletar sua conta?", secondaryButtonTitle: "Deletar conta").presentationDetents([.height(getHeight() / 3.5)])
+            ProfileAccountSheetView( title: "Deseja resetar todos os dados associados ao aplicativo do iCloud?", secondaryButtonTitle: "Resetar conta").presentationDetents([.height(getHeight() / 3.5)])
             
-        })
-        .sheet(isPresented: $isLogoutViewSheetViewPresented, content: {
-            ProfileAccountSheetView(title: "Tem certeza de que deseja sair do app?", secondaryButtonTitle: "Sair").presentationDetents([.height(getHeight() / 3.5)])
         })
     }
 }

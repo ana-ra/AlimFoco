@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProfileAccountSheetView: View {
     @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject private var modelMeal: ModelMeal
     
     let title: String
     let secondaryButtonTitle: String
@@ -33,7 +34,20 @@ struct ProfileAccountSheetView: View {
             .padding(14)
             .background(Color.teal)
             .cornerRadius(12)
-            Button {dismiss()} label: {
+            Button {
+                
+                Task {
+                    do {
+                        for item in modelMeal.Meals {
+                            try await modelMeal.deleteMeal(MealToBeDeleted: item)
+                        }
+                    } catch {
+                        print(error)
+                    }
+                }
+                
+                dismiss()
+            } label: {
                 Text(secondaryButtonTitle)
                     .font(.system(size: 16))
                     .fontWeight(.semibold)
