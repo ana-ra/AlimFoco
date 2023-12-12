@@ -14,6 +14,8 @@ struct RegisterSatisfactionSheetView: View {
     @State private var selectedMealOption: Int? = nil
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var model: ModelMeal
+    @State var isAlter: Bool
+    @State var selectedDate: Date
     
     let options = ["Seguiu", "Não Seguiu"]
     
@@ -93,8 +95,13 @@ struct RegisterSatisfactionSheetView: View {
                     }
                 }
             }
+            
             Spacer()
             Button(action: {
+                if isAlter {
+                    changeEdited()
+                }
+                
                 var editedMeal = filteredMeals[selectedMealOption!]
                 editedMeal.registered = 1
                 editedMeal.date = Date()
@@ -125,5 +132,21 @@ struct RegisterSatisfactionSheetView: View {
             .padding(.top, 16)
         }
         .padding(16)
+    }
+    
+    func changeEdited() {
+        for index in filteredMeals.indices {
+            if filteredMeals[index].registered == 1 && filteredMeals[index].date.get(.day) == selectedDate.get(.day) && filteredMeals[index].date.get(.month) == selectedDate.get(.month) {
+                filteredMeals[index].registered = 0
+                var meal = filteredMeals[index]
+                meal.registered = 0
+                
+                Task {
+                    try await model.updateMeal(editedMeal: meal)
+                }
+                
+                break
+            }
+        }
     }
 }
