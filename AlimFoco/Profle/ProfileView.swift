@@ -7,11 +7,12 @@
 
 import SwiftUI
 
+var showKcal: Bool = true
+
 struct ProfileView: View {
     @State private var isDeleteAccountSheetViewPresented = false
-    @State var showCalorias = true
     let accountName: String
-    
+    @State var isKcalOn: Bool = true
     var body: some View {
         VStack {
             NavigationStack {
@@ -55,7 +56,7 @@ struct ProfileView: View {
                     
                     Section(header: Text("Preferências")) {
                         
-                            Toggle(isOn: $showCalorias) {
+                            Toggle(isOn: $isKcalOn) {
                                 HStack{
                                     Image(systemName: "chart.bar")
                                         .frame(width: 16, height: 16)
@@ -81,7 +82,9 @@ struct ProfileView: View {
             }
         }.sheet(isPresented: $isDeleteAccountSheetViewPresented, content: {
             ProfileAccountSheetView( title: "Deseja resetar todos os dados associados ao aplicativo do iCloud?", secondaryButtonTitle: "Resetar conta").presentationDetents([.height(getHeight() / 3.0)])
-            
+        })
+        .onChange(of: isKcalOn, perform: { value in
+            showKcal = isKcalOn
         })
     }
 }

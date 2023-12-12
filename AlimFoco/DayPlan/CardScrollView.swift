@@ -3,7 +3,6 @@ import SwiftUI
 struct CardScrollView: View {
     var meals: [Meal]
     @State var isMealSheetViewPresented = false
-
     @EnvironmentObject private var model: ModelMeal
     
     var body: some View {
@@ -20,13 +19,14 @@ struct CardScrollView: View {
                                     .padding(.horizontal, 16)
                                     .frame(maxWidth: .infinity, alignment: .leading) // Alinha o nome da refeição à esquerda
                                     .foregroundStyle(Color(.teal))
-                                Text("\(calory(meal:meal)) CAL")
-                                    .font(.system(size: 12))
-                                    .bold()
-                                    .padding(.horizontal, 16)
-                                    .frame(maxWidth: .infinity, alignment: .leading) // Alinha o nome da refeição à esquerda
-                                    .foregroundStyle(Color(.secondary3))
-                                
+                                if (showKcal){
+                                    Text("\(calory(meal:meal)) CAL")
+                                        .font(.system(size: 12))
+                                        .bold()
+                                        .padding(.horizontal, 16)
+                                        .frame(maxWidth: .infinity, alignment: .leading) // Alinha o nome da refeição à esquerda
+                                        .foregroundStyle(Color(.secondary3))
+                                }
                                 // Display the first two items and weights
                             ForEach(meal.itens.indices.prefix(1), id: \.self) { itemIndex in
                                 VStack(alignment: .leading, spacing: 2) {
