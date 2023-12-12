@@ -20,6 +20,12 @@ struct CardScrollView: View {
                                     .padding(.horizontal, 16)
                                     .frame(maxWidth: .infinity, alignment: .leading) // Alinha o nome da refeição à esquerda
                                     .foregroundStyle(Color(.teal))
+                                Text("\(calory(meal:meal)) CAL")
+                                    .font(.system(size: 12))
+                                    .bold()
+                                    .padding(.horizontal, 16)
+                                    .frame(maxWidth: .infinity, alignment: .leading) // Alinha o nome da refeição à esquerda
+                                    .foregroundStyle(Color(.secondary3))
                                 
                                 // Display the first two items and weights
                             ForEach(meal.itens.indices.prefix(1), id: \.self) { itemIndex in
@@ -49,10 +55,24 @@ struct CardScrollView: View {
     }
 }
 
+func calory(meal: Meal) -> String{
+    @StateObject var viewModel = foodListViewModel()
+    var total : Float = 0
+    for index in meal.itens.indices{
+        let alimentoSel = viewModel.filteredAlimentos.filter({ (alimento) -> Bool in
+            alimento.nome == meal.itens[index]
+        })
+        let cal = NumberFormatter().number(from: alimentoSel.first!.kcal)
+        let weight = NumberFormatter().number(from: meal.weights[index])
+        total += cal!.floatValue * (weight!.floatValue/100)
 
-
-struct CardScrollView_Previews: PreviewProvider {
-    static var previews: some View {
-        CardScrollView(meals: [Meal(id: ObjectIdentifier(Meal.self), name: "Opção A", date: Date(), satisfaction: "", itens: ["Arroz", "Feijão"], weights: ["20","30"], mealType: "Almoço", registered: 0), Meal(id: ObjectIdentifier(Meal.self), name: "Opção B", date: Date(), satisfaction: "", itens: ["Macarrao", "Ervilha"], weights: ["20","30"], mealType: "Almoço", registered: 0)])
     }
+    let totalStr =  String(format: "%.1f", total)
+    return totalStr
 }
+
+//struct CardScrollView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CardScrollView(meals: [Meal(id: ObjectIdentifier(Meal.self), name: "Opção A", date: Date(), satisfaction: "", itens: ["Arroz", "Feijão"], weights: ["20","30"], mealType: "Almoço", registered: 0), Meal(id: ObjectIdentifier(Meal.self), name: "Opção B", date: Date(), satisfaction: "", itens: ["Macarrao", "Ervilha"], weights: ["20","30"], mealType: "Almoço", registered: 0)])
+//    }
+//}
