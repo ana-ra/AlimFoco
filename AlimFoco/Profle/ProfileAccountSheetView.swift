@@ -10,6 +10,7 @@ import SwiftUI
 struct ProfileAccountSheetView: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var modelMeal: ModelMeal
+    @Binding var showPopup: Bool
     
     let title: String
     let secondaryButtonTitle: String
@@ -35,7 +36,6 @@ struct ProfileAccountSheetView: View {
             .background(Color.teal)
             .cornerRadius(12)
             Button {
-                
                 Task {
                     do {
                         for item in modelMeal.Meals {
@@ -46,7 +46,10 @@ struct ProfileAccountSheetView: View {
                     }
                 }
                 
-                dismiss()
+                withAnimation {
+                    showPopup = true
+                    dismiss()
+                }
             } label: {
                 Text(secondaryButtonTitle)
                     .font(.system(size: 16))
@@ -58,6 +61,6 @@ struct ProfileAccountSheetView: View {
     }
 }
 
-#Preview {
-    ProfileAccountSheetView(title: "O que você quer?", secondaryButtonTitle: "Não sei")
-}
+//#Preview {
+//    ProfileAccountSheetView(title: "O que você quer?", secondaryButtonTitle: "Não sei")
+//}

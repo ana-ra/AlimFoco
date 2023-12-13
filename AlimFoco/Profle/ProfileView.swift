@@ -13,79 +13,95 @@ struct ProfileView: View {
     @State private var isDeleteAccountSheetViewPresented = false
     let accountName: String
     @State var isKcalOn: Bool = true
+    @State var showPopup = false
+    
     var body: some View {
-        VStack {
-            NavigationStack {
-                List {
-                    Section(header: Text("Configurações")) {
-//                        NavigationLink(destination: Text("Assinatura")) {
-//                            HStack {
-//                                Image(systemName: "bag")
-//                                    .frame(width: 16, height: 16)
-//                                    .foregroundColor(.lightGreen)
-//                                    .padding(.trailing, 12)
-//                                VStack (alignment: .leading, content: {
-//                                    Text("Assinatura")
-//                                        .font(.system(size: 16))
-//                                    Text("Planos de assinatura do app")
-//                                        .font(.system(size: 14))
-//                                        .foregroundColor(.gray)
-//                                    
-//                                })
-//                            }
-//                            
-//                        }
-                        NavigationLink(destination: TotalMealsView()) {
-                            HStack {
-                                Image(systemName: "carrot")
-                                    .frame(width: 16, height: 16)
-                                    .foregroundColor(.lightGreen)
-                                    .padding(.trailing, 12)
-                                VStack (alignment: .leading, content: {
-                                    Text("Refeições")
-                                        .font(.system(size: 16))
-                                    Text("Meu inventário de refeições")
-                                        .font(.system(size: 14))
-                                        .foregroundColor(.gray)
-                                    
-                                })
-                            }
-                            
-                        }
-                    }
-                    
-                    Section(header: Text("Preferências")) {
-                        
-                            Toggle(isOn: $isKcalOn) {
-                                HStack{
-                                    Image(systemName: "chart.bar")
+        ZStack {
+            VStack {
+                NavigationStack {
+                    List {
+                        Section(header: Text("Configurações")) {
+    //                        NavigationLink(destination: Text("Assinatura")) {
+    //                            HStack {
+    //                                Image(systemName: "bag")
+    //                                    .frame(width: 16, height: 16)
+    //                                    .foregroundColor(.lightGreen)
+    //                                    .padding(.trailing, 12)
+    //                                VStack (alignment: .leading, content: {
+    //                                    Text("Assinatura")
+    //                                        .font(.system(size: 16))
+    //                                    Text("Planos de assinatura do app")
+    //                                        .font(.system(size: 14))
+    //                                        .foregroundColor(.gray)
+    //                                    
+    //                                })
+    //                            }
+    //                            
+    //                        }
+                            NavigationLink(destination: TotalMealsView()) {
+                                HStack {
+                                    Image(systemName: "carrot")
                                         .frame(width: 16, height: 16)
-                                        .foregroundColor(.salmon)
+                                        .foregroundColor(.lightGreen)
                                         .padding(.trailing, 12)
-                                    Text("Mostrar calorias")
-                                        .font(.system(size: 16))
+                                    VStack (alignment: .leading, content: {
+                                        Text("Refeições")
+                                            .font(.system(size: 16))
+                                        Text("Meu inventário de refeições")
+                                            .font(.system(size: 14))
+                                            .foregroundColor(.gray)
+                                        
+                                    })
+                                }
+                                
                             }
-                            }.tint(.teal)
-                    }
-                    
-                    Section(header: Text("Conta")) {
-                        Button(action: {
-                            isDeleteAccountSheetViewPresented.toggle()
-                        }) {
-                            Text("Apagar dados")
-                                .font(.system(size: 16))
-                                .foregroundColor(.errorRed)
                         }
-                    }
-                }.navigationTitle(accountName)
-                
+                        
+                        Section(header: Text("Preferências")) {
+                            
+                                Toggle(isOn: $isKcalOn) {
+                                    HStack{
+                                        Image(systemName: "chart.bar")
+                                            .frame(width: 16, height: 16)
+                                            .foregroundColor(.salmon)
+                                            .padding(.trailing, 12)
+                                        Text("Mostrar calorias")
+                                            .font(.system(size: 16))
+                                }
+                                }.tint(.teal)
+                        }
+                        
+                        Section(header: Text("Conta")) {
+                            Button(action: {
+                                isDeleteAccountSheetViewPresented.toggle()
+                            }) {
+                                Text("Apagar dados")
+                                    .font(.system(size: 16))
+                                    .foregroundColor(.errorRed)
+                            }
+                        }
+                    }.navigationTitle(accountName)
+                    
+                }
+            }.sheet(isPresented: $isDeleteAccountSheetViewPresented, content: {
+                ProfileAccountSheetView(showPopup: $showPopup, title: "Todos os dados deste app armazenados neste Iphone e no iCloud serão apagados", secondaryButtonTitle: "Apagar dados").presentationDetents([.height(getHeight() / 3.0)])
+            })
+            .onChange(of: isKcalOn, perform: { value in
+                showKcal = isKcalOn
+            })
+            .opacity(showPopup ? 0.1 : 1)
+            
+            if showPopup {
+                PerfilPoUpSwiftUIView()
+                    .onAppear(perform: {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            withAnimation {
+                                showPopup = false
+                            }
+                        }
+                    })
             }
-        }.sheet(isPresented: $isDeleteAccountSheetViewPresented, content: {
-            ProfileAccountSheetView( title: "Todos os dados deste app armazenados neste Iphone e no iCloud serão apagados", secondaryButtonTitle: "Apagar dados").presentationDetents([.height(getHeight() / 3.0)])
-        })
-        .onChange(of: isKcalOn, perform: { value in
-            showKcal = isKcalOn
-        })
+        }
     }
 }
 
