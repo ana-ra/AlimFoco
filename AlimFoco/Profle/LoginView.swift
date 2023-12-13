@@ -36,12 +36,6 @@ struct LoginView: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(minWidth: 110, maxWidth: 110)
                 
-                Text("Como devemos te chamar?")
-                    .font(.system(size: 16))
-                    .fontWeight(.medium)
-                    .padding(.top, 28)
-                    .multilineTextAlignment(.trailing)
-                
                 Button(action: {
                     CKContainer.default().requestApplicationPermission(.userDiscoverability) { (status, error) in
                         CKContainer.default().fetchUserRecordID { (record, error) in
