@@ -18,7 +18,7 @@ struct MainView: View {
             DayPlanView(isPresentingOnboarding: $hasOnboardingCompleted,
                         hasLoggedIn: $alreadyLogged)
                 .tabItem {
-                    Label("Ínicio", systemImage: "list.bullet.rectangle.portrait")
+                    Label("Plano", systemImage: "fork.knife")
                 }
             HistoryView()
                 .tabItem {
