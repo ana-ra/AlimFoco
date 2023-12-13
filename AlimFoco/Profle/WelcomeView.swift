@@ -64,8 +64,7 @@ struct WelcomeView: View {
             }.padding(.top, 28)
             Spacer()
             NavigationLink(destination: LoginView(
-                onboardingCompleted: $onboardingCompleted, hasLoggedIn: $hasLoggedIn,
-                accountName: $accountName
+                onboardingCompleted: $onboardingCompleted, hasLoggedIn: $hasLoggedIn, accountName: $accountName
             ), label:  {
                 HStack(alignment: .center, spacing: 4) {
                     Text("Começar")

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CloudKit
 
 struct LoginView: View {
     
@@ -15,7 +16,6 @@ struct LoginView: View {
     @Binding var hasLoggedIn:Bool
     @Binding var accountName: String
     
-    @State var isButtonEnabled: Bool = false
     @State var accountStatusMessage: String? = nil
     
     var body: some View {
@@ -42,20 +42,14 @@ struct LoginView: View {
                     .padding(.top, 28)
                     .multilineTextAlignment(.trailing)
                 
-                TextField("Digite seu nome", text: $accountName)
-                    .padding()
-                    .onChange(of: accountName, perform: { newValue in
-                        isButtonEnabled = !newValue.isEmpty
-                    })
-                    .foregroundColor(.black)
-                    .background(Color.white)
-                    .cornerRadius(12)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 12)
-                            .stroke(Color.clear, lineWidth: 2)
-                    )
-                
                 Button(action: {
+                    CKContainer.default().requestApplicationPermission(.userDiscoverability) { (status, error) in
+                        CKContainer.default().fetchUserRecordID { (record, error) in
+                            CKContainer.default().discoverUserIdentity(withUserRecordID: record!, completionHandler: { (userID, error) in
+                                accountName = (userID?.nameComponents?.givenName)!
+                            })
+                        }
+                    }
                     onboardingCompleted = true
                     hasLoggedIn = true
                 }) {
@@ -74,11 +68,10 @@ struct LoginView: View {
                     .padding(.vertical, 14)
                     .background(
                         RoundedRectangle(cornerRadius: 14)
-                            .fill(isButtonEnabled ? Color.black : Color.gray)
+                            .fill(Color.gray)
                     )
                     .cornerRadius(12)
                 }.padding(.top, 28)
-                    .disabled(!isButtonEnabled)
                 Text("Utilizaremos seu login do iCloud para entrar.")
                     .font(.system(size: 12))
                     .fontWeight(.medium)
@@ -130,10 +123,9 @@ struct LoginView: View {
     }
 }
 
-#Preview {
-    LoginView(
-        onboardingCompleted: .constant(true),
-        hasLoggedIn: .constant(false),
-        accountName: .constant("Carol")
-    )
-}
+//#Preview {
+//    LoginView(
+//        onboardingCompleted: .constant(true),
+//        hasLoggedIn: .constant(false)
+//    )
+//}

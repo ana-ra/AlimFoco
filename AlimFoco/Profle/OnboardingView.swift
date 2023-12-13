@@ -21,8 +21,7 @@ struct OnboardingView: View {
             )
             LoginView(
                 onboardingCompleted: $onboardingCompleted,
-                hasLoggedIn: $hasLoggedIn,
-                accountName: $accountName
+                hasLoggedIn: $hasLoggedIn, accountName: $accountName
             )
         }
     }
