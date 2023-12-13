@@ -72,7 +72,7 @@ struct ProfileView: View {
                         Button(action: {
                             isDeleteAccountSheetViewPresented.toggle()
                         }) {
-                            Text("Resetar conta")
+                            Text("Apagar dados")
                                 .font(.system(size: 16))
                                 .foregroundColor(.errorRed)
                         }
@@ -81,7 +81,7 @@ struct ProfileView: View {
                 
             }
         }.sheet(isPresented: $isDeleteAccountSheetViewPresented, content: {
-            ProfileAccountSheetView( title: "Deseja resetar todos os dados associados ao aplicativo do iCloud?", secondaryButtonTitle: "Resetar conta").presentationDetents([.height(getHeight() / 3.0)])
+            ProfileAccountSheetView( title: "Todos os dados deste app armazenados neste Iphone e no iCloud serão apagados", secondaryButtonTitle: "Apagar dados").presentationDetents([.height(getHeight() / 3.0)])
         })
         .onChange(of: isKcalOn, perform: { value in
             showKcal = isKcalOn

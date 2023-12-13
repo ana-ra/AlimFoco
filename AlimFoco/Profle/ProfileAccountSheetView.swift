@@ -23,7 +23,7 @@ struct ProfileAccountSheetView: View {
             Button {dismiss()} label: {
                 HStack(alignment: .center) {
                     Spacer()
-                    Text("Continuar usando o app")
+                    Text("Cancelar")
                         .font(.system(size: 16))
                         .fontWeight(.semibold)
                         .foregroundColor(.white)
